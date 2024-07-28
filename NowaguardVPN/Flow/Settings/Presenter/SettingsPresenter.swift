@@ -1,6 +1,9 @@
 protocol SettingsPresenter {
     var view: SettingsView! { get set }
     var coordinator: SettingsCoordinator! { get set }
+    
+    func showSpeedTest()
+    func showMain()
 }
 
 final class SettingsPresenterImpl {
@@ -14,7 +17,12 @@ final class SettingsPresenterImpl {
 // MARK: - SettingsPresenter
 
 extension SettingsPresenterImpl: SettingsPresenter {
-
     
+    func showSpeedTest() {
+        coordinator.showSpeedTest()
+    }
+    func showMain() {
+        coordinator.showMain()
+    }
 }
 

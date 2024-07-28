@@ -1,7 +1,17 @@
 import UIKit
 
+protocol SpeedTestCoordinatorDelegate: AnyObject {
+    func showMain()
+    func showSettings()
+}
+
 protocol SpeedTestCoordinator: Coordinator {
     var rootViewController: UIViewController { get }
+    
+    var delegate: SpeedTestCoordinatorDelegate! { get set }
+    
+    func showMain()
+    func showSettings()
 }
 
 final class SpeedTestCoordinatorImpl {
@@ -17,6 +27,7 @@ final class SpeedTestCoordinatorImpl {
     // MARK: - Private
 
     var viewController: UIViewController!
+    weak var delegate: SpeedTestCoordinatorDelegate! 
     
     // MARK: - Dependency
 
@@ -40,5 +51,13 @@ extension SpeedTestCoordinatorImpl: SpeedTestCoordinator {
     func start() {
         let module = moduleFactory.createModule(withCoordinator: self)
         viewController = module.view
+    }
+    
+    func showMain() {
+        delegate.showMain()
+    }
+    
+    func showSettings() {
+        delegate.showSettings()
     }
 }

@@ -1,7 +1,17 @@
 import UIKit
 
+protocol SettingsCoordinatorDelegate: AnyObject {
+    func showMain()
+    func showSpeedTest()
+}
+
 protocol SettingsCoordinator: Coordinator {
     var rootViewController: UIViewController { get }
+    
+    var delegate: SettingsCoordinatorDelegate! { get set }
+    
+    func showSpeedTest()
+    func showMain()
 }
 
 final class SettingsCoordinatorImpl {
@@ -17,6 +27,7 @@ final class SettingsCoordinatorImpl {
     // MARK: - Private
 
     var viewController: UIViewController!
+    weak var delegate: SettingsCoordinatorDelegate!
     
     // MARK: - Dependency
 
@@ -40,5 +51,13 @@ extension SettingsCoordinatorImpl: SettingsCoordinator {
     func start() {
         let module = moduleFactory.createModule(withCoordinator: self)
         viewController = module.view
+    }
+    
+    func showSpeedTest(){
+        delegate.showSpeedTest()
+    }
+    
+    func showMain(){
+        delegate.showMain()
     }
 }

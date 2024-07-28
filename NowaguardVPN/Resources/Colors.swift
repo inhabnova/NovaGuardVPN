@@ -3,7 +3,7 @@ import UIKit
 extension UIColor {
     static var appGreen: UIColor = .init(hex: "#70AC5D")
     static let appGray = UIColor(hex: "#181A20")
-//    static var appBlack: UIColor = .init(hex: "#000000")
+    static var appGlayLabel: UIColor = .init(hex: "#5B5F6F")
 //    static var appWhite: UIColor = .init(hex: "#FFFFFF")
 //    static var appLightGray: UIColor = .init(hex: "#8E8E93")
 //    static let appLightRed = UIColor(hex: "#ED6F6F")

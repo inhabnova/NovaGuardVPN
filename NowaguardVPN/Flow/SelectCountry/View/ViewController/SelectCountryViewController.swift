@@ -102,6 +102,6 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
             return
         }
         presenter.selectedServer = presenter.servers[indexPath.row]
-        tableView.reloadData()
+        presenter.close()
     }
 }

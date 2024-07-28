@@ -1,1 +1,7 @@
- 
+"label1off" = "PROTECT YOUR CONNECTION!";
+"label1on" = "CONNECTION PROTECTED!";
+"label2" = "Local IP: ";
+"label3on" = "Connection time: ";
+"label3off" = "Tap to connection VPN";
+"label4on" = "VPN Enabled";
+"label4off" = "VPN Disabled";

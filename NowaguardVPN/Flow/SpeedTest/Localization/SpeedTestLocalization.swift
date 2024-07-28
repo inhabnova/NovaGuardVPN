@@ -1,7 +1,8 @@
 import UIKit
 
 enum SpeedTestLocalization: String, Localizable {
-    case q
+    case speed
+    case test
 }
 
 extension SpeedTestViewController {

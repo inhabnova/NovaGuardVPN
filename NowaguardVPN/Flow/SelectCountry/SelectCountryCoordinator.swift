@@ -1,7 +1,14 @@
 import UIKit
 
+protocol SelectCountryCoordinatorDelegate: AnyObject {
+    func selectCoordinatorDidFinish(with coordinator: SelectCountryCoordinator)
+}
+
 protocol SelectCountryCoordinator: Coordinator {
     var rootViewController: UIViewController { get }
+    
+    var delegate: SelectCountryCoordinatorDelegate! { get set }
+    func close()
 }
 
 final class SelectCountryCoordinatorImpl {
@@ -17,6 +24,7 @@ final class SelectCountryCoordinatorImpl {
     // MARK: - Private
 
     var viewController: UIViewController!
+    weak var delegate: SelectCountryCoordinatorDelegate!
     
     // MARK: - Dependency
 
@@ -36,6 +44,10 @@ final class SelectCountryCoordinatorImpl {
 // MARK: - SelectCountryCoordinator
 
 extension SelectCountryCoordinatorImpl: SelectCountryCoordinator {
+    func close() {
+        delegate.selectCoordinatorDidFinish(with: self)
+    }
+    
 
     func start() {
         let module = moduleFactory.createModule(withCoordinator: self)

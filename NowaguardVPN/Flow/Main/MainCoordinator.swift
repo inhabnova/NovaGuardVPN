@@ -1,7 +1,19 @@
 import UIKit
 
+protocol MainCoordinatorDelegate: AnyObject {
+    func showSelectCountry()
+    func showSpeedTest()
+    func showSettings()
+}
+
 protocol MainCoordinator: Coordinator {
     var rootViewController: UIViewController { get }
+    
+    var delegate: MainCoordinatorDelegate! { get set }
+    
+    func showSelectCountry()
+    func showSpeedTest()
+    func showSettings()
 }
 
 final class MainCoordinatorImpl {
@@ -17,6 +29,7 @@ final class MainCoordinatorImpl {
     // MARK: - Private
 
     var viewController: UIViewController!
+    weak var delegate: MainCoordinatorDelegate!
     
     // MARK: - Dependency
 
@@ -40,5 +53,17 @@ extension MainCoordinatorImpl: MainCoordinator {
     func start() {
         let module = moduleFactory.createModule(withCoordinator: self)
         viewController = module.view
+    }
+    
+    func showSelectCountry() {
+        delegate.showSelectCountry()
+    }
+    
+    func showSpeedTest() {
+        delegate.showSpeedTest()
+    }
+    
+    func showSettings() {
+        delegate.showSettings()
     }
 }

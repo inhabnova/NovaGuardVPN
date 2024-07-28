@@ -54,95 +54,6 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>21</string>
-					<key>EndingLineNumber</key>
-					<string>73</string>
-					<key>StartingColumnNumber</key>
-					<string>10</string>
-					<key>StartingLineNumber</key>
-					<string>73</string>
-					<key>Timestamp</key>
-					<string>743764444.58232</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>NowaguardVPN/Application/ApplicationCoordinator.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>coordinator</string>
-				<key>leading</key>
-				<string>        let coordinator = coordinatorsFactory.createMainCoordinator()
-        coordinator.start()
-//        </string>
-				<key>trailing</key>
-				<string>.delegate = self
-        addChildCoordinator(coordinator)
-        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
-</string>
-			</dict>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
-					<string>26</string>
-					<key>StartingColumnNumber</key>
-					<string>8</string>
-					<key>StartingLineNumber</key>
-					<string>25</string>
-					<key>Timestamp</key>
-					<string>743849161.165871</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>NowaguardVPN/Flow/SelectCountry/Presenter/SelectCountryPresenter.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>
-</string>
-				<key>leading</key>
-				<string>
-    func close() {
-        </string>
-				<key>trailing</key>
-				<string>    }
-    
-}
-</string>
-			</dict>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
 					<string>24</string>
 					<key>EndingLineNumber</key>
 					<string>17</string>
@@ -170,12 +81,191 @@
 				<string>Server</string>
 				<key>leading</key>
 				<string>    
-    var selectedServer: Server = .Germany
+    var selectedServer: Server = UserDefaultsService.shared.getServer() ?? .Germany
     var servers: [</string>
 				<key>trailing</key>
 				<string>] = [.Germany, .Germany1, .USSR]
 }
 
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>41</string>
+					<key>EndingLineNumber</key>
+					<string>10</string>
+					<key>StartingColumnNumber</key>
+					<string>33</string>
+					<key>StartingLineNumber</key>
+					<string>10</string>
+					<key>Timestamp</key>
+					<string>743852310.964027</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>NowaguardVPN/Models/Server.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>hostname</string>
+				<key>leading</key>
+				<string>    
+    static let Germany = Server(hostname: "123.123.1231.23", isFree: true, countryCode: "DE", location: "Germany", psk: "s443HqGRVqkvE6ZxUcbkjPYjH")
+    static let Germany1 = Server(</string>
+				<key>trailing</key>
+				<string>: "222.123.1231.23", isFree: false, countryCode: "DE", location: "Germany", psk: "s443HqGRVqkvE6ZxUcbkjPYjH")
+    static let USSR = Server(hostname: "123.123.1231.23", isFree: false, countryCode: "USSR", location: "USSR", psk: "s443HqGRVqkvE6ZxUcbkjPYjH")
+}
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>26</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>25</string>
+					<key>Timestamp</key>
+					<string>743859440.533801</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>NowaguardVPN/Flow/Main/Presenter/MainPresenter.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    var isOnVPN: Bool = false {
+</string>
+				<key>leading</key>
+				<string>    var enabledServer: Server = .init(hostname: "111.111.11.11", isFree: false, countryCode: "RU", location: "Russia", psk: "")
+    
+</string>
+				<key>trailing</key>
+				<string>        didSet {
+            if isOnVPN {
+                view.setupOnVPN(ip: selectedServer.hostname, coyntry: selectedServer.location, timer: timer())
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>24</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>23</string>
+					<key>Timestamp</key>
+					<string>743859440.533723</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>NowaguardVPN/Flow/Main/Presenter/MainPresenter.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    var enabledServer: Server = .init(hostname: "111.111.11.11", isFree: false, countryCode: "RU", location: "Russia", psk: "")
+</string>
+				<key>leading</key>
+				<string>    
+    var selectedServer: Server = UserDefaultsService.shared.getServer() ?? .Germany
+</string>
+				<key>trailing</key>
+				<string>    
+    var isOnVPN: Bool = false {
+        didSet {
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>23</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>22</string>
+					<key>Timestamp</key>
+					<string>743859440.533787</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>NowaguardVPN/Flow/Main/Presenter/MainPresenter.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    var selectedServer: Server = UserDefaultsService.shared.getServer() ?? .Germany
+</string>
+				<key>leading</key>
+				<string>    weak var coordinator: MainCoordinator!
+    
+</string>
+				<key>trailing</key>
+				<string>    var enabledServer: Server = .init(hostname: "111.111.11.11", isFree: false, countryCode: "RU", location: "Russia", psk: "")
+    
+    var isOnVPN: Bool = false {
 </string>
 			</dict>
 			<key>type</key>

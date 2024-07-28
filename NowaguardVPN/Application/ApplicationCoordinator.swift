@@ -1,7 +1,7 @@
 import UIKit
 
-protocol ApplicationCoordinator: Coordinator, OnboardingCoordinatorDelegate {
-    
+protocol ApplicationCoordinator: Coordinator, OnboardingCoordinatorDelegate, MainCoordinatorDelegate, SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate {
+
 }
 
 final class ApplicationCoordinatorImpl {
@@ -48,7 +48,7 @@ extension ApplicationCoordinatorImpl: ApplicationCoordinator {
 //                                    refreshToken: "fake_account")
 //        if applicationPresenter.isLoggedIn() {
         
-        showSelectCountryCoordinator()
+        showMainCoordinator()
         
 //        } else {
 //            showOnboardingCoordinator()
@@ -71,7 +71,7 @@ private extension ApplicationCoordinatorImpl {
     func showMainCoordinator() {
         let coordinator = coordinatorsFactory.createMainCoordinator()
         coordinator.start()
-//        coordinator.delegate = self
+        coordinator.delegate = self
         addChildCoordinator(coordinator)
         applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
     }
@@ -79,27 +79,67 @@ private extension ApplicationCoordinatorImpl {
     func showSelectCountryCoordinator() {
         let coordinator = coordinatorsFactory.createSelectCountryCoordinator()
         coordinator.start()
-//        coordinator.delegate = self
+        coordinator.delegate = self
+        addChildCoordinator(coordinator)
+        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+    }
+    
+    func showSpeedTestCoordinator() {
+        let coordinator = coordinatorsFactory.createSpeedTestCoordinator()
+        coordinator.start()
+        coordinator.delegate = self
+        addChildCoordinator(coordinator)
+        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+    }
+    
+    func showSettingsCoordinator() {
+        let coordinator = coordinatorsFactory.createSettingsCoordinator()
+        coordinator.start()
+        coordinator.delegate = self
         addChildCoordinator(coordinator)
         applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
     }
 }
-//
+
 // MARK: - OnboardingCoordinatorDelegate
 
 extension ApplicationCoordinatorImpl: OnboardingCoordinatorDelegate {
     func onboardingCoordinatorDidFinish(with coordinator: OnboardingCoordinator) {
         removeCoordinator(coordinator)
+    }
+}
+
+// MARK: - MainCoordinatorDelegate
+
+extension ApplicationCoordinatorImpl: MainCoordinatorDelegate {
+    
+    func showSelectCountry() {
+        showSelectCountryCoordinator()
+    }
+    
+    func showSpeedTest() {
+        showSpeedTestCoordinator()
+    }
+    
+    func showSettings() {
+        showSettingsCoordinator()
+    }
+}
+
+// MARK: - SelectCountryCoordinatorDelegate
+
+extension ApplicationCoordinatorImpl: SelectCountryCoordinatorDelegate {
+    func selectCoordinatorDidFinish(with coordinator: any SelectCountryCoordinator) {
+        removeCoordinator(coordinator)
         showMainCoordinator()
     }
 }
-//// MARK: - OnboardingCoordinatorDelegate
-//
-//extension ApplicationCoordinatorImpl: OnboardingCoordinatorDelegate {
-//    
-//    func onboardingCoordinatorDidFinish(with coordinator: OnboardingCoordinator) {
-//        removeCoordinator(coordinator)
-//        showLoginCoordinator()
-//    }
-//}
+
+// MARK: - SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate
+
+extension ApplicationCoordinatorImpl: SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate {
+    func showMain() {
+        showMainCoordinator()
+    }
+}
 

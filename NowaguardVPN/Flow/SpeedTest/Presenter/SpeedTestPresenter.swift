@@ -1,6 +1,9 @@
 protocol SpeedTestPresenter {
     var view: SpeedTestView! { get set }
     var coordinator: SpeedTestCoordinator! { get set }
+    
+    func showMain()
+    func showSettings()
 }
 
 final class SpeedTestPresenterImpl {
@@ -15,6 +18,12 @@ final class SpeedTestPresenterImpl {
 
 extension SpeedTestPresenterImpl: SpeedTestPresenter {
 
+    func showMain() {
+        coordinator.showMain()
+    }
     
+    func showSettings() {
+        coordinator.showSettings()
+    }
 }
 

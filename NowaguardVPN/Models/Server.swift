@@ -8,7 +8,7 @@ struct Server: Codable {
     let psk: String
     
     static let Germany = Server(hostname: "123.123.1231.23", isFree: true, countryCode: "DE", location: "Germany", psk: "s443HqGRVqkvE6ZxUcbkjPYjH")
-    static let Germany1 = Server(hostname: "123.123.1231.23", isFree: false, countryCode: "DE", location: "Germany", psk: "s443HqGRVqkvE6ZxUcbkjPYjH")
+    static let Germany1 = Server(hostname: "222.123.1231.23", isFree: false, countryCode: "DE", location: "Germany", psk: "s443HqGRVqkvE6ZxUcbkjPYjH")
     static let USSR = Server(hostname: "123.123.1231.23", isFree: false, countryCode: "USSR", location: "USSR", psk: "s443HqGRVqkvE6ZxUcbkjPYjH")
 }
 

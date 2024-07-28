@@ -14,7 +14,7 @@ final class SelectCountryPresenterImpl {
     weak var view: SelectCountryView!
     weak var coordinator: SelectCountryCoordinator!
     
-    var selectedServer: Server = .Germany
+    var selectedServer: Server = UserDefaultsService.shared.getServer() ?? .Germany
     var servers: [Server] = [.Germany, .Germany1, .USSR]
 }
 
@@ -23,7 +23,8 @@ final class SelectCountryPresenterImpl {
 extension SelectCountryPresenterImpl: SelectCountryPresenter {
 
     func close() {
-        
+        UserDefaultsService.shared.saveServer(server: selectedServer) 
+        coordinator.close()
     }
     
 }

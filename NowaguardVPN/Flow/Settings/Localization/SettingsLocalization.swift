@@ -1,7 +1,8 @@
 import UIKit
 
 enum SettingsLocalization: String, Localizable {
-    case q
+    case app
+    case settings
 }
 
 extension SettingsViewController {

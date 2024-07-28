@@ -4,7 +4,7 @@ typealias I = Images
 
 enum Images {
     
-    /// name - название картинки с флагом! 
+    /// name - название картинки с флагом!
     static func getFlug(name: String) -> UIImage? {
         UIImage(named: name)
     }
@@ -28,5 +28,21 @@ enum Images {
         static let deselectedCountry = UIImage(named: "deselectedCountry")!
         static let isPremiumServer = UIImage(named: "isPremiumServer")!
         
+    }
+    
+    enum Main {
+        
+        static let mainBackbroundOff = UIImage(named: "mainBackbroundOff")!
+        static let mainBackbroundOn = UIImage(named: "mainBackbroundOn")!
+        static let countryButtonRightArrow = UIImage(named: "countryButtonRightArrow")!
+        
+    }
+    
+    enum SpeedTest {
+        static let backgroundSpeedTest = UIImage(named: "backgroundSpeedTest")!
+    }
+    
+    enum Settings {
+        static let backgroundSettings = UIImage(named: "backgroundSettings")!
     }
 }
