@@ -14,8 +14,6 @@ final class SelectCountryTableViewCell: UITableViewCell {
     private let premiumServerImageView = UIImageView()
     private let isSelectedImageView = UIImageView()
     
-    // MARK: - Private
-    
     // MARK: - Configure
     
     func configure(with server: Server, isSelected: Bool) {

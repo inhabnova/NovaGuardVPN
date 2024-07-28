@@ -97,5 +97,11 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? SelectCountryTableViewCell else {
+            return
+        }
+        presenter.selectedServer = presenter.servers[indexPath.row]
+        tableView.reloadData()
+    }
 }
