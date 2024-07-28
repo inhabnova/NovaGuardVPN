@@ -47,6 +47,7 @@
 		546997F22C5640F50095CF2C /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 546997F12C5640F50095CF2C /* BebasNeue-Regular.ttf */; };
 		546997F42C5641600095CF2C /* BebasNeueBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 546997F32C5641600095CF2C /* BebasNeueBold.ttf */; };
 		546997F72C565DFB0095CF2C /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546997F62C565DFB0095CF2C /* UserDefaultsService.swift */; };
+		546997F92C566ED80095CF2C /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546997F82C566ED80095CF2C /* TimerService.swift */; };
 		6BBB2173D5E375310F939B0C /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901B525BA602E816E8A9D098 /* MainPresenter.swift */; };
 		76ADE508835BFB45E4E1826A /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844BA754ECB3FF1E3865743 /* OnboardingPresenter.swift */; };
 		831EDC85A0926EC53F5157A1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D14EEC7CF350366D5436D8 /* OnboardingView.swift */; };
@@ -126,6 +127,7 @@
 		546997F12C5640F50095CF2C /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
 		546997F32C5641600095CF2C /* BebasNeueBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BebasNeueBold.ttf; sourceTree = "<group>"; };
 		546997F62C565DFB0095CF2C /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		546997F82C566ED80095CF2C /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
 		56C09016E431A98169067796 /* SettingsLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsLocalization.swift; sourceTree = "<group>"; };
 		5BE25D4A49E405FD02A43248 /* SpeedTestLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeedTestLocalization.swift; sourceTree = "<group>"; };
 		61F650708BA1FA8D4D7917E9 /* Paywall3SubsLocalization.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; path = Paywall3SubsLocalization.strings; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				546997D72C5409AD0095CF2C /* Extensions */,
 				546997982C5402AD0095CF2C /* Arch */,
 				546997992C5402AD0095CF2C /* Localizable.swift */,
+				546997F82C566ED80095CF2C /* TimerService.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				9E899DE118E57F66D26A6750 /* SettingsModuleFactory.swift in Sources */,
 				02D2705DC23DE9FB2E57C5A3 /* SettingsPresenter.swift in Sources */,
 				9807010C1BD8272BA3F3ED4B /* SettingsCoordinator.swift in Sources */,
+				546997F92C566ED80095CF2C /* TimerService.swift in Sources */,
 				29A63811F1DC49B25296C3AB /* SettingsView.swift in Sources */,
 				B6B2E03D9ECE99E4217595AA /* SettingsViewController.swift in Sources */,
 				998FB5C71F4C2D53BDC2B70A /* SettingsLocalization.swift in Sources */,

@@ -42,12 +42,12 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: MainView {
 
-    func setupOnVPN(ip: String, coyntry: String, timer: String) {
+    func setupOnVPN(ip: String, coyntry: String) {
         backgroundImageView.image = I.Main.mainBackbroundOn
         
         label1.text = MainLocalization.label1on.localized
         label2.text = MainLocalization.label2.localized + " " + ip + " " + "(\(coyntry))"
-        label3.text = MainLocalization.label3on.localized + " " + timer
+        label3.text = MainLocalization.label3on.localized
         label4.text = MainLocalization.label4on.localized
         
         label1.textColor = .appGreen
@@ -60,13 +60,17 @@ extension MainViewController: MainView {
         
         label1.text = MainLocalization.label1off.localized
         label2.text = MainLocalization.label2.localized + " " + ip + " " + "(\(coyntry))"
-        label3.text = MainLocalization.label3off.localized // + " 00:00:01"
+        label3.text = MainLocalization.label3off.localized
         label4.text = MainLocalization.label4off.localized
         
         label1.textColor = .white
         label3.textColor = .appGlayLabel
         label4.textColor = .appGlayLabel
         
+    }
+    
+    func updateTimer(value: String) {
+        label3.text = MainLocalization.label3on.localized + " " + value
     }
     
 }

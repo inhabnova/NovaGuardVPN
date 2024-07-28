@@ -3,4 +3,68 @@
    uuid = "C2FF0DB1-707E-41E3-AAA8-3A6C28D09D32"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EEECA781-6C02-42F4-BE13-DC6E8FA66E44"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowaguardVPN/Flow/Main/Presenter/MainPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "startTimer()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EEECA781-6C02-42F4-BE13-DC6E8FA66E44 - ccb85d79191ea24e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (NowaguardVPN.TimerServiceResult) -&gt; () in NowaguardVPN.MainPresenterImpl.startTimer() -&gt; ()"
+                  moduleName = "NowaguardVPN"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanklimov/MyProgects/NowaguardVPN/NowaguardVPN/Flow/Main/Presenter/MainPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46">
+               </Location>
+               <Location
+                  uuid = "EEECA781-6C02-42F4-BE13-DC6E8FA66E44 - ccb85d79191eadad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (NowaguardVPN.TimerServiceResult) -&gt; () in NowaguardVPN.MainPresenterImpl.startTimer() -&gt; ()"
+                  moduleName = "NowaguardVPN"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanklimov/MyProgects/NowaguardVPN/NowaguardVPN/Flow/Main/Presenter/MainPresenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "133EE49D-97F1-44F8-B26C-322E2910C3B3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowaguardVPN/Flow/Main/Presenter/MainPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "startTimer()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

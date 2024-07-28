@@ -144,13 +144,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>26</string>
+					<string>25</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>25</string>
+					<string>24</string>
 					<key>Timestamp</key>
-					<string>743859440.533801</string>
+					<string>743862251.8235019</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -175,7 +175,7 @@
 				<key>trailing</key>
 				<string>        didSet {
             if isOnVPN {
-                view.setupOnVPN(ip: selectedServer.hostname, coyntry: selectedServer.location, timer: timer())
+                view.setupOnVPN(ip: selectedServer.hostname, coyntry: selectedServer.location)
 </string>
 			</dict>
 			<key>type</key>
@@ -189,13 +189,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>24</string>
+					<string>23</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>23</string>
+					<string>22</string>
 					<key>Timestamp</key>
-					<string>743859440.533723</string>
+					<string>743862251.823456</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -234,13 +234,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>23</string>
+					<string>22</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>22</string>
+					<string>21</string>
 					<key>Timestamp</key>
-					<string>743859440.533787</string>
+					<string>743862251.8234921</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>

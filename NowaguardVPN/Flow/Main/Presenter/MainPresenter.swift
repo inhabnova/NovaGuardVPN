@@ -7,7 +7,6 @@ protocol MainPresenter {
     var isOnVPN: Bool { get set }
     
     func onViewDidLoad()
-    func timer() -> String
     func showSelectCountry()
     func showSpeedTest()
     func showSettings()
@@ -26,16 +25,31 @@ final class MainPresenterImpl {
     var isOnVPN: Bool = false {
         didSet {
             if isOnVPN {
-                view.setupOnVPN(ip: selectedServer.hostname, coyntry: selectedServer.location, timer: timer())
+                view.setupOnVPN(ip: selectedServer.hostname, coyntry: selectedServer.location)
+                startTimer()
             } else {
                 view.setupOffVPN(ip: enabledServer.hostname, coyntry: enabledServer.location)
+                stopTimer()
             }
         }
     }
     
-//    init(selectedServer: Server) {
-//        self.selectedServer = selectedServer
-//    }
+    private func startTimer() {
+        TimerService.shared.startTimer(timeString: "00:00:00") { [weak self] result in
+            switch result {
+            case .error(let string):
+                print(string)
+            case .inProgress(let string):
+                self?.view.updateTimer(value: string)
+            case .finish:
+                break
+            }
+        }
+    }
+    
+    private func stopTimer() {
+        TimerService.shared.stopTimer()
+    }
 }
 
 // MARK: - MainPresenter
@@ -43,12 +57,8 @@ final class MainPresenterImpl {
 extension MainPresenterImpl: MainPresenter {
 
     func onViewDidLoad() {
-        isOnVPN ? view.setupOnVPN(ip: selectedServer.hostname, coyntry: selectedServer.location, timer: timer()) :
+        isOnVPN ? view.setupOnVPN(ip: selectedServer.hostname, coyntry: selectedServer.location) :
                   view.setupOffVPN(ip: enabledServer.hostname, coyntry: enabledServer.location)
-    }
-    
-    func timer() -> String {
-        "00:01:02"
     }
     
     func showSelectCountry() {
