@@ -1,0 +1,24 @@
+{
+  "originHash" : "722d0b13829f105ad998c193cfaa198b77d279e9eccbd1b2732472c884f6485d",
+  "pins" : [
+    {
+      "identity" : "attributedstring",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lixiang1994/AttributedString",
+      "state" : {
+        "revision" : "f3a2b4d4805bc96df0f11061e5b33fefb3a337c6",
+        "version" : "3.4.1"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit",
+      "state" : {
+        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
+        "version" : "5.7.1"
+      }
+    }
+  ],
+  "version" : 3
+}
