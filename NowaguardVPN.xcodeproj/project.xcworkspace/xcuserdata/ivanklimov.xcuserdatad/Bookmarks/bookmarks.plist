@@ -84,7 +84,7 @@
     var selectedServer: Server = UserDefaultsService.shared.getServer() ?? .Germany
     var servers: [</string>
 				<key>trailing</key>
-				<string>] = [.Germany, .Germany1, .USSR]
+				<string>] = [.Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR]
 }
 
 </string>

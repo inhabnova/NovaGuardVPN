@@ -44,5 +44,13 @@ enum Images {
     
     enum Settings {
         static let backgroundSettings = UIImage(named: "backgroundSettings")!
+        
+        static let Button1Image = UIImage(named: "Button1Image")!
+        static let Button2Image = UIImage(named: "Button2Image")!
+        static let Button3Image = UIImage(named: "Button3Image")!
+        static let Button4Image = UIImage(named: "Button4Image")!
+        static let Button5Image = UIImage(named: "Button5Image")!
+        static let separator = UIImage(named: "separator")!
+        
     }
 }
