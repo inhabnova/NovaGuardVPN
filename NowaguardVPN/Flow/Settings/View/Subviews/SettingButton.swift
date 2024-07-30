@@ -40,7 +40,12 @@ final class SettingButton: UIButton {
         
         if let rightText {
             
-            label.textColor = .appGlayLabel
+            if rightText == "" {
+                //на пейволах 
+                label.textColor = .white
+            } else {
+                label.textColor = .appGlayLabel
+            }
             
             let label2 = UILabel()
             label2.text = rightText

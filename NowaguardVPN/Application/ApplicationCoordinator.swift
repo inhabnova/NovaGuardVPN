@@ -49,6 +49,7 @@ extension ApplicationCoordinatorImpl: ApplicationCoordinator {
 //        if applicationPresenter.isLoggedIn() {
         
         showMainCoordinator()
+//        showPaywallCoordinator()
         
 //        } else {
 //            showOnboardingCoordinator()
@@ -96,6 +97,14 @@ private extension ApplicationCoordinatorImpl {
         let coordinator = coordinatorsFactory.createSettingsCoordinator()
         coordinator.start()
         coordinator.delegate = self
+        addChildCoordinator(coordinator)
+        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+    }
+    
+    func showPaywallCoordinator() {
+        let coordinator = coordinatorsFactory.createPaywallCoordinator()
+        coordinator.start()
+//        coordinator.delegate = self
         addChildCoordinator(coordinator)
         applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
     }

@@ -61,4 +61,15 @@ enum Images {
         static let separator = UIImage(named: "separator")!
         
     }
+    
+    enum Paywall {
+        
+        static let refresh = UIImage(named: "refresh")!
+        static let close = UIImage(named: "close")!
+        static let background = UIImage(named: "background")!
+        static let select = UIImage(named: "select")!
+        static let deselect = UIImage(named: "deselect")!
+        static let checkMark = UIImage(named: "checkMark")!
+        
+    }
 }
