@@ -7,7 +7,7 @@ final class SpeedTestViewController: UIViewController {
     private let backgroundImageView = UIImageView(image: I.SpeedTest.backgroundSpeedTest)
     private let titleLabel = TitleLabel(whiteText: SpeedTestLocalization.speed.localized + " ", greenText: SpeedTestLocalization.test.localized)
     
-    private lazy var topView = SpeetTestTopView(ip: presenter.selectedServer.hostname, network: presenter.selectedServer.hostname, location: presenter.selectedServer.location)
+    private lazy var topView = SpeetTestTopView(ip: "presenter.selectedServer.hostname", network: "presenter.selectedServer.hostname", location: "presenter.selectedServer.location")
     private lazy var speedTestCenterView = SpeetTestCenterView()
     
     private let progressView = ALProgressRing()
@@ -26,12 +26,16 @@ final class SpeedTestViewController: UIViewController {
     
     var presenter: SpeedTestPresenter!
     
+    var progress: Float = 0.7
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutSetup()
         setupConstraints()
+        
+        progressView.setProgress(progress, animated: true)
     }
 }
 
@@ -66,7 +70,7 @@ private extension SpeedTestViewController {
         openSettingsButton.addTarget(self, action: #selector(openSettings), for: .touchUpInside)
 
         progressView.lineWidth = 40
-        
+        progressView.duration = 1
         progressView.endColor = .appGreen
         progressView.startColor = .appGreen
         progressView.grooveColor = .appGrayProgress
@@ -181,4 +185,8 @@ private extension SpeedTestViewController {
             $0.right.equalToSuperview()
         }
     }
+}
+
+#Preview {
+    SpeedTestViewController()
 }

@@ -6,7 +6,7 @@ extension UIColor {
     static var appGlayLabel: UIColor = .init(hex: "#5B5F6F")
     static var appGrayProgress: UIColor = .init(hex: "#2A2D35")
     static var appGraySpeedTestBack: UIColor = .init(hex: "#1F2229")
-//    static let appLightRed = UIColor(hex: "#ED6F6F")
+    static let appLightGreen: UIColor = .init(hex: "#70AC5D", alpha: 0.5) //UIColor(_colorLiteralRed: 0.173, green: 0.232, blue: 0.153, alpha: 1)
 //    static let appBlue = UIColor(hex: "#51A7E3")
 //    static let enterNonceCodeGray = UIColor(hex: "#757474")
 //    static var black50: UIColor {

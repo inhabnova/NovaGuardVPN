@@ -305,7 +305,7 @@
 				<key>leading</key>
 				<string>    private let titleLabel = TitleLabel(whiteText: SpeedTestLocalization.speed.localized + " ", greenText: SpeedTestLocalization.test.localized)
     
-    private lazy var topView = SpeetTestTopView(ip: presenter.selectedServer.hostname, network: presenter.selectedServer.hostname, location: presenter.selectedServer.location</string>
+    private lazy var topView = SpeetTestTopView(ip: "presenter.selectedServer.hostname", network: "presenter.selectedServer.hostname", location: "presenter.selectedServer.location"</string>
 				<key>trailing</key>
 				<string>)
     private lazy var speedTestCenterView = SpeetTestCenterView()
