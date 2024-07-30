@@ -6,7 +6,21 @@ final class GreenButton: UIButton {
         super.init(frame: .zero)
         
         backgroundColor = .appGreen
-        setTitle(title, for: .normal)
+        setTitle(title.uppercased(), for: .normal)
+        setTitleColor(.appGray, for: .normal)
+        titleLabel?.font = .Gilroy(.bold, .calc(18))
+    }
+    
+    func setGrayBackground(title: String) {
+        backgroundColor = .appGrayProgress
+        setTitle(title.uppercased(), for: .normal)
+        setTitleColor(.white, for: .normal)
+        titleLabel?.font = .Gilroy(.bold, .calc(18))
+    }
+    
+    func updateTitle(title: String) {
+        backgroundColor = .appGreen
+        setTitle(title.uppercased(), for: .normal)
         setTitleColor(.appGray, for: .normal)
         titleLabel?.font = .Gilroy(.bold, .calc(18))
     }

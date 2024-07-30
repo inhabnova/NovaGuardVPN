@@ -1,2 +1,11 @@
 "speed" = "speed";
 "test" = "test";
+"button" = "CHECK network SPEED";
+"buttonStop" = "stop checking";
+"buttonAgain" = "CHECK speed again";
+"button1" = "IP Adress:";
+"button2" = "Network";
+"button3" = "Location:";
+"upload" = "Upload Speed";
+"download" = "Download Speed";
+"perSec" = "Mbit per sec.";

@@ -1,6 +1,15 @@
 {
-  "originHash" : "722d0b13829f105ad998c193cfaa198b77d279e9eccbd1b2732472c884f6485d",
+  "originHash" : "3f79105cc9cd206f415924d71fc844aa7787808f128fcbff146be60307a3d636",
   "pins" : [
+    {
+      "identity" : "alprogressview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alxrguz/ALProgressView",
+      "state" : {
+        "revision" : "54f42cb339924de1b37fe8ecdbe72a3336cbc73d",
+        "version" : "2.0.0"
+      }
+    },
     {
       "identity" : "attributedstring",
       "kind" : "remoteSourceControl",

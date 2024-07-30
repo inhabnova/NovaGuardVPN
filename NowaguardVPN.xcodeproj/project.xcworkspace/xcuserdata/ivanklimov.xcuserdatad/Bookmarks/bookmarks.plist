@@ -271,6 +271,50 @@
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>102</string>
+					<key>EndingLineNumber</key>
+					<string>9</string>
+					<key>StartingColumnNumber</key>
+					<string>101</string>
+					<key>StartingLineNumber</key>
+					<string>9</string>
+					<key>Timestamp</key>
+					<string>744035136.714589</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>NowaguardVPN/Flow/SpeedTest/View/ViewController/SpeedTestViewController.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string></string>
+				<key>leading</key>
+				<string>    private let titleLabel = TitleLabel(whiteText: SpeedTestLocalization.speed.localized + " ", greenText: SpeedTestLocalization.test.localized)
+    
+    private lazy var topView = SpeetTestTopView(ip: presenter.selectedServer.hostname, network: presenter.selectedServer.hostname, location: presenter.selectedServer.location</string>
+				<key>trailing</key>
+				<string>)
+    private lazy var speedTestCenterView = SpeetTestCenterView()
+    
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
 	</array>
 </dict>
 </plist>

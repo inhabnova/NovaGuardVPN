@@ -40,6 +40,14 @@ enum Images {
     
     enum SpeedTest {
         static let backgroundSpeedTest = UIImage(named: "backgroundSpeedTest")!
+        static let button1 = UIImage(named: "button1SpeedTest")!
+        static let button2 = UIImage(named: "button2SpeedTest")!
+        static let button3 = UIImage(named: "button3SpeedTest")!
+        static let shadowSpeedTest = UIImage(named: "shadowSpeedTest")!
+        static let upload = UIImage(named: "upload")!
+        static let download = UIImage(named: "download")!
+        static let vSeparator = UIImage(named: "vSeparator")!
+        
     }
     
     enum Settings {

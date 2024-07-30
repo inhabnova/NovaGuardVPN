@@ -50,6 +50,9 @@
 		546997F92C566ED80095CF2C /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546997F82C566ED80095CF2C /* TimerService.swift */; };
 		546997FC2C5756100095CF2C /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546997FB2C5756100095CF2C /* SettingButton.swift */; };
 		546997FE2C5764060095CF2C /* SettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546997FD2C5764060095CF2C /* SettingsDetailViewController.swift */; };
+		546998062C58DA310095CF2C /* ALProgressView in Frameworks */ = {isa = PBXBuildFile; productRef = 546998052C58DA310095CF2C /* ALProgressView */; };
+		546998082C590EAD0095CF2C /* SpeetTestTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998072C590EAD0095CF2C /* SpeetTestTopView.swift */; };
+		5469980A2C5916210095CF2C /* SpeetTestCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998092C5916210095CF2C /* SpeetTestCenterView.swift */; };
 		6BBB2173D5E375310F939B0C /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901B525BA602E816E8A9D098 /* MainPresenter.swift */; };
 		76ADE508835BFB45E4E1826A /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844BA754ECB3FF1E3865743 /* OnboardingPresenter.swift */; };
 		831EDC85A0926EC53F5157A1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D14EEC7CF350366D5436D8 /* OnboardingView.swift */; };
@@ -132,6 +135,8 @@
 		546997F82C566ED80095CF2C /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
 		546997FB2C5756100095CF2C /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		546997FD2C5764060095CF2C /* SettingsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewController.swift; sourceTree = "<group>"; };
+		546998072C590EAD0095CF2C /* SpeetTestTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeetTestTopView.swift; sourceTree = "<group>"; };
+		546998092C5916210095CF2C /* SpeetTestCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeetTestCenterView.swift; sourceTree = "<group>"; };
 		56C09016E431A98169067796 /* SettingsLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsLocalization.swift; sourceTree = "<group>"; };
 		5BE25D4A49E405FD02A43248 /* SpeedTestLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeedTestLocalization.swift; sourceTree = "<group>"; };
 		61F650708BA1FA8D4D7917E9 /* Paywall3SubsLocalization.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; path = Paywall3SubsLocalization.strings; sourceTree = "<group>"; };
@@ -172,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				546997CE2C5402C10095CF2C /* SnapKit in Frameworks */,
+				546998062C58DA310095CF2C /* ALProgressView in Frameworks */,
 				546997EC2C563D950095CF2C /* AttributedString in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,8 +342,8 @@
 		546997722C5401E00095CF2C /* NowaguardVPN */ = {
 			isa = PBXGroup;
 			children = (
-				546997E52C54F2E50095CF2C /* Models */,
 				546997732C5401E00095CF2C /* AppDelegate.swift */,
+				546997E52C54F2E50095CF2C /* Models */,
 				546997912C5402970095CF2C /* Application */,
 				546997D42C54090F0095CF2C /* Components */,
 				546997B72C5402AD0095CF2C /* Flow */,
@@ -460,6 +466,15 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
+		546998012C58CE760095CF2C /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				546998072C590EAD0095CF2C /* SpeetTestTopView.swift */,
+				546998092C5916210095CF2C /* SpeetTestCenterView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		56BE0AD61FD0AF172029BEB7 /* Paywall3Subs */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +569,7 @@
 		7F138614288BB3A7CE9F0F4A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				546998012C58CE760095CF2C /* Subviews */,
 				2D8278ADB9D48752367FD295 /* ViewController */,
 			);
 			path = View;
@@ -721,6 +737,7 @@
 			packageProductDependencies = (
 				546997CD2C5402C10095CF2C /* SnapKit */,
 				546997EB2C563D950095CF2C /* AttributedString */,
+				546998052C58DA310095CF2C /* ALProgressView */,
 			);
 			productName = NowaguardVPN;
 			productReference = 546997702C5401E00095CF2C /* NowaguardVPN.app */;
@@ -753,6 +770,7 @@
 			packageReferences = (
 				546997CC2C5402C10095CF2C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				546997EA2C563D950095CF2C /* XCRemoteSwiftPackageReference "AttributedString" */,
+				546998042C58DA310095CF2C /* XCRemoteSwiftPackageReference "ALProgressView" */,
 			);
 			productRefGroup = 546997712C5401E00095CF2C /* Products */;
 			projectDirPath = "";
@@ -808,6 +826,7 @@
 				DD9018ADBF3BC80B6DF7D2D7 /* Paywall3SubsView.swift in Sources */,
 				546997DB2C540B3D0095CF2C /* Color_fromHex.swift in Sources */,
 				EBE31CD358F400AE756AD450 /* Paywall3SubsViewController.swift in Sources */,
+				5469980A2C5916210095CF2C /* SpeetTestCenterView.swift in Sources */,
 				E30B721933E7B67D37EAFEA3 /* Paywall3SubsCoordinator.swift in Sources */,
 				FB789621C6E3A060548C4393 /* Paywall3SubsLocalization.swift in Sources */,
 				3816F957B42DC73E0C45E6EA /* Paywall3SubsLocalization.strings in Sources */,
@@ -829,6 +848,7 @@
 				4D46ABD3BA507D21D608B6D9 /* MainLocalization.strings in Sources */,
 				A40321576679BC487EF142E2 /* SelectCountryModuleFactory.swift in Sources */,
 				2511AEC9FF9D4A0BE89C6A46 /* SelectCountryPresenter.swift in Sources */,
+				546998082C590EAD0095CF2C /* SpeetTestTopView.swift in Sources */,
 				A2759FD4C0192C6E95F53854 /* SelectCountryCoordinator.swift in Sources */,
 				546997D32C54076F0095CF2C /* Images.swift in Sources */,
 				4334BE6A40A58FE742F06E86 /* SelectCountryViewController.swift in Sources */,
@@ -1081,6 +1101,14 @@
 				minimumVersion = 3.4.1;
 			};
 		};
+		546998042C58DA310095CF2C /* XCRemoteSwiftPackageReference "ALProgressView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alxrguz/ALProgressView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1093,6 +1121,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 546997EA2C563D950095CF2C /* XCRemoteSwiftPackageReference "AttributedString" */;
 			productName = AttributedString;
+		};
+		546998052C58DA310095CF2C /* ALProgressView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 546998042C58DA310095CF2C /* XCRemoteSwiftPackageReference "ALProgressView" */;
+			productName = ALProgressView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
