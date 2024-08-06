@@ -52,6 +52,13 @@
 		5469980A2C5916210095CF2C /* SpeetTestCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998092C5916210095CF2C /* SpeetTestCenterView.swift */; };
 		5469980D2C592E850095CF2C /* PaywallTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5469980C2C592E850095CF2C /* PaywallTitleLabel.swift */; };
 		5469980F2C5943B20095CF2C /* PaywallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5469980E2C5943B20095CF2C /* PaywallButton.swift */; };
+		546998C82C6086420095CF2C /* Voronka1_1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998C72C6086420095CF2C /* Voronka1_1VC.swift */; };
+		546998CA2C6086FD0095CF2C /* Voronka1_2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998C92C6086FD0095CF2C /* Voronka1_2VC.swift */; };
+		546998CC2C608B8B0095CF2C /* Voronka1_3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998CB2C608B8B0095CF2C /* Voronka1_3VC.swift */; };
+		546998CF2C608D7B0095CF2C /* Content_vor1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998CE2C608D7B0095CF2C /* Content_vor1.swift */; };
+		546998D12C60AB5A0095CF2C /* test.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 546998D02C60AB5A0095CF2C /* test.storekit */; };
+		546998D32C61F8110095CF2C /* Voronka1_last.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998D22C61F8110095CF2C /* Voronka1_last.swift */; };
+		546998D52C61FA790095CF2C /* VorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998D42C61FA790095CF2C /* VorPresenter.swift */; };
 		66C01ADD5ECD40684C2DFB3C /* PaywallLocalization.strings in Sources */ = {isa = PBXBuildFile; fileRef = 02E705735EC315BDEA67D07B /* PaywallLocalization.strings */; };
 		69E25776E334F6457EB8DD41 /* PaywallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74D41797FC3A47A65E7D62 /* PaywallPresenter.swift */; };
 		6BBB2173D5E375310F939B0C /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901B525BA602E816E8A9D098 /* MainPresenter.swift */; };
@@ -135,6 +142,13 @@
 		546998092C5916210095CF2C /* SpeetTestCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeetTestCenterView.swift; sourceTree = "<group>"; };
 		5469980C2C592E850095CF2C /* PaywallTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallTitleLabel.swift; sourceTree = "<group>"; };
 		5469980E2C5943B20095CF2C /* PaywallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallButton.swift; sourceTree = "<group>"; };
+		546998C72C6086420095CF2C /* Voronka1_1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka1_1VC.swift; sourceTree = "<group>"; };
+		546998C92C6086FD0095CF2C /* Voronka1_2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka1_2VC.swift; sourceTree = "<group>"; };
+		546998CB2C608B8B0095CF2C /* Voronka1_3VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka1_3VC.swift; sourceTree = "<group>"; };
+		546998CE2C608D7B0095CF2C /* Content_vor1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content_vor1.swift; sourceTree = "<group>"; };
+		546998D02C60AB5A0095CF2C /* test.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = test.storekit; sourceTree = "<group>"; };
+		546998D22C61F8110095CF2C /* Voronka1_last.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka1_last.swift; sourceTree = "<group>"; };
+		546998D42C61FA790095CF2C /* VorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VorPresenter.swift; sourceTree = "<group>"; };
 		56C09016E431A98169067796 /* SettingsLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsLocalization.swift; sourceTree = "<group>"; };
 		5BE25D4A49E405FD02A43248 /* SpeedTestLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeedTestLocalization.swift; sourceTree = "<group>"; };
 		69A09C56C349E7B70CCD4880 /* SpeedTestView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeedTestView.swift; sourceTree = "<group>"; };
@@ -335,6 +349,7 @@
 				546997B72C5402AD0095CF2C /* Flow */,
 				5469979A2C5402AD0095CF2C /* Lib */,
 				546997D12C5402E40095CF2C /* Resources */,
+				546998D02C60AB5A0095CF2C /* test.storekit */,
 			);
 			path = NowaguardVPN;
 			sourceTree = "<group>";
@@ -374,6 +389,7 @@
 		546997B72C5402AD0095CF2C /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				546998C62C60862A0095CF2C /* voronka1 */,
 				C7F2A1B1A4C03C5C3D8DC682 /* Onboarding */,
 				42BE52C39A368E0E2BBB9D04 /* Main */,
 				01CDED40047A4B85E8F31B11 /* SelectCountry */,
@@ -465,6 +481,27 @@
 			children = (
 				5469980C2C592E850095CF2C /* PaywallTitleLabel.swift */,
 				5469980E2C5943B20095CF2C /* PaywallButton.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		546998C62C60862A0095CF2C /* voronka1 */ = {
+			isa = PBXGroup;
+			children = (
+				546998CD2C608D5E0095CF2C /* Subviews */,
+				546998C72C6086420095CF2C /* Voronka1_1VC.swift */,
+				546998C92C6086FD0095CF2C /* Voronka1_2VC.swift */,
+				546998CB2C608B8B0095CF2C /* Voronka1_3VC.swift */,
+				546998D22C61F8110095CF2C /* Voronka1_last.swift */,
+				546998D42C61FA790095CF2C /* VorPresenter.swift */,
+			);
+			path = voronka1;
+			sourceTree = "<group>";
+		};
+		546998CD2C608D5E0095CF2C /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				546998CE2C608D7B0095CF2C /* Content_vor1.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -731,6 +768,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				546998D12C60AB5A0095CF2C /* test.storekit in Resources */,
 				5469977D2C5401E20095CF2C /* Assets.xcassets in Resources */,
 				546997802C5401E20095CF2C /* Base in Resources */,
 				546997F22C5640F50095CF2C /* BebasNeue-Regular.ttf in Resources */,
@@ -769,6 +807,7 @@
 				546997DB2C540B3D0095CF2C /* Color_fromHex.swift in Sources */,
 				5469980A2C5916210095CF2C /* SpeetTestCenterView.swift in Sources */,
 				546997F72C565DFB0095CF2C /* UserDefaultsService.swift in Sources */,
+				546998C82C6086420095CF2C /* Voronka1_1VC.swift in Sources */,
 				A2B912E249854D8B6AA75976 /* MainModuleFactory.swift in Sources */,
 				6BBB2173D5E375310F939B0C /* MainPresenter.swift in Sources */,
 				223DC81670A4320CD2D399C9 /* MainCoordinator.swift in Sources */,
@@ -786,13 +825,17 @@
 				4334BE6A40A58FE742F06E86 /* SelectCountryViewController.swift in Sources */,
 				BB180A6FB065AA5A31F1F21B /* SelectCountryView.swift in Sources */,
 				5469980F2C5943B20095CF2C /* PaywallButton.swift in Sources */,
+				546998CC2C608B8B0095CF2C /* Voronka1_3VC.swift in Sources */,
 				546997FE2C5764060095CF2C /* SettingsDetailViewController.swift in Sources */,
+				546998D52C61FA790095CF2C /* VorPresenter.swift in Sources */,
 				D5CE0E3A0B7BA2EA3DF803DB /* SelectCountryLocalization.strings in Sources */,
 				546997D92C5409BB0095CF2C /* UIVIew_addSubViews.swift in Sources */,
 				2D77C55F5D527FA2BA9BCE9E /* SelectCountryLocalization.swift in Sources */,
 				546997E72C54F2F80095CF2C /* Server.swift in Sources */,
 				9BB4446889CEF1FA42D5E043 /* SpeedTestModuleFactory.swift in Sources */,
+				546998CF2C608D7B0095CF2C /* Content_vor1.swift in Sources */,
 				150917A693CDA221687830D3 /* SpeedTestPresenter.swift in Sources */,
+				546998CA2C6086FD0095CF2C /* Voronka1_2VC.swift in Sources */,
 				D92952FE8E33F63BAED45821 /* SpeedTestCoordinator.swift in Sources */,
 				EB8F8C3D7B5A79E76F37A49E /* SpeedTestViewController.swift in Sources */,
 				E0B812CF6789461687837A1F /* SpeedTestView.swift in Sources */,
@@ -808,6 +851,7 @@
 				EEE40678BA95B94AA66BC17F /* SettingsLocalization.strings in Sources */,
 				9AD10099363AA4901CF9411B /* PaywallModuleFactory.swift in Sources */,
 				DF53CEB24914E05624DA8374 /* PaywallCoordinator.swift in Sources */,
+				546998D32C61F8110095CF2C /* Voronka1_last.swift in Sources */,
 				69E25776E334F6457EB8DD41 /* PaywallPresenter.swift in Sources */,
 				1B5C4938FBCB951DB7C3CC2F /* PaywallView.swift in Sources */,
 				D0A2ECF229562D8CC1A35E2C /* PaywallViewController.swift in Sources */,
@@ -962,6 +1006,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -988,6 +1033,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

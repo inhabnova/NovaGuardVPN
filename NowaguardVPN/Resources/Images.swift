@@ -72,4 +72,16 @@ enum Images {
         static let checkMark = UIImage(named: "checkMark")!
         
     }
+    
+    enum Vor {
+        
+        static let v1_2 = UIImage(named: "v1_2")!
+        static let v1_31 = UIImage(named: "v1_31")!
+        static let v1_32 = UIImage(named: "v1_32")!
+        static let v1_4 = UIImage(named: "v1_4")!
+        static let v1_5 = UIImage(named: "v1_5")!
+        static let v1_last = UIImage(named: "v1_last")!
+        static let v1_31gr = UIImage(named: "v1_31gr")!
+        static let v1_32gr = UIImage(named: "v1_32gr")!
+    }
 }

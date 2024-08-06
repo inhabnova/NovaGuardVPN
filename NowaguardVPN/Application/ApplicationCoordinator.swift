@@ -1,7 +1,7 @@
 import UIKit
 
-protocol ApplicationCoordinator: Coordinator, OnboardingCoordinatorDelegate, MainCoordinatorDelegate, SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate {
-
+protocol ApplicationCoordinator: Coordinator, OnboardingCoordinatorDelegate, MainCoordinatorDelegate, SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate, VorDelegate {
+    func showVor1()
 }
 
 final class ApplicationCoordinatorImpl {
@@ -54,6 +54,10 @@ extension ApplicationCoordinatorImpl: ApplicationCoordinator {
 //        } else {
 //            showOnboardingCoordinator()
 //        }
+    }
+    
+    func showVor1() {
+        applicationPresenter.presentViewController(Voronka1_1VC(presenter: VorPresenter(delegate: self)), withAnimations: false)
     }
 }
 
@@ -148,6 +152,14 @@ extension ApplicationCoordinatorImpl: SelectCountryCoordinatorDelegate {
 
 extension ApplicationCoordinatorImpl: SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate {
     func showMain() {
+        showMainCoordinator()
+    }
+}
+
+//MARK: - VorDelegate
+
+extension ApplicationCoordinatorImpl: VorDelegate {
+    func didFinish() {
         showMainCoordinator()
     }
 }

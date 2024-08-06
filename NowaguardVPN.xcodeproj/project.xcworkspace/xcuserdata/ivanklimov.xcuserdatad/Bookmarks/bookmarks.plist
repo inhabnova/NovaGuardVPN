@@ -277,15 +277,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>102</string>
+					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>9</string>
+					<string>11</string>
 					<key>StartingColumnNumber</key>
-					<string>101</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>9</string>
+					<string>10</string>
 					<key>Timestamp</key>
-					<string>744035136.714589</string>
+					<string>744052144.401879</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -301,15 +301,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string></string>
+				<string>    private lazy var speedTestCenterView = SpeetTestCenterView()
+</string>
 				<key>leading</key>
-				<string>    private let titleLabel = TitleLabel(whiteText: SpeedTestLocalization.speed.localized + " ", greenText: SpeedTestLocalization.test.localized)
-    
-    private lazy var topView = SpeetTestTopView(ip: "presenter.selectedServer.hostname", network: "presenter.selectedServer.hostname", location: "presenter.selectedServer.location"</string>
+				<string>    
+    private lazy var topView = SpeetTestTopView(ip: "presenter.selectedServer.hostname", network: "presenter.selectedServer.hostname", location: "presenter.selectedServer.location")
+</string>
 				<key>trailing</key>
-				<string>)
-    private lazy var speedTestCenterView = SpeetTestCenterView()
-    
+				<string>    
+    private let progressView = ALProgressRing()
+    private let zeroLabel = UILabel()
 </string>
 			</dict>
 			<key>type</key>
@@ -342,13 +343,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>107</string>
+					<string>111</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>106</string>
+					<string>110</string>
 					<key>Timestamp</key>
-					<string>744044144.881641</string>
+					<string>744618917.607999</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>

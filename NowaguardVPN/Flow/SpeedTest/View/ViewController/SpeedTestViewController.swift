@@ -186,7 +186,3 @@ private extension SpeedTestViewController {
         }
     }
 }
-
-#Preview {
-    SpeedTestViewController()
-}
