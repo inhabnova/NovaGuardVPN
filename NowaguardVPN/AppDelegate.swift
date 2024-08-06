@@ -22,8 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         
-        if true {
+        if false {
             appCoordinator.showVor1()
+        } else if true {
+            appCoordinator.showVor2()
         } else {
             appCoordinator.start()
         }

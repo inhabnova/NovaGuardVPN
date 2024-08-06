@@ -1,7 +1,9 @@
 import UIKit
 
 protocol ApplicationCoordinator: Coordinator, OnboardingCoordinatorDelegate, MainCoordinatorDelegate, SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate, VorDelegate {
+    
     func showVor1()
+    func showVor2()
 }
 
 final class ApplicationCoordinatorImpl {
@@ -58,6 +60,10 @@ extension ApplicationCoordinatorImpl: ApplicationCoordinator {
     
     func showVor1() {
         applicationPresenter.presentViewController(Voronka1_1VC(presenter: VorPresenter(delegate: self)), withAnimations: false)
+    }
+    
+    func showVor2() {
+        applicationPresenter.presentViewController(Voronka2_1VC(presenter: VorPresenter(delegate: self)), withAnimations: false)
     }
 }
 

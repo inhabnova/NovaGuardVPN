@@ -83,5 +83,13 @@ enum Images {
         static let v1_last = UIImage(named: "v1_last")!
         static let v1_31gr = UIImage(named: "v1_31gr")!
         static let v1_32gr = UIImage(named: "v1_32gr")!
+        static let v2_2 = UIImage(named: "v2_2")!
+        static let v2_21 = UIImage(named: "v2_21")!
+        static let v2_41 = UIImage(named: "v2_41")!
+        static let v2_43 = UIImage(named: "v2_43")!
+        static let v2_42 = UIImage(named: "v2_42")!
+        static let v2_f = UIImage(named: "v2_f")!
+        static let v2_s = UIImage(named: "v2_s")!
+        
     }
 }

@@ -59,6 +59,13 @@
 		546998D12C60AB5A0095CF2C /* test.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 546998D02C60AB5A0095CF2C /* test.storekit */; };
 		546998D32C61F8110095CF2C /* Voronka1_last.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998D22C61F8110095CF2C /* Voronka1_last.swift */; };
 		546998D52C61FA790095CF2C /* VorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998D42C61FA790095CF2C /* VorPresenter.swift */; };
+		546998D82C622D850095CF2C /* Voronka2_1VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998D72C622D850095CF2C /* Voronka2_1VC.swift */; };
+		546998DA2C622DD80095CF2C /* Voronka2_2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998D92C622DD80095CF2C /* Voronka2_2VC.swift */; };
+		546998DD2C622ED40095CF2C /* Vor2_btn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998DC2C622ED40095CF2C /* Vor2_btn.swift */; };
+		546998DF2C6231270095CF2C /* Voronka2_3VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998DE2C6231270095CF2C /* Voronka2_3VC.swift */; };
+		546998E12C623B7E0095CF2C /* Voronka2_4VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998E02C623B7E0095CF2C /* Voronka2_4VC.swift */; };
+		546998E32C6240200095CF2C /* Voronka2_Fail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998E22C6240200095CF2C /* Voronka2_Fail.swift */; };
+		546998E52C6241F90095CF2C /* Voronka2_Last.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998E42C6241F90095CF2C /* Voronka2_Last.swift */; };
 		66C01ADD5ECD40684C2DFB3C /* PaywallLocalization.strings in Sources */ = {isa = PBXBuildFile; fileRef = 02E705735EC315BDEA67D07B /* PaywallLocalization.strings */; };
 		69E25776E334F6457EB8DD41 /* PaywallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74D41797FC3A47A65E7D62 /* PaywallPresenter.swift */; };
 		6BBB2173D5E375310F939B0C /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901B525BA602E816E8A9D098 /* MainPresenter.swift */; };
@@ -149,6 +156,13 @@
 		546998D02C60AB5A0095CF2C /* test.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = test.storekit; sourceTree = "<group>"; };
 		546998D22C61F8110095CF2C /* Voronka1_last.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka1_last.swift; sourceTree = "<group>"; };
 		546998D42C61FA790095CF2C /* VorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VorPresenter.swift; sourceTree = "<group>"; };
+		546998D72C622D850095CF2C /* Voronka2_1VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka2_1VC.swift; sourceTree = "<group>"; };
+		546998D92C622DD80095CF2C /* Voronka2_2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka2_2VC.swift; sourceTree = "<group>"; };
+		546998DC2C622ED40095CF2C /* Vor2_btn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vor2_btn.swift; sourceTree = "<group>"; };
+		546998DE2C6231270095CF2C /* Voronka2_3VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka2_3VC.swift; sourceTree = "<group>"; };
+		546998E02C623B7E0095CF2C /* Voronka2_4VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka2_4VC.swift; sourceTree = "<group>"; };
+		546998E22C6240200095CF2C /* Voronka2_Fail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka2_Fail.swift; sourceTree = "<group>"; };
+		546998E42C6241F90095CF2C /* Voronka2_Last.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka2_Last.swift; sourceTree = "<group>"; };
 		56C09016E431A98169067796 /* SettingsLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsLocalization.swift; sourceTree = "<group>"; };
 		5BE25D4A49E405FD02A43248 /* SpeedTestLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeedTestLocalization.swift; sourceTree = "<group>"; };
 		69A09C56C349E7B70CCD4880 /* SpeedTestView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeedTestView.swift; sourceTree = "<group>"; };
@@ -390,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				546998C62C60862A0095CF2C /* voronka1 */,
+				546998D62C622D750095CF2C /* voronka2 */,
 				C7F2A1B1A4C03C5C3D8DC682 /* Onboarding */,
 				42BE52C39A368E0E2BBB9D04 /* Main */,
 				01CDED40047A4B85E8F31B11 /* SelectCountry */,
@@ -502,6 +517,28 @@
 			isa = PBXGroup;
 			children = (
 				546998CE2C608D7B0095CF2C /* Content_vor1.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		546998D62C622D750095CF2C /* voronka2 */ = {
+			isa = PBXGroup;
+			children = (
+				546998DB2C622EC60095CF2C /* Subviews */,
+				546998D72C622D850095CF2C /* Voronka2_1VC.swift */,
+				546998D92C622DD80095CF2C /* Voronka2_2VC.swift */,
+				546998DE2C6231270095CF2C /* Voronka2_3VC.swift */,
+				546998E02C623B7E0095CF2C /* Voronka2_4VC.swift */,
+				546998E22C6240200095CF2C /* Voronka2_Fail.swift */,
+				546998E42C6241F90095CF2C /* Voronka2_Last.swift */,
+			);
+			path = voronka2;
+			sourceTree = "<group>";
+		};
+		546998DB2C622EC60095CF2C /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				546998DC2C622ED40095CF2C /* Vor2_btn.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -791,7 +828,9 @@
 				546997B82C5402AD0095CF2C /* Coordinator.swift in Sources */,
 				546997932C5402970095CF2C /* ApplicationCoordinatorFactory.swift in Sources */,
 				546997DD2C540B490095CF2C /* Colors.swift in Sources */,
+				546998DA2C622DD80095CF2C /* Voronka2_2VC.swift in Sources */,
 				546997922C5402970095CF2C /* ApplicationCoordinator.swift in Sources */,
+				546998E32C6240200095CF2C /* Voronka2_Fail.swift in Sources */,
 				546997E22C54129D0095CF2C /* Fonts.swift in Sources */,
 				546997B92C5402AD0095CF2C /* Module.swift in Sources */,
 				546997BB2C5402AD0095CF2C /* Localizable.swift in Sources */,
@@ -802,6 +841,7 @@
 				08AC05A5D526C80C9849764B /* OnboardingViewController.swift in Sources */,
 				546997E92C563D0F0095CF2C /* TitleLabel.swift in Sources */,
 				831EDC85A0926EC53F5157A1 /* OnboardingView.swift in Sources */,
+				546998DF2C6231270095CF2C /* Voronka2_3VC.swift in Sources */,
 				D0E0963A879DE9687461D2EE /* OnboardingLocalization.swift in Sources */,
 				A4B807410095CB4D53A67C77 /* OnboardingLocalization.strings in Sources */,
 				546997DB2C540B3D0095CF2C /* Color_fromHex.swift in Sources */,
@@ -812,9 +852,11 @@
 				6BBB2173D5E375310F939B0C /* MainPresenter.swift in Sources */,
 				223DC81670A4320CD2D399C9 /* MainCoordinator.swift in Sources */,
 				546997E42C54F2B80095CF2C /* SelectCountryTableViewCell.swift in Sources */,
+				546998DD2C622ED40095CF2C /* Vor2_btn.swift in Sources */,
 				3711AF80E82AF0E9CF45C360 /* MainViewController.swift in Sources */,
 				8E7EF4CDFC637AC1E76C188F /* MainView.swift in Sources */,
 				A9BE2F5EFF4405BD535C6ED2 /* MainLocalization.swift in Sources */,
+				546998E52C6241F90095CF2C /* Voronka2_Last.swift in Sources */,
 				4D46ABD3BA507D21D608B6D9 /* MainLocalization.strings in Sources */,
 				5469980D2C592E850095CF2C /* PaywallTitleLabel.swift in Sources */,
 				A40321576679BC487EF142E2 /* SelectCountryModuleFactory.swift in Sources */,
@@ -836,6 +878,7 @@
 				546998CF2C608D7B0095CF2C /* Content_vor1.swift in Sources */,
 				150917A693CDA221687830D3 /* SpeedTestPresenter.swift in Sources */,
 				546998CA2C6086FD0095CF2C /* Voronka1_2VC.swift in Sources */,
+				546998D82C622D850095CF2C /* Voronka2_1VC.swift in Sources */,
 				D92952FE8E33F63BAED45821 /* SpeedTestCoordinator.swift in Sources */,
 				EB8F8C3D7B5A79E76F37A49E /* SpeedTestViewController.swift in Sources */,
 				E0B812CF6789461687837A1F /* SpeedTestView.swift in Sources */,
@@ -845,6 +888,7 @@
 				02D2705DC23DE9FB2E57C5A3 /* SettingsPresenter.swift in Sources */,
 				9807010C1BD8272BA3F3ED4B /* SettingsCoordinator.swift in Sources */,
 				546997F92C566ED80095CF2C /* TimerService.swift in Sources */,
+				546998E12C623B7E0095CF2C /* Voronka2_4VC.swift in Sources */,
 				29A63811F1DC49B25296C3AB /* SettingsView.swift in Sources */,
 				B6B2E03D9ECE99E4217595AA /* SettingsViewController.swift in Sources */,
 				998FB5C71F4C2D53BDC2B70A /* SettingsLocalization.swift in Sources */,
