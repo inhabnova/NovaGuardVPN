@@ -4,9 +4,9 @@ final class Voronka2_2VC: UIViewController {
     
     var presenter: VorPresenter
     
-    private let textTitle = "Start scanning..."
-    private let subtitle = "Do not close this window"
-    private let buttonTGitle = "OK"
+    private let textTitle: String
+    private let subtitle: String
+    private let buttonTGitle: String
     
     private let image = UIImageView(image: I.Vor.v2_2)
     private let titleLabel = UILabel()
@@ -69,6 +69,9 @@ final class Voronka2_2VC: UIViewController {
     
     init(presenter: VorPresenter) {
         self.presenter = presenter
+        self.textTitle = presenter.textTitleV2_2
+        self.subtitle = presenter.subtitleV2_2
+        self.buttonTGitle = presenter.buttonTGitleV2_2
         super.init(nibName: nil, bundle: nil)
     }
     

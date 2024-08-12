@@ -5,12 +5,12 @@ final class Voronka2_4VC: UIViewController {
     
     var presenter: VorPresenter
     
-    private let textTitle = "Your iPhone is at high risk"
-    private let subtitle = "Data can be seen"
-    private let subtitle1 = "They can be encrypted when the VPN is enabled"
-    private let subtitle2 = "We need to use encryption"
-    private let buttonTGitle = "secure this iPhone".uppercased()
-    private let subtitles = ["PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo"]
+    private let textTitle: String
+    private let subtitle: String
+    private let subtitle1: String
+    private let subtitle2: String
+    private let buttonTGitle: String
+    private let subtitles: [String]
     
     private let image = UIImageView(image: I.Vor.v2_41)
     private let image1 = UIImageView(image: I.Vor.v2_42)
@@ -57,6 +57,7 @@ final class Voronka2_4VC: UIViewController {
         label1.snp.makeConstraints {
             $0.left.equalToSuperview().inset(40)
             $0.top.equalTo(label.snp.bottom).inset(-40)
+            $0.width.height.equalTo(34)
         }
         
         image1.contentMode = .scaleAspectFit
@@ -69,7 +70,7 @@ final class Voronka2_4VC: UIViewController {
         image2.contentMode = .scaleAspectFit
         image2.snp.makeConstraints {
             $0.left.equalTo(image1.snp.left)
-            $0.top.equalTo(image1.snp.bottom).inset(-30)
+            $0.top.equalTo(label3.snp.bottom).inset(-30)
             $0.width.height.equalTo(34)
         }
         
@@ -77,6 +78,7 @@ final class Voronka2_4VC: UIViewController {
         label2.font = .systemFont(ofSize: .calc(16), weight: .regular)
         label2.textColor = .white
         label2.numberOfLines = 0
+        label2.adjustsFontSizeToFitWidth = true
         label2.snp.makeConstraints {
             $0.left.equalTo(label1.snp.right).inset(-30)
             $0.right.equalToSuperview().inset(40)
@@ -87,6 +89,7 @@ final class Voronka2_4VC: UIViewController {
         label3.font = .systemFont(ofSize: .calc(16), weight: .regular)
         label3.textColor = .white
         label3.numberOfLines = 0
+        label3.adjustsFontSizeToFitWidth = true
         label3.snp.makeConstraints {
             $0.left.equalTo(label2.snp.left)
             $0.right.equalToSuperview().inset(40)
@@ -97,6 +100,7 @@ final class Voronka2_4VC: UIViewController {
         label4.font = .systemFont(ofSize: .calc(16), weight: .regular)
         label4.textColor = .white
         label4.numberOfLines = 0
+        label4.adjustsFontSizeToFitWidth = true
         label4.snp.makeConstraints {
             $0.left.equalTo(label2.snp.left)
             $0.right.equalToSuperview().inset(40)
@@ -148,6 +152,12 @@ final class Voronka2_4VC: UIViewController {
     
     init(presenter: VorPresenter) {
         self.presenter = presenter
+        self.textTitle = presenter.textTitleV2_4
+        self.subtitle = presenter.subtitleV2_4
+        self.subtitle1 = presenter.subtitle1
+        self.subtitle2 = presenter.subtitle2
+        self.buttonTGitle = presenter.buttonTGitle
+        self.subtitles = presenter.subtitles
         super.init(nibName: nil, bundle: nil)
     }
     

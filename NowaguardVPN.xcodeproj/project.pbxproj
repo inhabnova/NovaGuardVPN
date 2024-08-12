@@ -66,6 +66,10 @@
 		546998E12C623B7E0095CF2C /* Voronka2_4VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998E02C623B7E0095CF2C /* Voronka2_4VC.swift */; };
 		546998E32C6240200095CF2C /* Voronka2_Fail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998E22C6240200095CF2C /* Voronka2_Fail.swift */; };
 		546998E52C6241F90095CF2C /* Voronka2_Last.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546998E42C6241F90095CF2C /* Voronka2_Last.swift */; };
+		548D088E2C68F90E00EC800F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 548D088D2C68F90E00EC800F /* GoogleService-Info.plist */; };
+		548D08952C68FA3000EC800F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 548D08942C68FA3000EC800F /* FirebaseAnalytics */; };
+		548D08972C68FA3000EC800F /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 548D08962C68FA3000EC800F /* FirebaseCrashlytics */; };
+		548D08992C68FA3000EC800F /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 548D08982C68FA3000EC800F /* FirebaseRemoteConfig */; };
 		66C01ADD5ECD40684C2DFB3C /* PaywallLocalization.strings in Sources */ = {isa = PBXBuildFile; fileRef = 02E705735EC315BDEA67D07B /* PaywallLocalization.strings */; };
 		69E25776E334F6457EB8DD41 /* PaywallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74D41797FC3A47A65E7D62 /* PaywallPresenter.swift */; };
 		6BBB2173D5E375310F939B0C /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901B525BA602E816E8A9D098 /* MainPresenter.swift */; };
@@ -163,6 +167,7 @@
 		546998E02C623B7E0095CF2C /* Voronka2_4VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka2_4VC.swift; sourceTree = "<group>"; };
 		546998E22C6240200095CF2C /* Voronka2_Fail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka2_Fail.swift; sourceTree = "<group>"; };
 		546998E42C6241F90095CF2C /* Voronka2_Last.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voronka2_Last.swift; sourceTree = "<group>"; };
+		548D088D2C68F90E00EC800F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		56C09016E431A98169067796 /* SettingsLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsLocalization.swift; sourceTree = "<group>"; };
 		5BE25D4A49E405FD02A43248 /* SpeedTestLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeedTestLocalization.swift; sourceTree = "<group>"; };
 		69A09C56C349E7B70CCD4880 /* SpeedTestView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeedTestView.swift; sourceTree = "<group>"; };
@@ -196,6 +201,9 @@
 			files = (
 				546997CE2C5402C10095CF2C /* SnapKit in Frameworks */,
 				546998062C58DA310095CF2C /* ALProgressView in Frameworks */,
+				548D08972C68FA3000EC800F /* FirebaseCrashlytics in Frameworks */,
+				548D08992C68FA3000EC800F /* FirebaseRemoteConfig in Frameworks */,
+				548D08952C68FA3000EC800F /* FirebaseAnalytics in Frameworks */,
 				546997EC2C563D950095CF2C /* AttributedString in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +350,7 @@
 			children = (
 				546997722C5401E00095CF2C /* NowaguardVPN */,
 				546997712C5401E00095CF2C /* Products */,
+				548D08902C68F9CA00EC800F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -357,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				546997732C5401E00095CF2C /* AppDelegate.swift */,
+				548D088D2C68F90E00EC800F /* GoogleService-Info.plist */,
 				546997E52C54F2E50095CF2C /* Models */,
 				546997912C5402970095CF2C /* Application */,
 				546997D42C54090F0095CF2C /* Components */,
@@ -403,8 +413,7 @@
 		546997B72C5402AD0095CF2C /* Flow */ = {
 			isa = PBXGroup;
 			children = (
-				546998C62C60862A0095CF2C /* voronka1 */,
-				546998D62C622D750095CF2C /* voronka2 */,
+				548D088A2C68E22F00EC800F /* Vor */,
 				C7F2A1B1A4C03C5C3D8DC682 /* Onboarding */,
 				42BE52C39A368E0E2BBB9D04 /* Main */,
 				01CDED40047A4B85E8F31B11 /* SelectCountry */,
@@ -508,7 +517,6 @@
 				546998C92C6086FD0095CF2C /* Voronka1_2VC.swift */,
 				546998CB2C608B8B0095CF2C /* Voronka1_3VC.swift */,
 				546998D22C61F8110095CF2C /* Voronka1_last.swift */,
-				546998D42C61FA790095CF2C /* VorPresenter.swift */,
 			);
 			path = voronka1;
 			sourceTree = "<group>";
@@ -541,6 +549,23 @@
 				546998DC2C622ED40095CF2C /* Vor2_btn.swift */,
 			);
 			path = Subviews;
+			sourceTree = "<group>";
+		};
+		548D088A2C68E22F00EC800F /* Vor */ = {
+			isa = PBXGroup;
+			children = (
+				546998D42C61FA790095CF2C /* VorPresenter.swift */,
+				546998C62C60862A0095CF2C /* voronka1 */,
+				546998D62C622D750095CF2C /* voronka2 */,
+			);
+			path = Vor;
+			sourceTree = "<group>";
+		};
+		548D08902C68F9CA00EC800F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		56F4B9DF5CF3017617ADED50 /* ModuleFactory */ = {
@@ -757,6 +782,9 @@
 				546997CD2C5402C10095CF2C /* SnapKit */,
 				546997EB2C563D950095CF2C /* AttributedString */,
 				546998052C58DA310095CF2C /* ALProgressView */,
+				548D08942C68FA3000EC800F /* FirebaseAnalytics */,
+				548D08962C68FA3000EC800F /* FirebaseCrashlytics */,
+				548D08982C68FA3000EC800F /* FirebaseRemoteConfig */,
 			);
 			productName = NowaguardVPN;
 			productReference = 546997702C5401E00095CF2C /* NowaguardVPN.app */;
@@ -790,6 +818,7 @@
 				546997CC2C5402C10095CF2C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				546997EA2C563D950095CF2C /* XCRemoteSwiftPackageReference "AttributedString" */,
 				546998042C58DA310095CF2C /* XCRemoteSwiftPackageReference "ALProgressView" */,
+				548D08932C68FA3000EC800F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 546997712C5401E00095CF2C /* Products */;
 			projectDirPath = "";
@@ -811,6 +840,7 @@
 				546997F22C5640F50095CF2C /* BebasNeue-Regular.ttf in Resources */,
 				546997E02C54126E0095CF2C /* Gilroy-Bold.ttf in Resources */,
 				546997F42C5641600095CF2C /* BebasNeueBold.ttf in Resources */,
+				548D088E2C68F90E00EC800F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1044,6 +1074,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S5Q5UD3H9A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NowaguardVPN/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1071,6 +1102,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S5Q5UD3H9A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NowaguardVPN/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1139,6 +1171,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		548D08932C68FA3000EC800F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1156,6 +1196,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 546998042C58DA310095CF2C /* XCRemoteSwiftPackageReference "ALProgressView" */;
 			productName = ALProgressView;
+		};
+		548D08942C68FA3000EC800F /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 548D08932C68FA3000EC800F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		548D08962C68FA3000EC800F /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 548D08932C68FA3000EC800F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		548D08982C68FA3000EC800F /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 548D08932C68FA3000EC800F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

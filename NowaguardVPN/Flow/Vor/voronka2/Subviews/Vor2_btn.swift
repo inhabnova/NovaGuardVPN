@@ -14,6 +14,7 @@ class Vor2_btn: UIButton {
         label.textColor = .white
         label.font = .systemFont(ofSize: .calc(18), weight: .medium)
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         addSubview(label)
         label.snp.makeConstraints {
             $0.center.equalToSuperview()

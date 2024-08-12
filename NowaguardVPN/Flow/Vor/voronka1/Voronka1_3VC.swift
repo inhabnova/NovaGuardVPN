@@ -5,20 +5,19 @@ final class Voronka1_3VC: UIViewController {
     
     var presenter: VorPresenter
     
-    private let textTitle = "Checking your iPhone..."
-    private let textTitle2 =  "Your iPhone is at high risk"
-    private let textTitle3 = "What will be closed when using VPN"
-    private let subtitle = "Do not close this window."
-    private let subtitle1 = "To stay safe, don't delete the app and keep it running."
-    
-    private let contentTitle = "Available online "
-    private let subtitles = ["PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo"]
-    private let subtitles1 = ["PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo"]
-    private let buttonTGitle = "Clean my iPhone"
-    private let buttonTGitle1 = "Done"
-    private let alertTitle = "Attention!"
-    private let alertContent = "Subscription failed, please try again."
-    private let alertButton = "Try again"
+    private let textTitle: String
+    private let textTitle2: String
+    private let textTitle3: String
+    private let subtitle: String
+    private let subtitle1: String
+    private let contentTitle: String
+    private let subtitles: [String]
+    private let subtitles1: [String]
+    private let buttonTGitle: String
+    private let buttonTGitle1: String
+    private let alertTitle: String
+    private let alertContent: String
+    private let alertButton: String
     
     
     //3
@@ -55,6 +54,7 @@ final class Voronka1_3VC: UIViewController {
         titleLabel.textColor = .white
         titleLabel.font = .systemFont(ofSize: .calc(34), weight: .bold)
         titleLabel.text = textTitle
+        titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.numberOfLines = 0
         titleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
@@ -75,11 +75,21 @@ final class Voronka1_3VC: UIViewController {
         subtitleLabel.font = .systemFont(ofSize: .calc(17), weight: .medium)
         subtitleLabel.text = subtitle
         subtitleLabel.numberOfLines = 0
+        subtitleLabel.adjustsFontSizeToFitWidth = true
         subtitleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(15)
             $0.bottom.equalToSuperview().inset(30)
             $0.height.equalTo(view.frame.height / 14.5)
         }
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(screenCaptureDidChange),
+                                               name: UIScreen.capturedDidChangeNotification,
+                                               object: nil)
+        // Подписываемся на уведомление о скриншоте
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(userDidTakeScreenshot),
+                                               name: UIApplication.userDidTakeScreenshotNotification,
+                                               object: nil)
     }
      
     override func viewDidLayoutSubviews() {
@@ -89,11 +99,46 @@ final class Voronka1_3VC: UIViewController {
     
     init(presenter: VorPresenter) {
         self.presenter = presenter
+        self.textTitle = presenter.textTitleV1_3
+        self.textTitle2 = presenter.textTitle2V1_3
+        self.textTitle3 = presenter.textTitle3V1_3
+        self.subtitle = presenter.subtitleV1_3
+        self.subtitle1 = presenter.subtitle1V1_3
+        self.contentTitle = presenter.contentTitleV1_3
+        self.subtitles = presenter.subtitlesV1_3
+        self.subtitles1 = presenter.subtitles1V1_3
+        self.buttonTGitle = presenter.buttonTGitleV1_3
+        self.buttonTGitle1 = presenter.buttonTGitle1V1_3
+        self.alertTitle = presenter.alertTitleV1_3
+        self.alertContent = presenter.alertContentV1_3
+        self.alertButton = presenter.alertButtonV1_3
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    @objc func screenCaptureDidChange() {
+        if UIScreen.main.isCaptured {
+            // Запись экрана активна, скрываем конфиденциальный контент
+            presenter.delegate.didFinish()
+            // Можете скрыть другие элементы интерфейса или показать предупреждение
+        }
+    }
+    @objc func userDidTakeScreenshot() {
+        // Действия, которые нужно выполнить после создания скриншота
+        view.subviews.forEach {$0.removeFromSuperview()}
+        presenter.delegate.didFinish()
+        // Вы можете показать пользователю предупреждение, записать это событие или предпринять другие меры.
+    }
+    deinit {
+        // Не забывайте удалять наблюдателя, чтобы избежать утечек памяти
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.userDidTakeScreenshotNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIScreen.capturedDidChangeNotification,
+                                                  object: nil)
     }
     
     @objc func buttonAction() {

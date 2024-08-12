@@ -20,10 +20,10 @@ final class Voronka2_3VC: UIViewController, UITableViewDataSource {
     
     var presenter: VorPresenter
     
-    private let textTitle = "Scanning your iPhone"
-    private let subtitle = "Do not close this window"
-    private let buttonTGitle = "OK"
-    private let subtitles = ["PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo", "PUF.Mach.Cache.Crashlyst", "PUF.Mach.Cache.Crashlyst21231231", "PUF.Mach.Cache.Crashlystasdfasfasf", "PUF.Mach.Cache.Crashlyst 176g8huwdjnkvbsfkhgiuhfjvmnbsfghufjapmvknbjfo"]
+    private let textTitle: String
+    private let subtitle: String
+    private let buttonTGitle: String
+    private let subtitles: [String]
     
     private let image = UIImageView(image: I.Vor.v2_2)
     private let foregroundImageView = UIImageView(image: I.Vor.v2_21)
@@ -131,6 +131,10 @@ final class Voronka2_3VC: UIViewController, UITableViewDataSource {
     
     init(presenter: VorPresenter) {
         self.presenter = presenter
+        self.textTitle = presenter.textTitleV2_3
+        self.subtitle = presenter.subtitleV2_3
+        self.buttonTGitle = presenter.buttonTGitleV2_3
+        self.subtitles = presenter.subtitles
         super.init(nibName: nil, bundle: nil)
     }
     

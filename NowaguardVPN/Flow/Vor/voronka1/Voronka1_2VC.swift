@@ -4,9 +4,9 @@ final class Voronka1_2VC: UIViewController {
     
     var presenter: VorPresenter
     
-    private let textTitle = "Check your iPhone"
-    private let subtitle = "Check your device. The check will not take much time. After passing the test, you will see what you can protect by using a VPN."
-    private let buttonTGitle = "Check my iPhone"
+    private let textTitle: String
+    private let subtitle: String
+    private let buttonTGitle: String
     
     private let image = UIImageView(image: I.Vor.v1_2)
     private let titleLabel = UILabel()
@@ -28,6 +28,7 @@ final class Voronka1_2VC: UIViewController {
         titleLabel.textColor = .white
         titleLabel.font = .systemFont(ofSize: .calc(34), weight: .bold)
         titleLabel.text = textTitle
+        titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.numberOfLines = 0
         titleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
@@ -37,6 +38,7 @@ final class Voronka1_2VC: UIViewController {
         subtitleLabel.textColor = .appGrayVor
         subtitleLabel.font = .systemFont(ofSize: .calc(17), weight: .regular)
         subtitleLabel.text = subtitle
+        subtitleLabel.adjustsFontSizeToFitWidth = true
         subtitleLabel.numberOfLines = 0
         subtitleLabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
@@ -53,7 +55,37 @@ final class Voronka1_2VC: UIViewController {
             $0.bottom.equalToSuperview().inset(30)
             $0.height.equalTo(view.frame.height / 14.5)
         }
-        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(screenCaptureDidChange),
+                                               name: UIScreen.capturedDidChangeNotification,
+                                               object: nil)
+        // Подписываемся на уведомление о скриншоте
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(userDidTakeScreenshot),
+                                               name: UIApplication.userDidTakeScreenshotNotification,
+                                               object: nil)
+    }
+    @objc func screenCaptureDidChange() {
+        if UIScreen.main.isCaptured {
+            // Запись экрана активна, скрываем конфиденциальный контент
+            presenter.delegate.didFinish()
+            // Можете скрыть другие элементы интерфейса или показать предупреждение
+        }
+    }
+    @objc func userDidTakeScreenshot() {
+        // Действия, которые нужно выполнить после создания скриншота
+        view.subviews.forEach {$0.removeFromSuperview()}
+        presenter.delegate.didFinish()
+        // Вы можете показать пользователю предупреждение, записать это событие или предпринять другие меры.
+    }
+    deinit {
+        // Не забывайте удалять наблюдателя, чтобы избежать утечек памяти
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.userDidTakeScreenshotNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIScreen.capturedDidChangeNotification,
+                                                  object: nil)
     }
     
     override func viewDidLayoutSubviews() {
@@ -70,6 +102,9 @@ final class Voronka1_2VC: UIViewController {
     
     init(presenter: VorPresenter) {
         self.presenter = presenter
+        self.textTitle = presenter.textTitleV1_2
+        self.subtitle = presenter.subtitleV1_2
+        self.buttonTGitle = presenter.buttonTGitleV1_2
         super.init(nibName: nil, bundle: nil)
     }
     

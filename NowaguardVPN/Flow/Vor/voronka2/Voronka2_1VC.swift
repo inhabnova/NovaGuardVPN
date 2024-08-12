@@ -1,6 +1,6 @@
 import UIKit
 
-final class Voronka1_1VC: UIViewController {
+final class Voronka2_1VC: UIViewController {
     
     var presenter: VorPresenter
     
@@ -17,25 +17,24 @@ final class Voronka1_1VC: UIViewController {
         activity.startAnimating()
         activity.color = .white
         
-        loaded()
-    }
-    
-    func loaded() {
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) ) {
-            
-            //load from fb
-            
-            
-            
-            self.activity.stopAnimating()
-            let vc = Voronka1_2VC(presenter: self.presenter)
-            vc.modalPresentationStyle = .fullScreen
-            vc.modalTransitionStyle = .flipHorizontal
-            self.dismiss(animated: true)
-            self.present(vc, animated: true)
+        Task {
+            await loaded()
         }
     }
+    
+    func loaded() async {
+        
+        await presenter.load2()
+        
+        self.activity.stopAnimating()
+        let vc = Voronka2_2VC(presenter: self.presenter)
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .flipHorizontal
+        self.dismiss(animated: true)
+        self.present(vc, animated: true)
+        
+    }
+    
     
     init(presenter: VorPresenter) {
         self.presenter = presenter

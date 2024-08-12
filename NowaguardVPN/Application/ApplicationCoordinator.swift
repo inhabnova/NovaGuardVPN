@@ -50,7 +50,8 @@ extension ApplicationCoordinatorImpl: ApplicationCoordinator {
 //                                    refreshToken: "fake_account")
 //        if applicationPresenter.isLoggedIn() {
         
-        showMainCoordinator()
+        showOnboardingCoordinator()
+//        showMainCoordinator()
 //        showPaywallCoordinator()
         
 //        } else {
@@ -165,6 +166,10 @@ extension ApplicationCoordinatorImpl: SpeedTestCoordinatorDelegate, SettingsCoor
 //MARK: - VorDelegate
 
 extension ApplicationCoordinatorImpl: VorDelegate {
+    func removeAll() {
+        self.window.removeFromSuperview()
+    }
+    
     func didFinish() {
         showMainCoordinator()
     }

@@ -1,14 +1,14 @@
 import UIKit
 
-final class Voronka2_Fail: UIViewController {
+final class Voronka2_Last: UIViewController {
     
     var presenter: VorPresenter
     
-    private let textTitle = "Purchase Failed. Your device is still not protected!"
-    private let subtitle = "Purchase was not completed. Please Try again."
-    private let buttonTGitle = "OK"
+    private let textTitle: String
+    private let subtitle: String
+    private let buttonTGitle: String
     
-    private let image = UIImageView(image: I.Vor.v2_f)
+    private let image = UIImageView(image: I.Vor.v2_s)
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
     private lazy var button = Vor2_btn(leftColor: UIColor(hex: "#009EFD"), rightColor: UIColor(hex: "#2AF598"), title: buttonTGitle)
@@ -56,14 +56,14 @@ final class Voronka2_Fail: UIViewController {
     }
     
     @objc func buttonAction() {
-//        let vc = Voronka2_3VC(presenter: presenter)
-//        vc.modalPresentationStyle = .fullScreen
-        self.dismiss(animated: false)
-//        self.present(vc, animated: false)
+        presenter.delegate.didFinish()
     }
     
     init(presenter: VorPresenter) {
         self.presenter = presenter
+        self.textTitle = presenter.textTitleV2_Last
+        self.subtitle = presenter.subtitleV2_Last
+        self.buttonTGitle = presenter.buttonTGitleV2_Last
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -71,3 +71,4 @@ final class Voronka2_Fail: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDFeha8vlNoZUYpfLrb6HUjh_rzRX9sKik</string>
+	<key>GCM_SENDER_ID</key>
+	<string>964684231580</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.appp.NowaguardVPN</string>
+	<key>PROJECT_ID</key>
+	<string>novaguard-vpn-84423</string>
+	<key>STORAGE_BUCKET</key>
+	<string>novaguard-vpn-84423.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:964684231580:ios:295441b02b13c20ab68e59</string>
+</dict>
+</plist>

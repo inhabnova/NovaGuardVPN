@@ -59,7 +59,7 @@ final class Content_vor1: UIView {
                 count = 0
                 return
             }
-            period = Int.random(in: 0...3000)
+            period = Int.random(in: 0...1500)
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(period)) { [weak self] in
                 guard let self else { return }
                 if count > 4 {
@@ -87,7 +87,7 @@ final class Content_vor1: UIView {
             return
         }
         
-        period = Int.random(in: 0...3000)
+        period = Int.random(in: 0...1500)
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(period)) { [weak self] in
             guard let self else { return }
             
