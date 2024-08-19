@@ -1,5 +1,5 @@
 {
-  "originHash" : "02f547c67a61ff0a002ab86df7969d054c0f25f6f21959103f88804f6c33ca78",
+  "originHash" : "0135c1dd74818c1acb8acd3dec2615062e65ff091730707882c066b4e81ab70c",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -98,6 +98,24 @@
       "state" : {
         "revision" : "2d12673670417654f08f5f90fdd62926dc3a2648",
         "version" : "100.0.0"
+      }
+    },
+    {
+      "identity" : "ios-branch-sdk-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BranchMetrics/ios-branch-sdk-spm",
+      "state" : {
+        "revision" : "73a6391181909897df8f8f5ad3ef790367b23c34",
+        "version" : "3.6.0"
+      }
+    },
+    {
+      "identity" : "keychain-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/keychain-swift",
+      "state" : {
+        "revision" : "5e1b02b6a9dac2a759a1d5dbc175c86bd192a608",
+        "version" : "24.0.0"
       }
     },
     {

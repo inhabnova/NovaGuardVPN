@@ -1,3 +1,4 @@
+import UIKit
 protocol PaywallPresenter {
     var view: PaywallView! { get set }
     var coordinator: PaywallCoordinator! { get set }
@@ -25,15 +26,15 @@ extension PaywallPresenterImpl: PaywallPresenter {
     }
     
     func close() {
-        
+        coordinator.close()
     }
     
     func openToU() {
-        
+        UIApplication.shared.open(URL(string: "https://inhabitrlimited.digital/terms.html")!, options: [:], completionHandler: nil)
     }
     
     func openPP() {
-        
+        UIApplication.shared.open(URL(string: "https://inhabitrlimited.digital/Privacy.html")!, options: [:], completionHandler: nil)
     }
     
     func subscription() {

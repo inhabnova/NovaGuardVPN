@@ -1,4 +1,5 @@
 import UIKit
+import MessageUI
 
 final class SettingsViewController: UIViewController {
 
@@ -146,3 +147,11 @@ private extension SettingsViewController {
 }
 
 
+
+//MARK: - MFMailComposeViewControllerDelegate
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+}

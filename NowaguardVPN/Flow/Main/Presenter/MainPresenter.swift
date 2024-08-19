@@ -3,7 +3,6 @@ protocol MainPresenter {
     var coordinator: MainCoordinator! { get set }
     
     var selectedServer: Server { get }
-    var enabledServer: Server { get }
     var isOnVPN: Bool { get set }
     
     func onViewDidLoad()
@@ -19,16 +18,16 @@ final class MainPresenterImpl {
     weak var view: MainView!
     weak var coordinator: MainCoordinator!
     
-    var selectedServer: Server = UserDefaultsService.shared.getServer() ?? .Germany
-    var enabledServer: Server = .init(hostname: "111.111.11.11", isFree: false, countryCode: "RU", location: "Russia", psk: "")
+    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? .mock
     
     var isOnVPN: Bool = false {
         didSet {
             if isOnVPN {
-                view.setupOnVPN(ip: selectedServer.hostname, coyntry: selectedServer.location)
+                view.setupOnVPN(ip: selectedServer.ip, coyntry: selectedServer.name)
+
                 startTimer()
             } else {
-                view.setupOffVPN(ip: enabledServer.hostname, coyntry: enabledServer.location)
+                view.setupOffVPN(ip: selectedServer.ip, coyntry: selectedServer.name)
                 stopTimer()
             }
         }
@@ -57,8 +56,8 @@ final class MainPresenterImpl {
 extension MainPresenterImpl: MainPresenter {
 
     func onViewDidLoad() {
-        isOnVPN ? view.setupOnVPN(ip: selectedServer.hostname, coyntry: selectedServer.location) :
-                  view.setupOffVPN(ip: enabledServer.hostname, coyntry: enabledServer.location)
+        isOnVPN ? view.setupOnVPN(ip: selectedServer.ip, coyntry: selectedServer.name) :
+                  view.setupOffVPN(ip: selectedServer.ip, coyntry: selectedServer.name)
     }
     
     func showSelectCountry() {

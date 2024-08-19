@@ -26,7 +26,9 @@ final class SelectCountryViewController: UIViewController {
 // MARK: - SelectCountryView
 
 extension SelectCountryViewController: SelectCountryView {
-
+    func reloadTable() {
+        tableView.reloadData()
+    }
 }
 
 // MARK: - Layout Setup

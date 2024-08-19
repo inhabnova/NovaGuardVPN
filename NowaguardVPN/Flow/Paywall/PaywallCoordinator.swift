@@ -1,7 +1,14 @@
 import UIKit
 
+protocol PaywallCoordinatorDelegate: AnyObject {
+    func paywallCoordinatorDidFinish(with coordinator: any PaywallCoordinator)
+}
+
 protocol PaywallCoordinator: Coordinator {
     var rootViewController: UIViewController { get }
+    var delegate: PaywallCoordinatorDelegate? { get set }
+    
+    func close()
 }
 
 final class PaywallCoordinatorImpl {
@@ -17,6 +24,7 @@ final class PaywallCoordinatorImpl {
     // MARK: - Private
 
     var viewController: UIViewController!
+    weak var delegate: PaywallCoordinatorDelegate?
     
     // MARK: - Dependency
 
@@ -40,5 +48,9 @@ extension PaywallCoordinatorImpl: PaywallCoordinator {
     func start() {
         let module = moduleFactory.createModule(withCoordinator: self)
         viewController = module.view
+    }
+    
+    func close() {
+        delegate?.paywallCoordinatorDidFinish(with: self)
     }
 }

@@ -67,11 +67,11 @@ final class Voronka2_2VC: UIViewController {
         self.present(vc, animated: false)
     }
     
-    init(presenter: VorPresenter) {
-        self.presenter = presenter
-        self.textTitle = presenter.textTitleV2_2
-        self.subtitle = presenter.subtitleV2_2
-        self.buttonTGitle = presenter.buttonTGitleV2_2
+    init(presenterr: VorPresenter) {
+        self.presenter = presenterr
+        self.textTitle = presenterr.textTitleV2_2
+        self.subtitle = presenterr.subtitleV2_2
+        self.buttonTGitle = presenterr.buttonTGitleV2_2
         super.init(nibName: nil, bundle: nil)
     }
     

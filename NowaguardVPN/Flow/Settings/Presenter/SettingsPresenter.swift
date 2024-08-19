@@ -1,3 +1,6 @@
+import UIKit
+import MessageUI
+
 protocol SettingsPresenter {
     var view: SettingsView! { get set }
     var coordinator: SettingsCoordinator! { get set }
@@ -32,21 +35,22 @@ extension SettingsPresenterImpl: SettingsPresenter {
     }
     
     func didTapSettingsButton1() {
-        
+        let mailComposer = MFMailComposeViewController()
+        mailComposer.mailComposeDelegate = view
+        mailComposer.setToRecipients(["info@inhabitrlimited.digital"])
+        view.showVC(mailComposer)
     }
     func didTapSettingsButton2() {
-        view.showVC(SettingsDetailViewController(whiteText: SettingsLocalization.button2.localized,
-                                                 greenText: SettingsLocalization.policy.localized, 
-                                                 contentText: SettingsLocalization.contentTextPrivacy.localized))
+        UIApplication.shared.open(URL(string: "https://inhabitrlimited.digital/Privacy.html")!, options: [:], completionHandler: nil)
     }
     func didTapSettingsButton3() {
-        
+        UIApplication.shared.open(URL(string: "https://inhabitrlimited.digital/terms.html")!, options: [:], completionHandler: nil)
     }
     func didTapSettingsButton4() {
         
     }
     func didTapSettingsButton5() {
-        
+        coordinator.toPaywall()
     }
 }
 

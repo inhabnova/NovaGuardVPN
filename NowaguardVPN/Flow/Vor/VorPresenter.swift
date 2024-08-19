@@ -63,25 +63,27 @@ final class VorPresenter {
             if status == .success {
                 try await remoteConfig.activate()
                 
-                textTitleV1_2 = getString(forKey: "textTitleV1_2")
-                subtitleV1_2 = getString(forKey: "subtitleV1_2")
-                buttonTGitleV1_2 = getString(forKey: "buttonTGitleV1_2")
-                textTitleV1_3 = getString(forKey: "textTitleV1_3")
-                textTitle2V1_3 = getString(forKey: "textTitle2V1_3")
-                textTitle3V1_3 = getString(forKey: "textTitle3V1_3")
-                subtitleV1_3 = getString(forKey: "subtitleV1_3")
-                subtitle1V1_3 = getString(forKey: "subtitle1V1_3")
-                contentTitleV1_3 = getString(forKey: "contentTitleV1_3")
-                subtitlesV1_3 = getStrings(forKey: "subtitlesV1_3")
-                subtitles1V1_3 = getStrings(forKey: "subtitles1V1_3")
-                buttonTGitleV1_3 = getString(forKey: "buttonTGitleV1_3")
-                buttonTGitle1V1_3 = getString(forKey: "buttonTGitle1V1_3")
-                alertTitleV1_3 = getString(forKey: "alertTitleV1_3")
-                alertContentV1_3 = getString(forKey: "alertContentV1_3")
-                alertButtonV1_3 = getString(forKey: "alertButtonV1_3")
-                textTitleV1_last = getString(forKey: "textTitleV1_last")
-                subtitleV1_last = getString(forKey: "subtitleV1_last")
-                buttonTGitleV1_last = getString(forKey: "buttonTGitleV1_last")
+                let dict: [String: Any] = remoteConfig.configValue(forKey: "fl1_" + languageCode.lowercased()).jsonValue as? [String: Any] ?? [:]
+                
+                textTitleV1_2 = dict["textTitleV1_2"] as? String
+                subtitleV1_2 = dict["subtitleV1_2"] as? String
+                buttonTGitleV1_2 = dict["buttonTGitleV1_2"] as? String
+                textTitleV1_3 = dict["textTitleV1_3"] as? String
+                textTitle2V1_3 = dict["textTitle2V1_3"] as? String
+                textTitle3V1_3 = dict["textTitle3V1_3"] as? String
+                subtitleV1_3 = dict["subtitleV1_3"] as? String
+                subtitle1V1_3 = dict["subtitle1V1_3"] as? String
+                contentTitleV1_3 = dict["contentTitleV1_3"] as? String
+                subtitlesV1_3 = dict["subtitlesV1_3"] as? [String]
+                subtitles1V1_3 = dict["subtitles1V1_3"] as? [String]
+                buttonTGitleV1_3 = dict["buttonTGitleV1_3"] as? String
+                buttonTGitle1V1_3 = dict["buttonTGitle1V1_3"] as? String
+                alertTitleV1_3 = dict["alertTitleV1_3"] as? String
+                alertContentV1_3 = dict["alertContentV1_3"] as? String
+                alertButtonV1_3 = dict["alertButtonV1_3"] as? String
+                textTitleV1_last = dict["textTitleV1_last"] as? String
+                subtitleV1_last = dict["subtitleV1_last"] as? String
+                buttonTGitleV1_last = dict["buttonTGitleV1_last"] as? String
             } else {
                 print("status != success")
             }
@@ -99,24 +101,26 @@ final class VorPresenter {
             if status == .success {
                 try await remoteConfig.activate()
                 
-                textTitleV2_2 = getString(forKey: "textTitleV2_2")
-                subtitleV2_2 = getString(forKey: "subtitleV2_2")
-                buttonTGitleV2_2 = getString(forKey: "buttonTGitleV2_2")
-                textTitleV2_3 = getString(forKey: "textTitleV2_3")
-                subtitleV2_3 = getString(forKey: "subtitleV2_3")
-                buttonTGitleV2_3 = getString(forKey: "buttonTGitleV2_3")
-                textTitleV2_4 = getString(forKey: "textTitleV2_4")
-                subtitleV2_4 = getString(forKey: "subtitleV2_4")
-                subtitle1 = getString(forKey: "subtitle1")
-                subtitle2 = getString(forKey: "subtitle2")
-                buttonTGitle = getString(forKey: "buttonTGitle")
-                subtitles = getStrings(forKey: "subtitles")
-                textTitleV2_Fail = getString(forKey: "textTitleV2_Fail")
-                subtitleV2_Fail = getString(forKey: "subtitleV2_Fail")
-                buttonTGitleV2_Fail = getString(forKey: "buttonTGitleV2_Fail")
-                textTitleV2_Last = getString(forKey: "textTitleV2_Last")
-                subtitleV2_Last = getString(forKey: "subtitleV2_Last")
-                buttonTGitleV2_Last = getString(forKey: "buttonTGitleV2_Last")
+                let dict: [String: Any] = remoteConfig.configValue(forKey: "fl2_" + languageCode.lowercased()).jsonValue as? [String: Any] ?? [:]
+                
+                textTitleV2_2 = dict["textTitleV2_2"] as? String
+                subtitleV2_2 = dict["subtitleV2_2"] as? String
+                buttonTGitleV2_2 = dict["buttonTGitleV2_3"] as? String
+                textTitleV2_3 = dict["textTitleV2_3"] as? String
+                subtitleV2_3 = dict["subtitleV2_3"] as? String
+                buttonTGitleV2_3 = dict["buttonTGitleV2_3"] as? String
+                textTitleV2_4 = dict["textTitleV2_4"] as? String
+                subtitleV2_4 = dict["subtitleV2_4"] as? String
+                subtitle1 = dict["subtitle1"] as? String
+                subtitle2 = dict["subtitle2"] as? String
+                buttonTGitle = dict["buttonTGitleV2_3"] as? String
+                subtitles = dict["subtitles"] as? [String]
+                textTitleV2_Fail = dict["textTitleV2_Fail"] as? String
+                subtitleV2_Fail = dict["subtitleV2_Fail"] as? String
+                buttonTGitleV2_Fail = dict["buttonTGitleV2_3"] as? String
+                textTitleV2_Last = dict["textTitleV2_Last"] as? String
+                subtitleV2_Last = dict["subtitleV2_Last"] as? String
+                buttonTGitleV2_Last = dict["buttonTGitleV2_3"] as? String
                 
             } else {
                 print("status != success")
@@ -127,17 +131,4 @@ final class VorPresenter {
             print("Error: \(error.localizedDescription )")
         }
     }
-    
-    
-    private func getString(forKey: String) -> String {
-        let a: [String: Any] = (remoteConfig.configValue(forKey: forKey).jsonValue as? [String : Any?] ?? [languageCode: forKey]) as [String : Any]
-        return (a[languageCode] as? String) ?? forKey
-    }
-    private func getStrings(forKey: String) -> [String] {
-        let a: [String: Any] = remoteConfig.configValue(forKey: forKey).jsonValue as? [String : Any] ?? ["en": [forKey]]
-        return a["en"] as? [String] ?? [forKey]
-    }
-
-    
-    
 }

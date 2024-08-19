@@ -23,6 +23,20 @@ final class SpeetTestCenterView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func addShadow() {
+        addSubviews([shadow])
+        shadow.contentMode = .scaleAspectFit
+        shadow.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.width.equalToSuperview().multipliedBy(0.5)
+            $0.top.equalToSuperview()
+            $0.height.equalTo(shadow.snp.width)
+        }
+    }
+    func removeShadow() {
+        shadow.removeFromSuperview()
+    }
+    
     func update(download: Int) {
         if download > 0 {
             titleLabel1.text = "\(download) Mbit"

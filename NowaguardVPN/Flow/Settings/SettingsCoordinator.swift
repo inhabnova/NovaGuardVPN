@@ -3,6 +3,7 @@ import UIKit
 protocol SettingsCoordinatorDelegate: AnyObject {
     func showMain()
     func showSpeedTest()
+    func toPaywall()
 }
 
 protocol SettingsCoordinator: Coordinator {
@@ -12,6 +13,7 @@ protocol SettingsCoordinator: Coordinator {
     
     func showSpeedTest()
     func showMain()
+    func toPaywall()
 }
 
 final class SettingsCoordinatorImpl {
@@ -59,5 +61,9 @@ extension SettingsCoordinatorImpl: SettingsCoordinator {
     
     func showMain(){
         delegate.showMain()
+    }
+    
+    func toPaywall() {
+        delegate.toPaywall()
     }
 }

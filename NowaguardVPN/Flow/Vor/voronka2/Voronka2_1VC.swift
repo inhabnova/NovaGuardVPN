@@ -27,7 +27,7 @@ final class Voronka2_1VC: UIViewController {
         await presenter.load2()
         
         self.activity.stopAnimating()
-        let vc = Voronka2_2VC(presenter: self.presenter)
+        let vc = Voronka2_2VC(presenterr: self.presenter)
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .flipHorizontal
         self.dismiss(animated: true)

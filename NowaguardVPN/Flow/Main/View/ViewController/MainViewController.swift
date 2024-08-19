@@ -47,6 +47,7 @@ extension MainViewController: MainView {
         
         label1.text = MainLocalization.label1on.localized
         label2.text = MainLocalization.label2.localized + " " + ip + " " + "(\(coyntry))"
+        label2.alpha = 1
         label3.text = MainLocalization.label3on.localized
         label4.text = MainLocalization.label4on.localized
         
@@ -60,6 +61,7 @@ extension MainViewController: MainView {
         
         label1.text = MainLocalization.label1off.localized
         label2.text = MainLocalization.label2.localized + " " + ip + " " + "(\(coyntry))"
+        label2.alpha = 0
         label3.text = MainLocalization.label3off.localized
         label4.text = MainLocalization.label4off.localized
         
@@ -87,8 +89,8 @@ private extension MainViewController {
         label3.font = .systemFont(ofSize: .calc(16), weight: .medium)
         label4.font = .systemFont(ofSize: .calc(18), weight: .bold)
         
-        countryButton.setTitle(presenter.selectedServer.location, for: .normal)
-        countryButton.setImage(I.getFlug(name: presenter.selectedServer.location), for: .normal)
+        countryButton.setTitle(presenter.selectedServer.name, for: .normal)
+        countryButton.setImage(I.getFlug(name: presenter.selectedServer.name), for: .normal)
         countryButton.setTitleColor(.white, for: .normal)
         countryButton.backgroundColor = .appGray
         countryButton.titleLabel?.font = .systemFont(ofSize: .calc(16), weight: .semibold)
@@ -101,10 +103,6 @@ private extension MainViewController {
         onOffVPNButton.addTarget(self, action: #selector(onOffVPN), for: .touchUpInside)
         openSpeedTestButton.addTarget(self, action: #selector(openSpeedTest), for: .touchUpInside)
         openSettingsButton.addTarget(self, action: #selector(openSettings), for: .touchUpInside)
-        
-//        onOffVPNButton.backgroundColor = .yellow
-//        openSpeedTestButton.backgroundColor = .red
-//        openSettingsButton.backgroundColor = .blue
     }
 
 }

@@ -18,9 +18,9 @@ final class SelectCountryTableViewCell: UITableViewCell {
     
     func configure(with server: Server, isSelected: Bool) {
         
-        flugImageView.image = I.getFlug(name: server.location)
-        label.text = server.location
-        premiumServerImageView.image = server.isFree ? nil : I.SelectCountry.isPremiumServer
+        flugImageView.image = I.getFlug(name: server.country)
+        label.text = server.name
+        premiumServerImageView.image = !server.premium ? nil : I.SelectCountry.isPremiumServer
         isSelectedImageView.image = isSelected ? I.SelectCountry.selectedCountry : I.SelectCountry.deselectedCountry
         
         backgroundColor = .appGray

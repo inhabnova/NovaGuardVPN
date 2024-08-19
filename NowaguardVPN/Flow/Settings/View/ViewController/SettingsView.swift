@@ -1,6 +1,7 @@
 import UIKit
+import MessageUI
 
-protocol SettingsView: AnyObject {
+protocol SettingsView: AnyObject, MFMailComposeViewControllerDelegate {
     func showVC(_ vc: UIViewController)
 }
 

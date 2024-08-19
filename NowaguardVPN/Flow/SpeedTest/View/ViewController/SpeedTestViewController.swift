@@ -1,13 +1,14 @@
 import UIKit
 import ALProgressView
+import WebKit
 
-final class SpeedTestViewController: UIViewController {
+final class SpeedTestViewController: UIViewController, WKNavigationDelegate {
 
     // MARK: - UI Elements
     private let backgroundImageView = UIImageView(image: I.SpeedTest.backgroundSpeedTest)
     private let titleLabel = TitleLabel(whiteText: SpeedTestLocalization.speed.localized + " ", greenText: SpeedTestLocalization.test.localized)
     
-    private lazy var topView = SpeetTestTopView(ip: "presenter.selectedServer.hostname", network: "presenter.selectedServer.hostname", location: "presenter.selectedServer.location")
+    private lazy var topView = SpeetTestTopView(ip: presenter.selectedServer?.ip ?? "-", network: presenter.selectedServer?.ip ?? "-", location: presenter.selectedServer?.name ?? "-")
     private lazy var speedTestCenterView = SpeetTestCenterView()
     
     private let progressView = ALProgressRing()
@@ -25,8 +26,7 @@ final class SpeedTestViewController: UIViewController {
     // MARK: - Public Properties
     
     var presenter: SpeedTestPresenter!
-    
-    var progress: Float = 0.7
+    var webView: WKWebView!
     
     // MARK: - Life cycle
     
@@ -35,26 +35,82 @@ final class SpeedTestViewController: UIViewController {
         layoutSetup()
         setupConstraints()
         
-        progressView.setProgress(progress, animated: true)
+        self.progressView.setProgress(0, animated: true)
     }
+    
+    // Выполнение JavaScript после завершения загрузки страницы
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            let jsCode = """
+        var buttonDiv = document.getElementsByClassName('start-button')[0];
+        buttonDiv.getElementsByTagName('a')[0].click();
+        """
+            webView.evaluateJavaScript(jsCode) { (result, error) in
+                if let error = error {
+                    self.presenter.handleError(url: webView.url)
+                    webView.reload()
+                    print("Ошибка при выполнении JavaScript: \(error)")
+                } else {
+                    print("JS: start test")
+                }
+            }
+        }
+    }
+
+
 }
 
 // MARK: - SpeedTestView
 
 extension SpeedTestViewController: SpeedTestView {
+    
     func updateView(state: SpeedTestState) {
         switch state {
         case .notTest:
+            speedTestCenterView.removeShadow()
             label1.text = "00.00"
             progressView.setProgress(0.0, animated: false)
-            button = GreenButton(title: SpeedTestLocalization.button.localized)
-        case .inProgress(let download, let upload):
+            button.updateTitle(title: SpeedTestLocalization.button.localized)
+        case .inProgress:
+            speedTestCenterView.addShadow()
+            // Создаем конфигурацию WebView
+            let webConfiguration = WKWebViewConfiguration()
+            webConfiguration.preferences.javaScriptEnabled = true
+            
+            // Создаем WebView и добавляем его на экран
+            webView = WKWebView(frame: .zero, configuration: webConfiguration)
+            webView.navigationDelegate = self
+            view.addSubview(webView)
+            
+            // Задаем размеры WebView
+            webView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                webView.topAnchor.constraint(equalTo: view.topAnchor),
+                webView.heightAnchor.constraint(equalToConstant: 0),
+                webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+            
+            // Загрузка десктопной версии сайта
+            let url = URL(string: "https://www.speedtest.net/")!
+            let request = URLRequest(url: url)
+            self.webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17 (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17"
+            webView.load(request)
+            
             button.setGrayBackground(title: SpeedTestLocalization.buttonStop.localized)
-            label1.text = "20.00"
-            speedTestCenterView.update(download: 30)
-            speedTestCenterView.update(upload: 20)
-            progressView.setProgress(0.5, animated: true)
+            label1.text = "00.00"
         case .finishTest(let download, let upload):
+            speedTestCenterView.addShadow()
+            self.label1.text = upload
+            speedTestCenterView.update(download: Int(Double(download) ?? 0))
+            speedTestCenterView.update(upload: Int(Double(upload) ?? 0))
+            if let uploadInt = Int(upload) {
+                if uploadInt > 0 {
+                    progressView.setProgress(1, animated: true)
+                } else {
+                    progressView.setProgress(Float(uploadInt) / 100, animated: true)
+                }
+            }
             button.updateTitle(title: SpeedTestLocalization.buttonAgain.localized)
         }
     }

@@ -14,8 +14,8 @@ final class SelectCountryPresenterImpl {
     weak var view: SelectCountryView!
     weak var coordinator: SelectCountryCoordinator!
     
-    var selectedServer: Server = UserDefaultsService.shared.getServer() ?? .Germany
-    var servers: [Server] = [.Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR, .Germany, .Germany1, .USSR]
+    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? .mock
+    var servers: [Server] = UserDefaultsService.shared.getAllServers()
 }
 
 // MARK: - SelectCountryPresenter
@@ -23,7 +23,7 @@ final class SelectCountryPresenterImpl {
 extension SelectCountryPresenterImpl: SelectCountryPresenter {
 
     func close() {
-        UserDefaultsService.shared.saveServer(server: selectedServer) 
+        UserDefaultsService.shared.saveCurrentServer(server: selectedServer) 
         coordinator.close()
     }
     

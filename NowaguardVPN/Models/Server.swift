@@ -1,17 +1,12 @@
 import Foundation
 
 struct Server: Codable {
-    let hostname: String
-    let isFree: Bool
-    let countryCode: String
-    let location: String
-    let psk: String
+    let id: Int
+    let country, name, ip, login: String
+    let password, psk: String
+    let premium: Bool
     
-    static let Germany = Server(hostname: "123.123.1231.23", isFree: true, countryCode: "DE", location: "Germany", psk: "s443HqGRVqkvE6ZxUcbkjPYjH")
-    static let Germany1 = Server(hostname: "222.123.1231.23", isFree: false, countryCode: "DE", location: "Germany", psk: "s443HqGRVqkvE6ZxUcbkjPYjH")
-    static let USSR = Server(hostname: "123.123.1231.23", isFree: false, countryCode: "USSR", location: "USSR", psk: "s443HqGRVqkvE6ZxUcbkjPYjH")
+    static let mock: Server = .init(id: -1, country: "Mock", name: "Mock", ip: "12345676", login: "", password: "", psk: "", premium: false)
 }
 
-extension Server: Equatable {
-    
-}
+extension Server: Equatable { }

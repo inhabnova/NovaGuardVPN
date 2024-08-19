@@ -2,6 +2,8 @@ import UIKit
 
 protocol ApplicationCoordinator: Coordinator, OnboardingCoordinatorDelegate, MainCoordinatorDelegate, SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate, VorDelegate {
     
+    var isFirstLaunch: Bool { get }
+    
     func showVor1()
     func showVor2()
 }
@@ -11,6 +13,7 @@ final class ApplicationCoordinatorImpl {
     // MARK: - Public Properties
     
     var childCoordinators: [Coordinator] = []
+    var isFirstLaunch: Bool = true
     
     // MARK: - Private Properties
     
@@ -50,8 +53,8 @@ extension ApplicationCoordinatorImpl: ApplicationCoordinator {
 //                                    refreshToken: "fake_account")
 //        if applicationPresenter.isLoggedIn() {
         
-        showOnboardingCoordinator()
-//        showMainCoordinator()
+//        showOnboardingCoordinator()
+        showMainCoordinator()
 //        showPaywallCoordinator()
         
 //        } else {
@@ -115,7 +118,7 @@ private extension ApplicationCoordinatorImpl {
     func showPaywallCoordinator() {
         let coordinator = coordinatorsFactory.createPaywallCoordinator()
         coordinator.start()
-//        coordinator.delegate = self
+        coordinator.delegate = self
         addChildCoordinator(coordinator)
         applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
     }
@@ -158,6 +161,10 @@ extension ApplicationCoordinatorImpl: SelectCountryCoordinatorDelegate {
 // MARK: - SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate
 
 extension ApplicationCoordinatorImpl: SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate {
+    func toPaywall() {
+        showPaywallCoordinator()
+    }
+    
     func showMain() {
         showMainCoordinator()
     }
@@ -175,3 +182,15 @@ extension ApplicationCoordinatorImpl: VorDelegate {
     }
 }
 
+//MARK: - PaywallCoordinatorDelegate
+
+extension ApplicationCoordinatorImpl: PaywallCoordinatorDelegate {
+    func paywallCoordinatorDidFinish(with coordinator: any PaywallCoordinator) {
+        removeCoordinator(coordinator)
+        guard let coordinator = childCoordinators.last as? SettingsCoordinator else { return }
+        coordinator.start()
+        coordinator.delegate = self
+        addChildCoordinator(coordinator)
+        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+    }
+}
