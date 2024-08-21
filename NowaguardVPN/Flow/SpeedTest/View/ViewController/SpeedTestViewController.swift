@@ -2,13 +2,13 @@ import UIKit
 import ALProgressView
 import WebKit
 
-final class SpeedTestViewController: UIViewController, WKNavigationDelegate {
+final class SpeedTestViewController: UIViewController, WKScriptMessageHandler {
 
     // MARK: - UI Elements
     private let backgroundImageView = UIImageView(image: I.SpeedTest.backgroundSpeedTest)
     private let titleLabel = TitleLabel(whiteText: SpeedTestLocalization.speed.localized + " ", greenText: SpeedTestLocalization.test.localized)
     
-    private lazy var topView = SpeetTestTopView(ip: presenter.selectedServer?.ip ?? "-", network: presenter.selectedServer?.ip ?? "-", location: presenter.selectedServer?.name ?? "-")
+    private lazy var topView = SpeetTestTopView(ip: presenter.getServerInfo()[0], network: presenter.getServerInfo()[1], location: presenter.getServerInfo()[2])
     private lazy var speedTestCenterView = SpeetTestCenterView()
     
     private let progressView = ALProgressRing()
@@ -37,26 +37,47 @@ final class SpeedTestViewController: UIViewController, WKNavigationDelegate {
         
         self.progressView.setProgress(0, animated: true)
     }
-    
-    // Выполнение JavaScript после завершения загрузки страницы
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            let jsCode = """
-        var buttonDiv = document.getElementsByClassName('start-button')[0];
-        buttonDiv.getElementsByTagName('a')[0].click();
-        """
-            webView.evaluateJavaScript(jsCode) { (result, error) in
-                if let error = error {
-                    self.presenter.handleError(url: webView.url)
-                    webView.reload()
-                    print("Ошибка при выполнении JavaScript: \(error)")
-                } else {
-                    print("JS: start test")
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if message.name == "testCompleted", let body = message.body as? [String: Any] {
+            if let downloadSpeed = body["downloadSpeed"] as? String,
+               let uploadSpeed = body["uploadSpeed"] as? String {
+                updateView(state: .finishTest(download: downloadSpeed, upload: uploadSpeed))
+                print("downloadSpeed: \(downloadSpeed), uploadSpeed: \(uploadSpeed)")
+                
+                speedTestCenterView.update(download: Int(Double(downloadSpeed) ?? 0))
+                speedTestCenterView.update(upload: Int(Double(uploadSpeed) ?? 0))
+                
+            }
+        }
+        if message.name == "currentDownload", let body = message.body as? [String: Any] {
+            if let downloadSpeed = body["downloadSpeed"] as? String {
+                speedTestCenterView.update(download: Int(Double(downloadSpeed) ?? 0))
+                self.label1.text = downloadSpeed
+                if let downloadSpeedInt = Int(downloadSpeed) {
+                    if downloadSpeedInt > 100 {
+                        progressView.setProgress(1, animated: true)
+                    } else {
+                        progressView.setProgress(Float(downloadSpeedInt) / 100, animated: true)
+                    }
                 }
+                print("downloadSpeed: \(downloadSpeed)")
+            }
+        }
+        if message.name == "currentUpload", let body = message.body as? [String: Any] {
+            if let uploadSpeed = body["uploadSpeed"] as? String {
+                speedTestCenterView.update(upload: Int(Double(uploadSpeed) ?? 0))
+                self.label1.text = uploadSpeed
+                if let uploadSpeedInt = Int(uploadSpeed) {
+                    if uploadSpeedInt > 100 {
+                        progressView.setProgress(1, animated: true)
+                    } else {
+                        progressView.setProgress(Float(uploadSpeedInt) / 100, animated: true)
+                    }
+                }
+                print("uploadSpeed: \(uploadSpeed)")
             }
         }
     }
-
 
 }
 
@@ -73,30 +94,20 @@ extension SpeedTestViewController: SpeedTestView {
             button.updateTitle(title: SpeedTestLocalization.button.localized)
         case .inProgress:
             speedTestCenterView.addShadow()
-            // Создаем конфигурацию WebView
-            let webConfiguration = WKWebViewConfiguration()
-            webConfiguration.preferences.javaScriptEnabled = true
+            let contentController = WKUserContentController()
+            contentController.add(self, name: "testCompleted")
+            contentController.add(self, name: "currentDownload")
+            contentController.add(self, name: "currentUpload")
             
-            // Создаем WebView и добавляем его на экран
-            webView = WKWebView(frame: .zero, configuration: webConfiguration)
-            webView.navigationDelegate = self
-            view.addSubview(webView)
+            let config = WKWebViewConfiguration()
+            config.userContentController = contentController
             
-            // Задаем размеры WebView
-            webView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                webView.topAnchor.constraint(equalTo: view.topAnchor),
-                webView.heightAnchor.constraint(equalToConstant: 0),
-                webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            ])
+            webView = WKWebView(frame: .init(x: 0, y: 0, width: 500, height: 1), configuration: config)
+            self.view.addSubview(webView)
             
-            // Загрузка десктопной версии сайта
-            let url = URL(string: "https://www.speedtest.net/")!
-            let request = URLRequest(url: url)
-            self.webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17 (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17"
-            webView.load(request)
-            
+            if let url = URL(string: "https://fast.com/") {
+                webView.load(URLRequest(url: url))
+            }
             button.setGrayBackground(title: SpeedTestLocalization.buttonStop.localized)
             label1.text = "00.00"
         case .finishTest(let download, let upload):

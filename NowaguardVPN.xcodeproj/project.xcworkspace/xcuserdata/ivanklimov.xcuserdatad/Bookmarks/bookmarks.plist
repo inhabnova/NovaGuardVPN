@@ -56,13 +56,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>23</string>
+					<string>26</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>22</string>
+					<string>25</string>
 					<key>Timestamp</key>
-					<string>745344273.798911</string>
+					<string>745950667.535114</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -78,10 +78,10 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    var isOnVPN: Bool = false {
+				<string>    private var isOnVPN: Bool = false {
 </string>
 				<key>leading</key>
-				<string>    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? .mock
+				<string>    var vpnService: VPNService = .shared
     
 </string>
 				<key>trailing</key>
@@ -101,13 +101,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>21</string>
+					<string>23</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>20</string>
+					<string>22</string>
 					<key>Timestamp</key>
-					<string>745344273.798887</string>
+					<string>745950667.5351059</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -130,9 +130,9 @@
     
 </string>
 				<key>trailing</key>
-				<string>    
-    var isOnVPN: Bool = false {
-        didSet {
+				<string>    var vpnService: VPNService = .shared
+    
+    private var isOnVPN: Bool = false {
 </string>
 			</dict>
 			<key>type</key>
@@ -146,13 +146,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>21</string>
+					<string>23</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>20</string>
+					<string>22</string>
 					<key>Timestamp</key>
-					<string>745344273.798919</string>
+					<string>745950667.535086</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -175,9 +175,9 @@
     
 </string>
 				<key>trailing</key>
-				<string>    
-    var isOnVPN: Bool = false {
-        didSet {
+				<string>    var vpnService: VPNService = .shared
+    
+    private var isOnVPN: Bool = false {
 </string>
 			</dict>
 			<key>type</key>
@@ -217,7 +217,7 @@
 </string>
 				<key>leading</key>
 				<string>    
-    private lazy var topView = SpeetTestTopView(ip: presenter.selectedServer?.ip ?? "-", network: presenter.selectedServer?.ip ?? "-", location: presenter.selectedServer?.name ?? "-")
+    private lazy var topView = SpeetTestTopView(ip: presenter.getServerInfo()[0], network: presenter.getServerInfo()[1], location: presenter.getServerInfo()[2])
 </string>
 				<key>trailing</key>
 				<string>    

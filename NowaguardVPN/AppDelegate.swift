@@ -1,5 +1,7 @@
 import UIKit
+import BranchSDK
 import FirebaseCore
+import FirebaseRemoteConfigInternal
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
+        Task {
+            let keys = await load()
+            
+            
+            // Инициализация Branch SDK
+            Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
+                if let error = error {
+                    print("Branch initialization error: \(error.localizedDescription)")
+                    return
+                }
+                
+                NetworkManager.shared.sendEvent(event: .install, productId: nil, afData: params as? [String: String]) { result in
+                    switch result {
+                    case .success(let success):
+                        print(success)
+                    case .failure(let failure):
+                        print(failure)
+                    }
+                }
+                
+                if let params = params as? [String: AnyObject] {
+                    // получениe данных из params
+                    if let referrer = params["appkey"] as? String {
+                        print("Referrer: \(referrer)")
+                        
+                        if referrer == keys[1] {
+                            self.appCoordinator.showVor1()
+                        } else if referrer == keys[2] {
+                            self.appCoordinator.showVor2()
+                        } else {
+                            self.appCoordinator.start()
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+        
+                
         if appCoordinator.isFirstLaunch {
             NetworkManager.shared.getServers { [weak self] result in
                 switch result {
@@ -40,3 +82,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AppDelegate {
+    @MainActor
+    func load() async -> [String] {
+        do {
+            let remoteConfig = RemoteConfig.remoteConfig()
+            let status = try await remoteConfig.fetch(withExpirationDuration: 0)
+            
+            if status == .success {
+                try await remoteConfig.activate()
+                
+                let key1 = remoteConfig.configValue(forKey: "appkey1").stringValue
+                let key2 = remoteConfig.configValue(forKey: "appkey2").stringValue
+                return [key1, key2]
+            }
+        } catch {
+            print("error load remote")
+        }
+        return []
+    }
+}

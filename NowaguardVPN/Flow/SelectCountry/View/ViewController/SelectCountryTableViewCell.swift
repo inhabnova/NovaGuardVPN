@@ -19,6 +19,7 @@ final class SelectCountryTableViewCell: UITableViewCell {
     func configure(with server: Server, isSelected: Bool) {
         
         flugImageView.image = I.getFlug(name: server.country)
+        flugImageView.contentMode = .scaleAspectFill
         label.text = server.name
         premiumServerImageView.image = !server.premium ? nil : I.SelectCountry.isPremiumServer
         isSelectedImageView.image = isSelected ? I.SelectCountry.selectedCountry : I.SelectCountry.deselectedCountry
@@ -57,6 +58,12 @@ final class SelectCountryTableViewCell: UITableViewCell {
             $0.centerY.equalTo(flugImageView.snp.centerY)
             $0.width.height.equalTo(SelectCountryTableViewCell.flugImageViewSize / 1.6)
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        flugImageView.layer.cornerRadius = flugImageView.frame.height / 2
+        flugImageView.layer.masksToBounds = true
     }
     
 }

@@ -116,7 +116,7 @@ private extension MainViewController {
     }
     
     @objc func onOffVPN() {
-        presenter.isOnVPN.toggle()
+        presenter.buttonAction()
     }
     
     @objc func openSpeedTest() {

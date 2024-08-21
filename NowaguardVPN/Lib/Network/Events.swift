@@ -9,13 +9,13 @@ struct SendEventRequest: Encodable {
     let apiKey = "b1947044-1d5f-4381-ac53-f1271a2dedb8"
     let event: String
     let product: String
-//    let afData: [String: String]
+    let afData: [String: String]
 }
 
 extension NetworkManager {
-    func sendEvent(event: Events, productId: String?, completion: @escaping (Result<String, NetworkError>) -> Void) {
+    func sendEvent(event: Events, productId: String?, afData: [String: String]?, completion: @escaping (Result<String, NetworkError>) -> Void) {
         
-        let body: SendEventRequest = .init(event: event.rawValue, product: productId ?? "")
+        let body: SendEventRequest = .init(event: event.rawValue, product: productId ?? "", afData: afData ?? [:])
         makeRequest(
             urlString: "https://inhabitrlimited.digital/api/vpn/events.php",
             httpMethod: .post,

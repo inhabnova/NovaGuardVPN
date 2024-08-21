@@ -1,4 +1,5 @@
 import Foundation
+import NetworkExtension
 enum SpeedTestState {
     case notTest
     case inProgress//(download: String, upload: String)
@@ -17,6 +18,7 @@ protocol SpeedTestPresenter {
     func showMain()
     func showSettings()
     func buttonAction()
+    func getServerInfo() -> [String]
 }
 
 final class SpeedTestPresenterImpl {
@@ -29,15 +31,25 @@ final class SpeedTestPresenterImpl {
     var selectedServer: Server? = UserDefaultsService.shared.getCurrentServer()
     
     private var state: SpeedTestState = .notTest
+    private var vpnService = VPNService.shared
+    private var vpnIsOn: Bool = false
     
-    deinit {
-        
+    init() {
+        vpnService.delegate = self
     }
 }
 
 // MARK: - SpeedTestPresenter
 
 extension SpeedTestPresenterImpl: SpeedTestPresenter {
+    
+    func getServerInfo() -> [String] {
+        if vpnIsOn {
+            return [selectedServer?.ip ?? "-", selectedServer?.ip ?? "-", selectedServer?.name ?? "-"]
+        } else {
+            return ["-","-","-"]
+        }
+    }
 
     func showMain() {
         coordinator.showMain()
@@ -63,7 +75,7 @@ extension SpeedTestPresenterImpl: SpeedTestPresenter {
         case .finishTest(download: _, upload: _):
             state = .inProgress
             view.updateView(state: state)
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                 self.checkIsFinalTest()
             }
         }
@@ -91,13 +103,25 @@ extension SpeedTestPresenterImpl: SpeedTestPresenter {
     
     private func checkIsFinalTest() {
         let jsCode = """
-            var resultsDiv = document.getElementsByClassName('result-container-data')[0];
-            if (resultsDiv) {
-                var downloadSpeed = resultsDiv.getElementsByClassName('result-data-value download-speed')[0].innerText;
-                var uploadSpeed = resultsDiv.getElementsByClassName('result-data-value upload-speed')[0].innerText;
-                if (downloadSpeed > -1 && uploadSpeed > -1) {
-                    window.location.replace("https://inhabitrlimited.digital/api/vpn/results.php?download_speed=" + downloadSpeed + "&upload_speed=" + uploadSpeed);
-                }
+            var showMore = document.getElementById('show-more-details-link');
+            if (showMore) showMore.click();
+            var downloadElement = document.getElementById('speed-value');
+            var downloadSpeed = downloadElement.innerText;
+            if (downloadSpeed > 0 && !isSucceeded(downloadElement)) {
+                window.webkit.messageHandlers.currentDownload.postMessage({downloadSpeed});
+            }
+            var uploadElement = document.getElementById('upload-value');
+            var uploadSpeed = uploadElement.innerText;
+            if (uploadSpeed > 0 && !isSucceeded(uploadElement)) {
+                window.webkit.messageHandlers.currentUpload.postMessage({uploadSpeed});
+            }
+            if (isSucceeded(downloadElement) && isSucceeded(uploadElement)) {
+                window.webkit.messageHandlers.testCompleted.postMessage({downloadSpeed, uploadSpeed});
+            }
+
+            function isSucceeded(element)
+            {
+                return element.classList.contains('succeeded');
             }
             """
         view.webView?.evaluateJavaScript(jsCode) { (result, error) in
@@ -105,26 +129,30 @@ extension SpeedTestPresenterImpl: SpeedTestPresenter {
                 print("Ошибка при выполнении JavaScript: \(error)")
                 self.handleError(url: self.view.webView?.url)
             } else {
-                guard let url = self.view.webView.url else { return }
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-                let queryItems = components?.queryItems
-                if let download = queryItems?.first( where: { $0.name == "download_speed" } )?.value,
-                   let upload = queryItems?.first( where: { $0.name == "upload_speed" } )?.value {
-                    
-                    self.state = .finishTest(download: download, upload: upload)
-                    self.view.updateView(state: self.state)
-                    self.view.webView.removeFromSuperview()
-                    self.view.webView = nil
-                    return
-                } else {
-                    self.state = .inProgress
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                        self.checkIsFinalTest()
-                    }
-                }
                 print("JS: redirect")
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                    self.checkIsFinalTest()
+                }
             }
         }
     }
 }
 
+// MARK: - VPNServiceDelegate
+
+extension SpeedTestPresenterImpl: VPNServiceDelegate {
+    
+    func didObserveVPNStatus(status: NEVPNStatus) {
+        switch status {
+        case .connected:
+            vpnIsOn = true
+        default:
+            vpnIsOn = false
+        }
+    }
+    
+    func didGetError(error: (any Error)?) {
+        vpnIsOn = false
+        print("speedDidGetError: " + "\(error)")
+    }
+}

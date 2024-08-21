@@ -1,10 +1,12 @@
-protocol MainPresenter {
+import NetworkExtension
+protocol MainPresenter: VPNServiceDelegate {
     var view: MainView! { get set }
     var coordinator: MainCoordinator! { get set }
     
     var selectedServer: Server { get }
-    var isOnVPN: Bool { get set }
+    var vpnService: VPNService { get }
     
+    func buttonAction()
     func onViewDidLoad()
     func showSelectCountry()
     func showSpeedTest()
@@ -19,8 +21,9 @@ final class MainPresenterImpl {
     weak var coordinator: MainCoordinator!
     
     var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? .mock
+    var vpnService: VPNService = .shared
     
-    var isOnVPN: Bool = false {
+    private var isOnVPN: Bool = false {
         didSet {
             if isOnVPN {
                 view.setupOnVPN(ip: selectedServer.ip, coyntry: selectedServer.name)
@@ -49,11 +52,19 @@ final class MainPresenterImpl {
     private func stopTimer() {
         TimerService.shared.stopTimer()
     }
+    
+    init() {
+        vpnService.delegate = self
+    }
 }
 
 // MARK: - MainPresenter
 
 extension MainPresenterImpl: MainPresenter {
+    
+    func buttonAction() {
+        vpnService.buildConnection(server: selectedServer)
+    }
 
     func onViewDidLoad() {
         isOnVPN ? view.setupOnVPN(ip: selectedServer.ip, coyntry: selectedServer.name) :
@@ -73,3 +84,21 @@ extension MainPresenterImpl: MainPresenter {
 
 }
 
+// MARK: - VPNServiceDelegate
+
+extension MainPresenterImpl: VPNServiceDelegate {
+    
+    func didObserveVPNStatus(status: NEVPNStatus) {
+        switch status {
+        case .connected:
+            isOnVPN = true
+        default:
+            isOnVPN = false
+        }
+    }
+    
+    func didGetError(error: (any Error)?) {
+        isOnVPN = false
+        print(" didGetError: " + "\(error)")
+    }
+}
