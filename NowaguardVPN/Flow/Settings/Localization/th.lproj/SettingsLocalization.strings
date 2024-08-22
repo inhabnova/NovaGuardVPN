@@ -1,0 +1,31 @@
+"app" = "แอพ";
+
+"settings" = "การตั้งค่า";
+
+"button1" = "ช่วยเหลือ";
+
+"button2" = "ความเป็นส่วนตัว";
+
+"button3" = "ข้อกำหนดในการให้บริการ";
+
+"button4" = "กู้คืนการซื้อ";
+
+"button5" = "แผนเพิ่มเติม";
+
+"policy" = "นโยบาย";
+"contentTextPrivacy" = "Details on Collected Information
+When using our app, we may collect the following data: • INHABITR LIMITED does not gather or store any user data. Our service focuses on traffic encryption without maintaining any user logs or records. • Information directly provided by you: We do not collect personal details such as your name, email, phone number, or any other information you might choose to share. Your email address is only used to respond to your queries through our official website or via forms within our mobile application, but it does not allow us to identify users personally. • We collect aggregate data on the total amount of data transmitted by all users across different countries. • We gather statistical information to ensure the quality of our service. While we can access aggregate statistics by region and server, this data cannot be linked back to any specific individual. No data that could uniquely identify a user is stored or maintained. • We do not gather any information about you or your device while you use our app, such as your IP address, device type, operating system version, or the times of access. Importantly, we do not collect browsing history, traffic data, or DNS queries that could be used to trace any individual user. • The app uses third-party services that might collect data capable of identifying you. Links to privacy policies of third-party services used by our app: Google Analytics for Firebase (https://firebase.google.com/policies/analytics), Appsflyer (https://www.appsflyer.com/legal/privacy-policy/).
+
+Links to External Sites
+This service may include links to other websites. By clicking on a third-party link, you will be redirected to that site. Please note that these external sites are not under our control, and we strongly recommend that you review their privacy policies. We do not assume any responsibility for the content, privacy practices, or policies of these third-party sites or services.
+
+Children’s Privacy
+Our services are not intended for individuals under the age of 13. We do not knowingly collect personally identifiable information from children under 13 years of age. If we become aware that a child under 13 has provided us with personal data, we will promptly delete this information from our servers. If you are a parent or guardian and you become aware that your child has shared personal information with us, please contact us so we can take the necessary actions.
+
+Changes to This Privacy Policy
+We may update this Privacy Policy periodically. We encourage you to review this page regularly for any updates. Any changes will be posted on this page as they occur.
+
+Contact Information
+If you have any questions regarding our privacy practices or policies, or if you need to contact us about anything related to your privacy while using our services, please reach out to us via email at
+
+info@inhabitrlimited.digital";

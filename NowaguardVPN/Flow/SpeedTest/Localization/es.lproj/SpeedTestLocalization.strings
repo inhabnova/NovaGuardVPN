@@ -1,0 +1,22 @@
+"speed" = "velocidad";
+
+"test" = "prueba";
+
+"button" = "VERIFICAR VELOCIDAD DE LA RED";
+
+"buttonStop" = "detener verificación";
+
+"buttonAgain" = "VERIFICAR VELOCIDAD DE NUEVO";
+
+"button1" = "Dirección IP:";
+
+"button2" = "Red";
+
+"button3" = "Ubicación:";
+
+"upload" = "Velocidad de Subida";
+
+"download" = "Velocidad de Descarga";
+
+"perSec" = "Mbit por segundo";
+

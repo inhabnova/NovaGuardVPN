@@ -1,0 +1,22 @@
+"speed" = "hız";
+
+"test" = "test";
+
+"button" = "AĞ HIZINI KONTROL ET";
+
+"buttonStop" = "kontrolü durdur";
+
+"buttonAgain" = "hızı tekrar kontrol et";
+
+"button1" = "IP Adresi:";
+
+"button2" = "Ağ";
+
+"button3" = "Konum:";
+
+"upload" = "Yükleme Hızı";
+
+"download" = "İndirme Hızı";
+
+"perSec" = "Mbit/sn";
+

@@ -1,0 +1,24 @@
+
+
+"speed" = "velocità";
+
+"test" = "test";
+
+"button" = "CONTROLLA LA VELOCITÀ DELLA RETE";
+
+"buttonStop" = "ferma il controllo";
+
+"buttonAgain" = "CONTROLLA DI NUOVO LA VELOCITÀ";
+
+"button1" = "Indirizzo IP:";
+
+"button2" = "Rete";
+
+"button3" = "Posizione:";
+
+"upload" = "Velocità di Caricamento";
+
+"download" = "Velocità di Download";
+
+"perSec" = "Mbit al secondo";
+

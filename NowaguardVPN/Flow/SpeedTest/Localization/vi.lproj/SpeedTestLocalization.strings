@@ -1,0 +1,21 @@
+"speed" = "tốc độ";
+
+"test" = "kiểm tra";
+
+"button" = "KIỂM TRA TỐC ĐỘ MẠNG";
+
+"buttonStop" = "dừng kiểm tra";
+
+"buttonAgain" = "KIỂM TRA LẠI TỐC ĐỘ";
+
+"button1" = "Địa chỉ IP:";
+
+"button2" = "Mạng";
+
+"button3" = "Vị trí:";
+
+"upload" = "Tốc độ Tải lên";
+
+"download" = "Tốc độ Tải về";
+
+"perSec" = "Mbit mỗi giây";

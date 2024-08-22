@@ -1,0 +1,23 @@
+"speed" = "Geschwindigkeit";
+
+"test" = "Test";
+
+"button" = "NETZWERK-GESCHWINDIGKEIT ÜBERPRÜFEN";
+
+"buttonStop" = "Überprüfung stoppen";
+
+"buttonAgain" = "Geschwindigkeit erneut überprüfen";
+
+"button1" = "IP-Adresse:";
+
+"button2" = "Netzwerk";
+
+"button3" = "Standort:";
+
+"upload" = "Upload-Geschwindigkeit";
+
+"download" = "Download-Geschwindigkeit";
+
+"perSec" = "Mbit pro Sekunde";
+
+

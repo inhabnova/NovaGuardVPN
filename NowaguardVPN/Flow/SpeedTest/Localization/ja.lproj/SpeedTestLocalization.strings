@@ -1,0 +1,23 @@
+
+"speed" = "速度";
+
+"test" = "テスト";
+
+"button" = "ネットワーク速度をチェック";
+
+"buttonStop" = "チェックを停止";
+
+"buttonAgain" = "再度速度をチェック";
+
+"button1" = "IPアドレス:";
+
+"button2" = "ネットワーク";
+
+"button3" = "位置:";
+
+"upload" = "アップロード速度";
+
+"download" = "ダウンロード速度";
+
+"perSec" = "Mbit/秒";
+

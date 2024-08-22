@@ -1,0 +1,21 @@
+"speed" = "kecepatan";
+
+"test" = "uji";
+
+"button" = "PERIKSA KECEPATAN JARINGAN";
+
+"buttonStop" = "hentikan pemeriksaan";
+
+"buttonAgain" = "PERIKSA KECEPATAN LAGI";
+
+"button1" = "Alamat IP:";
+
+"button2" = "Jaringan";
+
+"button3" = "Lokasi:";
+
+"upload" = "Kecepatan Unggah";
+
+"download" = "Kecepatan Unduh";
+
+"perSec" = "Mbit per detik";"
