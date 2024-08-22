@@ -6,7 +6,8 @@ protocol ApplicationCoordinatorFactory {
     func createSelectCountryCoordinator() -> SelectCountryCoordinator
     func createSpeedTestCoordinator() -> SpeedTestCoordinator
     func createSettingsCoordinator() -> SettingsCoordinator
-    func createPaywallCoordinator() -> PaywallCoordinator
+    func createPaywallCoordinator_3() -> PaywallCoordinator
+    func createPaywallCoordinator_1() -> PaywallCoordinator
 }
 
 struct ApplicationCoordinatorFactoryImpl {}
@@ -34,8 +35,11 @@ extension ApplicationCoordinatorFactoryImpl: ApplicationCoordinatorFactory {
         SettingsCoordinatorImpl()
     }
     
-    func createPaywallCoordinator() -> PaywallCoordinator {
-        PaywallCoordinatorImpl()
+    func createPaywallCoordinator_3() -> PaywallCoordinator {
+        PaywallCoordinatorImpl(setOwnPurchase: false)
+    }
+    func createPaywallCoordinator_1() -> PaywallCoordinator {
+        PaywallCoordinatorImpl(setOwnPurchase: true)
     }
 }
 

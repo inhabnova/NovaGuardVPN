@@ -86,6 +86,9 @@ private extension SpeetTestCenterView {
         subTitleLabel1.font = .systemFont(ofSize: .calc(14), weight: .regular)
         subTitleLabel2.font = .systemFont(ofSize: .calc(14), weight: .regular)
         
+        subTitleLabel1.numberOfLines = 0
+        subTitleLabel2.numberOfLines = 0
+        
         titleLabel1.textColor =  .white
         titleLabel2.textColor = .white
         subTitleLabel1.textColor = .appGlayLabel
@@ -129,10 +132,12 @@ private extension SpeetTestCenterView {
         subTitleLabel1.snp.makeConstraints {
             $0.top.equalTo(titleLabel1.snp.bottom).inset(-10)
             $0.left.equalTo(titleLabel1.snp.left)
+            $0.right.equalTo(separator.snp.left).inset(10)
         }
         subTitleLabel2.snp.makeConstraints {
             $0.top.equalTo(titleLabel2.snp.bottom).inset(-10)
             $0.right.equalTo(titleLabel2.snp.right)
+            $0.left.equalTo(separator.snp.right).inset(10)
         }
     }
 }

@@ -148,7 +148,7 @@ final class Voronka1_3VC: UIViewController {
     }
     
     func asd() async {
-        let productId = ["123"]
+        let productId = [presenter.idPurchase!]
         do {
             if let product = try await Product.products(for: productId).first {
                 

@@ -3,6 +3,7 @@ protocol PaywallPresenter {
     var view: PaywallView! { get set }
     var coordinator: PaywallCoordinator! { get set }
     
+    func onViewDidload()
     func restore()
     func close()
     func openToU()
@@ -21,6 +22,23 @@ final class PaywallPresenterImpl {
 // MARK: - PaywallPresenter
 
 extension PaywallPresenterImpl: PaywallPresenter {
+    
+    func onViewDidload() {
+        if coordinator.setOwnPurchase {
+            view.setOwnPurcshase()
+            if let delay = coordinator.delayCross {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) {
+                    self.view.showBackButton()
+                }
+            } else {
+                self.view.showBackButton()
+            }
+        } else {
+            view.setThreePurcshase()
+            view.showBackButton()
+        }
+    }
+    
     func restore() {
         
     }

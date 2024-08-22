@@ -19,13 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         Task {
-            let keys = await load()
-            
+            let keys = await loadKeys()
+            appCoordinator.delayCross = await loadDelayCross()
             
             // Инициализация Branch SDK
             Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
                 if let error = error {
                     print("Branch initialization error: \(error.localizedDescription)")
+                    self.appCoordinator.start()
                     return
                 }
                 
@@ -35,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         print(success)
                     case .failure(let failure):
                         print(failure)
+                        self.appCoordinator.start()
                     }
                 }
                 
@@ -51,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             self.appCoordinator.start()
                         }
                         
+                    } else {
+                        self.appCoordinator.start()
                     }
                     
                 }
@@ -69,22 +73,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        if false {
-            appCoordinator.showVor1()
-        } else if false {
-            appCoordinator.showVor2()
-        } else {
-            appCoordinator.start()
-        }
+//        if false {
+//            appCoordinator.showVor1()
+//        } else if true {
+//            appCoordinator.showVor2()
+//        } else {
+//            appCoordinator.start()
+//        }
 
         
         return true
     }
 }
 
-extension AppDelegate {
+private extension AppDelegate {
     @MainActor
-    func load() async -> [String] {
+    func loadKeys() async -> [String] {
         do {
             let remoteConfig = RemoteConfig.remoteConfig()
             let status = try await remoteConfig.fetch(withExpirationDuration: 0)
@@ -100,5 +104,23 @@ extension AppDelegate {
             print("error load remote")
         }
         return []
+    }
+    
+    @MainActor
+    func loadDelayCross() async -> Int? {
+        do {
+            let remoteConfig = RemoteConfig.remoteConfig()
+            let status = try await remoteConfig.fetch(withExpirationDuration: 0)
+            
+            if status == .success {
+                try await remoteConfig.activate()
+                
+                let delay = remoteConfig.configValue(forKey: "crossDelay").numberValue as? Int
+                return delay
+            }
+        } catch {
+            print("error load remote")
+        }
+        return nil
     }
 }

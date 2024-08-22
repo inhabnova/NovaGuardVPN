@@ -51,6 +51,8 @@ final class VorPresenter {
     var subtitleV2_Last: String!
     var buttonTGitleV2_Last: String!
     
+    var idPurchase: String!
+    
     
     private let remoteConfig = RemoteConfig.remoteConfig()
     private let languageCode = Locale.preferredLanguages[0]
@@ -84,6 +86,8 @@ final class VorPresenter {
                 textTitleV1_last = dict["textTitleV1_last"] as? String
                 subtitleV1_last = dict["subtitleV1_last"] as? String
                 buttonTGitleV1_last = dict["buttonTGitleV1_last"] as? String
+                
+                idPurchase = remoteConfig.configValue(forKey: "purchaseInFl").stringValue
             } else {
                 print("status != success")
             }
@@ -121,6 +125,8 @@ final class VorPresenter {
                 textTitleV2_Last = dict["textTitleV2_Last"] as? String
                 subtitleV2_Last = dict["subtitleV2_Last"] as? String
                 buttonTGitleV2_Last = dict["buttonTGitleV2_3"] as? String
+                
+                idPurchase = remoteConfig.configValue(forKey: "purchaseInFl").stringValue
                 
             } else {
                 print("status != success")

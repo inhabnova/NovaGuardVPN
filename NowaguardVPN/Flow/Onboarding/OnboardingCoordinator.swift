@@ -8,7 +8,7 @@ protocol OnboardingCoordinator: Coordinator {
     var rootViewController: UIViewController { get }
     var delegate: OnboardingCoordinatorDelegate? { get set }
     
-    func showMain()
+    func showPaywall()
 }
 
 final class OnboardingCoordinatorImpl {
@@ -50,7 +50,7 @@ extension OnboardingCoordinatorImpl: OnboardingCoordinator {
         viewController = module.view
     }
     
-    func showMain() {
+    func showPaywall() {
         delegate?.onboardingCoordinatorDidFinish(with: self)
     }
 }

@@ -174,8 +174,8 @@
             filePath = "NowaguardVPN/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,24 +190,8 @@
             filePath = "NowaguardVPN/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "788F257C-4BD9-43F4-A2B5-E687342B9EC0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NowaguardVPN/AppDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "application(_:didFinishLaunchingWithOptions:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,52 +206,52 @@
             filePath = "NowaguardVPN/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "load()"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "loadKeys()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "712C48C2-E551-4198-A8F4-6F481AF70510 - f54c75eb2d0b0923"
+                  uuid = "712C48C2-E551-4198-A8F4-6F481AF70510 - 94b55cba91ca0880"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for NowaguardVPN.AppDelegate.load() async -&gt; Swift.Array&lt;Swift.String&gt;"
+                  symbolName = "(3) suspend resume partial function for NowaguardVPN.AppDelegate.loadKeys() async -&gt; Swift.Array&lt;Swift.String&gt;"
                   moduleName = "NowaguardVPN"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ivanklimov/MyProgects/NowaguardVPN/NowaguardVPN/AppDelegate.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102">
+                  startingLineNumber = "106"
+                  endingLineNumber = "106">
                </Location>
                <Location
-                  uuid = "712C48C2-E551-4198-A8F4-6F481AF70510 - e716a43d42ad2f5c"
+                  uuid = "712C48C2-E551-4198-A8F4-6F481AF70510 - 7fb220bf07756e85"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(6) suspend resume partial function for NowaguardVPN.AppDelegate.load() async -&gt; Swift.Array&lt;Swift.String&gt;"
+                  symbolName = "(6) suspend resume partial function for NowaguardVPN.AppDelegate.loadKeys() async -&gt; Swift.Array&lt;Swift.String&gt;"
                   moduleName = "NowaguardVPN"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ivanklimov/MyProgects/NowaguardVPN/NowaguardVPN/AppDelegate.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102">
+                  startingLineNumber = "106"
+                  endingLineNumber = "106">
                </Location>
                <Location
-                  uuid = "712C48C2-E551-4198-A8F4-6F481AF70510 - 5d3160c34739815f"
+                  uuid = "712C48C2-E551-4198-A8F4-6F481AF70510 - a3e939d482198084"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(7) suspend resume partial function for NowaguardVPN.AppDelegate.load() async -&gt; Swift.Array&lt;Swift.String&gt;"
+                  symbolName = "(7) suspend resume partial function for NowaguardVPN.AppDelegate.loadKeys() async -&gt; Swift.Array&lt;Swift.String&gt;"
                   moduleName = "NowaguardVPN"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ivanklimov/MyProgects/NowaguardVPN/NowaguardVPN/AppDelegate.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102">
+                  startingLineNumber = "106"
+                  endingLineNumber = "106">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -275,33 +259,95 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BC5DE2E5-C4CC-43B2-9993-F0DD2D09158D"
-            shouldBeEnabled = "Yes"
+            uuid = "94705D21-5917-4BD9-9668-65B238E42404"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NowaguardVPN/AppDelegate.swift"
+            filePath = "NowaguardVPN/Flow/Vor/voronka2/Voronka2_4VC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "asd()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0FB8035B-B517-4BC3-BEB7-D9B9BC552F80"
+            uuid = "1D85A83E-CD97-467D-A3A0-3F5BC368F51B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowaguardVPN/Flow/Vor/voronka2/Voronka2_4VC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "asd()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C4F21F9-8CE1-4C74-80CC-03CE693D5233"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NowaguardVPN/Flow/Vor/voronka2/Voronka2_4VC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "asd()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB3687CC-8942-45B2-AD02-19ECB7D80FCD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NowaguardVPN/AppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "loadDelayCross()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EB3687CC-8942-45B2-AD02-19ECB7D80FCD - 882441b8e855df96"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for NowaguardVPN.AppDelegate.loadDelayCross() async -&gt; Swift.Optional&lt;Swift.Int&gt;"
+                  moduleName = "NowaguardVPN"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanklimov/MyProgects/NowaguardVPN/NowaguardVPN/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122">
+               </Location>
+               <Location
+                  uuid = "EB3687CC-8942-45B2-AD02-19ECB7D80FCD - bee5f0c15f88bd99"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for NowaguardVPN.AppDelegate.loadDelayCross() async -&gt; Swift.Optional&lt;Swift.Int&gt;"
+                  moduleName = "NowaguardVPN"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ivanklimov/MyProgects/NowaguardVPN/NowaguardVPN/AppDelegate.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

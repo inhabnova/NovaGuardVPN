@@ -9,6 +9,7 @@ final class GreenButton: UIButton {
         setTitle(title.uppercased(), for: .normal)
         setTitleColor(.appGray, for: .normal)
         titleLabel?.font = .Gilroy(.bold, .calc(18))
+        titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     func setGrayBackground(title: String) {

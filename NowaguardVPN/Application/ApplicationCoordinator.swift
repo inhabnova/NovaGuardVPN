@@ -4,6 +4,8 @@ protocol ApplicationCoordinator: Coordinator, OnboardingCoordinatorDelegate, Mai
     
     var isFirstLaunch: Bool { get }
     
+    var delayCross: Int? { get set }
+    
     func showVor1()
     func showVor2()
 }
@@ -13,7 +15,9 @@ final class ApplicationCoordinatorImpl {
     // MARK: - Public Properties
     
     var childCoordinators: [Coordinator] = []
+    
     var isFirstLaunch: Bool = true
+    var delayCross: Int? = nil
     
     // MARK: - Private Properties
     
@@ -53,8 +57,8 @@ extension ApplicationCoordinatorImpl: ApplicationCoordinator {
 //                                    refreshToken: "fake_account")
 //        if applicationPresenter.isLoggedIn() {
         
-//        showOnboardingCoordinator()
-        showMainCoordinator()
+        showOnboardingCoordinator()
+//        showMainCoordinator()
 //        showPaywallCoordinator()
         
 //        } else {
@@ -115,9 +119,19 @@ private extension ApplicationCoordinatorImpl {
         applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
     }
     
-    func showPaywallCoordinator() {
-        let coordinator = coordinatorsFactory.createPaywallCoordinator()
+    func showPaywallCoordinator_1() {
+        let coordinator = coordinatorsFactory.createPaywallCoordinator_1()
         coordinator.start()
+        coordinator.delayCross = delayCross
+        coordinator.delegate = self
+        addChildCoordinator(coordinator)
+        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+    }
+    
+    func showPaywallCoordinator_3() {
+        let coordinator = coordinatorsFactory.createPaywallCoordinator_3()
+        coordinator.start()
+        coordinator.delayCross = delayCross
         coordinator.delegate = self
         addChildCoordinator(coordinator)
         applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
@@ -129,6 +143,8 @@ private extension ApplicationCoordinatorImpl {
 extension ApplicationCoordinatorImpl: OnboardingCoordinatorDelegate {
     func onboardingCoordinatorDidFinish(with coordinator: OnboardingCoordinator) {
         removeCoordinator(coordinator)
+        showMainCoordinator()
+        showPaywallCoordinator_1()
     }
 }
 
@@ -162,7 +178,7 @@ extension ApplicationCoordinatorImpl: SelectCountryCoordinatorDelegate {
 
 extension ApplicationCoordinatorImpl: SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate {
     func toPaywall() {
-        showPaywallCoordinator()
+        showPaywallCoordinator_3()
     }
     
     func showMain() {
@@ -187,10 +203,20 @@ extension ApplicationCoordinatorImpl: VorDelegate {
 extension ApplicationCoordinatorImpl: PaywallCoordinatorDelegate {
     func paywallCoordinatorDidFinish(with coordinator: any PaywallCoordinator) {
         removeCoordinator(coordinator)
-        guard let coordinator = childCoordinators.last as? SettingsCoordinator else { return }
-        coordinator.start()
-        coordinator.delegate = self
-        addChildCoordinator(coordinator)
-        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+        if let coordinator = childCoordinators.last as? SettingsCoordinator {
+            coordinator.start()
+            coordinator.delegate = self
+            addChildCoordinator(coordinator)
+            applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+        } else if let coordinator = childCoordinators.last as? MainCoordinator {
+            coordinator.start()
+            coordinator.delegate = self
+            addChildCoordinator(coordinator)
+            applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+            
+            let privacy = SettingsDetailViewController(whiteText: SettingsLocalization.button2.localized, greenText: SettingsLocalization.policy.localized, contentText: SettingsLocalization.contentTextPrivacy.localized)
+            privacy.modalPresentationStyle = .fullScreen
+            coordinator.rootViewController.present(privacy, animated: true)
+        }
     }
 }

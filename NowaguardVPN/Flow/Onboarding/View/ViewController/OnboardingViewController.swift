@@ -56,6 +56,7 @@ private extension OnboardingViewController {
         titleLabel.textColor = .appGreen
         titleLabel.font = .boldSystemFont(ofSize: 20)
         titleLabel.numberOfLines = 1
+        titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.textAlignment = .center
         
         subtitleLabel.textColor = .white

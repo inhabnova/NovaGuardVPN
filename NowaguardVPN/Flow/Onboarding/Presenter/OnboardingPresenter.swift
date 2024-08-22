@@ -31,7 +31,7 @@ extension OnboardingPresenterImpl: OnboardingPresenter {
 
     func buttonAction() {
         guard page < 3 else {
-            coordinator.showMain()
+            coordinator.showPaywall()
             return
         }
         

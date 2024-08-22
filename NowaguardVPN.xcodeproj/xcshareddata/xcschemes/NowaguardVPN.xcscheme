@@ -52,7 +52,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <StoreKitConfigurationFileReference
-         identifier = "../../NowaguardVPN/test.storekit">
+         identifier = "../../1.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction

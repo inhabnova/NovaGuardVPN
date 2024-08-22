@@ -33,9 +33,7 @@ final class PaywallViewController: UIViewController {
         super.viewDidLoad()
         layoutSetup()
         setupConstraints()
-        
-//        setOwnPurcshase()
-        setThreePurcshase()
+        presenter.onViewDidload()
     }
 }
 
@@ -130,6 +128,10 @@ extension PaywallViewController: PaywallView {
             $0.bottom.equalTo(subsButton.snp.top).inset(-view.frame.height / 27)
         }
     }
+    
+    func showBackButton() {
+        closeButton.isHidden = false
+    }
 }
 
 // MARK: - Layout Setup
@@ -160,6 +162,9 @@ private extension PaywallViewController {
         paywallButton1.addTarget(self, action: #selector(paywallButton1Action), for: .touchUpInside)
         paywallButton2.addTarget(self, action: #selector(paywallButton2Action), for: .touchUpInside)
         paywallButton3.addTarget(self, action: #selector(paywallButton3Action), for: .touchUpInside)
+        
+        
+        closeButton.isHidden = true
     }
 }
 
