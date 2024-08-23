@@ -81,6 +81,7 @@
 		54F71DAC2C77206900612512 /* SpeedTestLocalization.strings in Sources */ = {isa = PBXBuildFile; fileRef = 54F71DAB2C77206900612512 /* SpeedTestLocalization.strings */; };
 		54F71DB12C77207500612512 /* SettingsLocalization.strings in Sources */ = {isa = PBXBuildFile; fileRef = 54F71DB02C77207500612512 /* SettingsLocalization.strings */; };
 		54F71DB62C77207F00612512 /* PaywallLocalization.strings in Sources */ = {isa = PBXBuildFile; fileRef = 54F71DB52C77207F00612512 /* PaywallLocalization.strings */; };
+		54F71DFD2C78600B00612512 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F71DFC2C78600B00612512 /* KeychainService.swift */; };
 		69E25776E334F6457EB8DD41 /* PaywallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF74D41797FC3A47A65E7D62 /* PaywallPresenter.swift */; };
 		6BBB2173D5E375310F939B0C /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901B525BA602E816E8A9D098 /* MainPresenter.swift */; };
 		76ADE508835BFB45E4E1826A /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844BA754ECB3FF1E3865743 /* OnboardingPresenter.swift */; };
@@ -258,6 +259,7 @@
 		54F71DF62C77212E00612512 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SettingsLocalization.strings; sourceTree = "<group>"; };
 		54F71DF72C77212E00612512 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PaywallLocalization.strings; sourceTree = "<group>"; };
 		54F71DF82C777F0C00612512 /* 1.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = 1.storekit; sourceTree = "<group>"; };
+		54F71DFC2C78600B00612512 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		56C09016E431A98169067796 /* SettingsLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsLocalization.swift; sourceTree = "<group>"; };
 		5BE25D4A49E405FD02A43248 /* SpeedTestLocalization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeedTestLocalization.swift; sourceTree = "<group>"; };
 		69A09C56C349E7B70CCD4880 /* SpeedTestView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SpeedTestView.swift; sourceTree = "<group>"; };
@@ -570,6 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				546997F62C565DFB0095CF2C /* UserDefaultsService.swift */,
+				54F71DFC2C78600B00612512 /* KeychainService.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -1029,6 +1032,7 @@
 				546998CC2C608B8B0095CF2C /* Voronka1_3VC.swift in Sources */,
 				546997FE2C5764060095CF2C /* SettingsDetailViewController.swift in Sources */,
 				546998D52C61FA790095CF2C /* VorPresenter.swift in Sources */,
+				54F71DFD2C78600B00612512 /* KeychainService.swift in Sources */,
 				54F71DA72C77205E00612512 /* SelectCountryLocalization.strings in Sources */,
 				546997D92C5409BB0095CF2C /* UIVIew_addSubViews.swift in Sources */,
 				2D77C55F5D527FA2BA9BCE9E /* SelectCountryLocalization.swift in Sources */,

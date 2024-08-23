@@ -3,8 +3,11 @@ import UIKit
 protocol ApplicationCoordinator: Coordinator, OnboardingCoordinatorDelegate, MainCoordinatorDelegate, SpeedTestCoordinatorDelegate, SettingsCoordinatorDelegate, VorDelegate {
     
     var isFirstLaunch: Bool { get }
+    var isPremium: Bool { get set }
     
     var delayCross: Int? { get set }
+    var idPurchaseAfterOnboarding: String? { get set }
+    var allIdPuechase: [String]? { get set }
     
     func showVor1()
     func showVor2()
@@ -14,10 +17,18 @@ final class ApplicationCoordinatorImpl {
     
     // MARK: - Public Properties
     
-    var childCoordinators: [Coordinator] = []
+    var childCoordinators: [Coordinator] = [] {
+        didSet {
+            print(childCoordinators)
+        }
+    }
     
-    var isFirstLaunch: Bool = true
+    var isFirstLaunch: Bool = false
+    var isPremium: Bool = false
+    
     var delayCross: Int? = nil
+    var idPurchaseAfterOnboarding: String?
+    var allIdPuechase: [String]? 
     
     // MARK: - Private Properties
     
@@ -52,18 +63,12 @@ final class ApplicationCoordinatorImpl {
 extension ApplicationCoordinatorImpl: ApplicationCoordinator {
     
     func start() {
-        
-//        TokenStorageImpl.shared.set("fake_account",
-//                                    refreshToken: "fake_account")
-//        if applicationPresenter.isLoggedIn() {
-        
-        showOnboardingCoordinator()
-//        showMainCoordinator()
-//        showPaywallCoordinator()
-        
-//        } else {
-//            showOnboardingCoordinator()
-//        }
+        guard childCoordinators.isEmpty else { return }
+        if isPremium {
+            showMainCoordinator()
+        } else {
+            showOnboardingCoordinator()
+        }
     }
     
     func showVor1() {
@@ -96,7 +101,7 @@ private extension ApplicationCoordinatorImpl {
     }
 
     func showSelectCountryCoordinator() {
-        let coordinator = coordinatorsFactory.createSelectCountryCoordinator()
+        let coordinator = coordinatorsFactory.createSelectCountryCoordinator(isPremium: isPremium)
         coordinator.start()
         coordinator.delegate = self
         addChildCoordinator(coordinator)
@@ -123,6 +128,7 @@ private extension ApplicationCoordinatorImpl {
         let coordinator = coordinatorsFactory.createPaywallCoordinator_1()
         coordinator.start()
         coordinator.delayCross = delayCross
+        coordinator.idPurchaseAfterOnboarding = idPurchaseAfterOnboarding
         coordinator.delegate = self
         addChildCoordinator(coordinator)
         applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
@@ -132,6 +138,7 @@ private extension ApplicationCoordinatorImpl {
         let coordinator = coordinatorsFactory.createPaywallCoordinator_3()
         coordinator.start()
         coordinator.delayCross = delayCross
+        coordinator.allIdPuechase = allIdPuechase
         coordinator.delegate = self
         addChildCoordinator(coordinator)
         applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
@@ -201,7 +208,30 @@ extension ApplicationCoordinatorImpl: VorDelegate {
 //MARK: - PaywallCoordinatorDelegate
 
 extension ApplicationCoordinatorImpl: PaywallCoordinatorDelegate {
-    func paywallCoordinatorDidFinish(with coordinator: any PaywallCoordinator) {
+    
+    func paywallCoordinatorDidFinish(with coordinator: any PaywallCoordinator, isPurshased: Bool) {
+        
+        if isPurshased {
+            self.isPremium = true
+            removeCoordinator(coordinator)
+            if let coordinator = childCoordinators.last as? SettingsCoordinator {
+                coordinator.start()
+                coordinator.delegate = self
+                addChildCoordinator(coordinator)
+                applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+            } else if let coordinator = childCoordinators.last as? MainCoordinator {
+                coordinator.start()
+                coordinator.delegate = self
+                addChildCoordinator(coordinator)
+                applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+                
+                let privacy = SettingsDetailViewController(whiteText: SettingsLocalization.button2.localized, greenText: SettingsLocalization.policy.localized, contentText: SettingsLocalization.contentTextPrivacy.localized)
+                privacy.modalPresentationStyle = .fullScreen
+                coordinator.rootViewController.present(privacy, animated: true)
+            }
+            return
+        }
+        
         removeCoordinator(coordinator)
         if let coordinator = childCoordinators.last as? SettingsCoordinator {
             coordinator.start()

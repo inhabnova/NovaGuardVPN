@@ -1,4 +1,5 @@
 import UIKit
+import StoreKit
 import MessageUI
 
 protocol SettingsPresenter {
@@ -47,7 +48,13 @@ extension SettingsPresenterImpl: SettingsPresenter {
         UIApplication.shared.open(URL(string: "https://inhabitrlimited.digital/terms.html")!, options: [:], completionHandler: nil)
     }
     func didTapSettingsButton4() {
-        
+        Task {
+            do {
+                try await AppStore.sync()
+            } catch {
+                view.showErrorAlert()
+            }
+        }
     }
     func didTapSettingsButton5() {
         coordinator.toPaywall()

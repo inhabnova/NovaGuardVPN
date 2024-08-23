@@ -1,17 +1,20 @@
 import UIKit
 
 protocol PaywallCoordinatorDelegate: AnyObject {
-    func paywallCoordinatorDidFinish(with coordinator: any PaywallCoordinator)
+    func paywallCoordinatorDidFinish(with coordinator: any PaywallCoordinator, isPurshased: Bool)
 }
 
 protocol PaywallCoordinator: Coordinator {
     var rootViewController: UIViewController { get }
     var delegate: PaywallCoordinatorDelegate? { get set }
     
-    //true - 1 подписка, false - 3 подписки
+    ///true - 1 подписка, false - 3 подписки
     var setOwnPurchase: Bool { get }
+    var idPurchaseAfterOnboarding: String? { get set }
+    var allIdPuechase: [String]? { get set }
     var delayCross: Int? { get set }
     func close()
+    func didFinishTransaction()
 }
 
 final class PaywallCoordinatorImpl {
@@ -29,11 +32,13 @@ final class PaywallCoordinatorImpl {
     var viewController: UIViewController!
     weak var delegate: PaywallCoordinatorDelegate?
     var delayCross: Int?
+    var setOwnPurchase: Bool
+    var idPurchaseAfterOnboarding: String?
+    var allIdPuechase: [String]?
     
     // MARK: - Dependency
 
     private let moduleFactory: PaywallModuleFactory
-    var setOwnPurchase: Bool
     
     // MARK: - Init
 
@@ -57,6 +62,12 @@ extension PaywallCoordinatorImpl: PaywallCoordinator {
     }
     
     func close() {
-        delegate?.paywallCoordinatorDidFinish(with: self)
+        delegate?.paywallCoordinatorDidFinish(with: self, isPurshased: false)
+    }
+    
+    func didFinishTransaction() {
+        DispatchQueue.main.async {
+            self.delegate?.paywallCoordinatorDidFinish(with: self, isPurshased: true)            
+        }
     }
 }

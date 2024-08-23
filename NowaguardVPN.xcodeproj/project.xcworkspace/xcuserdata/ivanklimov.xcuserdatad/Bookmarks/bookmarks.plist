@@ -10,50 +10,6 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>24</string>
-					<key>EndingLineNumber</key>
-					<string>17</string>
-					<key>StartingColumnNumber</key>
-					<string>18</string>
-					<key>StartingLineNumber</key>
-					<string>17</string>
-					<key>Timestamp</key>
-					<string>743851347.631121</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>NowaguardVPN/Flow/SelectCountry/Presenter/SelectCountryPresenter.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>Server</string>
-				<key>leading</key>
-				<string>    
-    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? .mock
-    var servers: [</string>
-				<key>trailing</key>
-				<string>] = UserDefaultsService.shared.getAllServers()
-}
-
-</string>
-			</dict>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
 					<string>26</string>
@@ -253,15 +209,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>0</string>
+					<string>47</string>
 					<key>EndingLineNumber</key>
-					<string>53</string>
+					<string>21</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>31</string>
 					<key>StartingLineNumber</key>
-					<string>52</string>
+					<string>21</string>
 					<key>Timestamp</key>
-					<string>746032524.310993</string>
+					<string>746099245.225763</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -270,67 +226,22 @@
 					<key>payload</key>
 					<dict>
 						<key>relative-path</key>
-						<string>NowaguardVPN/Flow/Paywall/View/ViewController/PaywallViewController.swift</string>
+						<string>NowaguardVPN/Lib/Storage/KeychainService.swift</string>
 					</dict>
 				</dict>
 			</dict>
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>        trialLabel.text = "3 Day’s Free, then 12.99$ / per week"
-</string>
+				<string>isFirstLaunchkey</string>
 				<key>leading</key>
-				<string>        
-        let trialLabel = UILabel()
-</string>
+				<string>    
+//    static func reset() {
+//        KeychainSwift().delete(</string>
 				<key>trailing</key>
-				<string>        trialLabel.textAlignment = .center
-        trialLabel.font = .systemFont(ofSize: .calc(14), weight: .medium)
-        trialLabel.textColor = .appGlayLabel
-</string>
-			</dict>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>30</string>
-					<key>EndingLineNumber</key>
-					<string>48</string>
-					<key>StartingColumnNumber</key>
-					<string>9</string>
-					<key>StartingLineNumber</key>
-					<string>48</string>
-					<key>Timestamp</key>
-					<string>745346409.104009</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>NowaguardVPN/Flow/Settings/Presenter/SettingsPresenter.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>didTapSettingsButton4</string>
-				<key>leading</key>
-				<string>        UIApplication.shared.open(URL(string: "https://inhabitrlimited.digital/terms.html")!, options: [:], completionHandler: nil)
-    }
-    func </string>
-				<key>trailing</key>
-				<string>() {
-        
-    }
+				<string>)
+//    }
+}
 </string>
 			</dict>
 			<key>type</key>

@@ -38,6 +38,15 @@ extension SettingsViewController: SettingsView {
         present(vc, animated: false)
     }
     
+    func showErrorAlert() {
+        let alert = UIAlertController(title: "Nothing to Restore", message: nil, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    
 }
 
 // MARK: - Layout Setup

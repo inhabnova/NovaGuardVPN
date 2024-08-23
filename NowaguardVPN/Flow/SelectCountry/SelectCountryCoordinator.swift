@@ -9,6 +9,7 @@ protocol SelectCountryCoordinator: Coordinator {
     
     var delegate: SelectCountryCoordinatorDelegate! { get set }
     func close()
+    var isPremium: Bool { get set }
 }
 
 final class SelectCountryCoordinatorImpl {
@@ -25,6 +26,7 @@ final class SelectCountryCoordinatorImpl {
 
     var viewController: UIViewController!
     weak var delegate: SelectCountryCoordinatorDelegate!
+    var isPremium: Bool
     
     // MARK: - Dependency
 
@@ -32,12 +34,13 @@ final class SelectCountryCoordinatorImpl {
     
     // MARK: - Init
 
-    init(moduleFactory: SelectCountryModuleFactory) {
+    init(moduleFactory: SelectCountryModuleFactory, isPremium: Bool) {
+        self.isPremium = isPremium
         self.moduleFactory = moduleFactory
     }
     
-    convenience init() {
-        self.init(moduleFactory: SelectCountryModuleFactory())
+    convenience init(isPremium: Bool) {
+        self.init(moduleFactory: SelectCountryModuleFactory(), isPremium: isPremium)
     }
 }
 

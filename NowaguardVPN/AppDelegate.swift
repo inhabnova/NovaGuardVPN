@@ -21,25 +21,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Task {
             let keys = await loadKeys()
             appCoordinator.delayCross = await loadDelayCross()
+            appCoordinator.idPurchaseAfterOnboarding = await loadIdPurchaseAfterOnboarding()
+            appCoordinator.allIdPuechase = await loadIdPurchases()
+            
+            for id in appCoordinator.allIdPuechase ?? [] {
+                if await checkSubscriptionStatus(productID: id) {
+                    appCoordinator.isPremium = true
+                }
+            }
             
             // Инициализация Branch SDK
             Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
                 if let error = error {
                     print("Branch initialization error: \(error.localizedDescription)")
-                    self.appCoordinator.start()
+//                    self.appCoordinator.start()
                     return
                 }
-                
-                NetworkManager.shared.sendEvent(event: .install, productId: nil, afData: params as? [String: String]) { result in
-                    switch result {
-                    case .success(let success):
-                        print(success)
-                    case .failure(let failure):
-                        print(failure)
-                        self.appCoordinator.start()
+                if self.appCoordinator.isFirstLaunch {
+                    NetworkManager.shared.sendEvent(event: .install, productId: nil, afData: params as? [String: String]) { result in
+                        switch result {
+                        case .success(let success):
+                            print(success)
+                        case .failure(let failure):
+                            print(failure)
+                        }
                     }
                 }
-                
                 if let params = params as? [String: AnyObject] {
                     // получениe данных из params
                     if let referrer = params["appkey"] as? String {
@@ -51,10 +58,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             self.appCoordinator.showVor2()
                         } else {
                             self.appCoordinator.start()
+                            return
                         }
                         
                     } else {
                         self.appCoordinator.start()
+                        return
                     }
                     
                 }
@@ -62,8 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
                 
-        if appCoordinator.isFirstLaunch {
-            NetworkManager.shared.getServers { [weak self] result in
+//        if appCoordinator.isFirstLaunch {
+            NetworkManager.shared.getServers { result in
                 switch result {
                 case .success(let success):
                     UserDefaultsService.shared.saveAllServer(server: success)
@@ -71,14 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print(failure)
                 }
             }
-        }
-        
-//        if false {
-//            appCoordinator.showVor1()
-//        } else if true {
-//            appCoordinator.showVor2()
-//        } else {
-//            appCoordinator.start()
 //        }
 
         
@@ -122,5 +123,80 @@ private extension AppDelegate {
             print("error load remote")
         }
         return nil
+    }
+    
+    @MainActor
+    func loadIdPurchaseAfterOnboarding() async -> String? {
+        do {
+            let remoteConfig = RemoteConfig.remoteConfig()
+            let status = try await remoteConfig.fetch(withExpirationDuration: 0)
+            
+            if status == .success {
+                try await remoteConfig.activate()
+                
+                let delay = remoteConfig.configValue(forKey: "idPurchaseAfterOnboarding").stringValue
+                return delay
+            }
+        } catch {
+            print("error load remote")
+        }
+        return nil
+    }
+    
+    @MainActor
+    func loadIdPurchases() async -> [String]? {
+        do {
+            let remoteConfig = RemoteConfig.remoteConfig()
+            let status = try await remoteConfig.fetch(withExpirationDuration: 0)
+            
+            if status == .success {
+                try await remoteConfig.activate()
+                
+                guard let data = remoteConfig.configValue(forKey: "purshases").jsonValue as? [String: Any] else {
+                    return []
+                }
+                var purshasesID: [String?] = [nil, nil, nil]
+                
+                for purshase in data {
+                    if let dict = purshase.value as? [String: Any],
+                       let id = dict["Product ID"] as? String {
+                        switch purshase.key {
+                        case "week":
+                            purshasesID[0] = id
+                        case "month":
+                            purshasesID[1] = id
+                        case "year":
+                            purshasesID[2] = id
+                        default:
+                            break
+                        }
+                    }
+                    
+                }
+                
+                return purshasesID.compactMap { $0 }
+            }
+        } catch {
+            print("error load remote")
+        }
+        return nil
+    }
+    
+    func checkSubscriptionStatus(productID: String) async -> Bool {
+        do {
+            // Получаем последнюю транзакцию для указанного продукта
+            if let transaction = try await Transaction.latest(for: productID) {
+                // Проверяем, если транзакция верифицирована и подписка активна
+                if case .verified(let verifiedTransaction) = transaction {
+                    if let expirationDate = verifiedTransaction.expirationDate {
+                        return expirationDate > Date()
+                    }
+                }
+            }
+            return false // Подписка не активна или транзакция не найдена
+        } catch {
+            print("Ошибка при проверке статуса подписки: \(error.localizedDescription)")
+            return false
+        }
     }
 }

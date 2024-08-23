@@ -13,15 +13,9 @@ final class PaywallViewController: UIViewController {
     private let ppButton = UIButton()
     private let subsButton = GreenButton(title: PaywallLocalization.button.localized)
     
-    private lazy var paywallButton1 = PaywallButton(period: PaywallLocalization.week.localized,
-                                       priceLabelTextWhite: "3 " + PaywallLocalization.daysFree.localized, priceLabelTextGreen: ", " + PaywallLocalization.then.localized + " 3$",
-                                       isSelected: true)
-    private lazy var paywallButton2 = PaywallButton(period: PaywallLocalization.month.localized,
-                                       priceLabelTextWhite: "3 " + PaywallLocalization.daysFree.localized, priceLabelTextGreen: ", " + PaywallLocalization.then.localized + " 12$",
-                                       isSelected: false)
-    private lazy var paywallButton3 = PaywallButton(period: PaywallLocalization.year.localized,
-                                       priceLabelTextWhite: "3 " + PaywallLocalization.daysFree.localized, priceLabelTextGreen: ", " + PaywallLocalization.then.localized + " 120$",
-                                      isSelected: false)
+    private var paywallButton1: PaywallButton!
+    private var paywallButton2: PaywallButton!
+    private var paywallButton3: PaywallButton!
 
     // MARK: - Public Properties
     
@@ -43,14 +37,14 @@ extension PaywallViewController: PaywallView {
     
     // MARK: - setOwnPurcshase
     
-    func setOwnPurcshase() {
+    func setOwnPurcshase(trialCount: Int, price: String, period: String) {
         titlelabel = PaywallTitleLabel(whiteText: "\(PaywallLocalization.title_1white.localized)\n",
                                               greenText: PaywallLocalization.title_1green.localized)
-        titlelabel.numberOfLines = 2
+        titlelabel.numberOfLines = 0
         subTitlelabel.text = PaywallLocalization.subTitle1_1.localized
         
         let trialLabel = UILabel()
-        trialLabel.text = "3 Day’s Free, then 12.99$ / per week"
+        trialLabel.text = "\(trialCount) \(PaywallLocalization.daysFree.localized), \(PaywallLocalization.then.localized) \(price) / \(period)"
         trialLabel.textAlignment = .center
         trialLabel.font = .systemFont(ofSize: .calc(14), weight: .medium)
         trialLabel.textColor = .appGlayLabel
@@ -97,12 +91,39 @@ extension PaywallViewController: PaywallView {
     
     // MARK: - setThreePurcshase
     
-    func setThreePurcshase() {
+    func setThreePurcshase(dataPurchase: [(Int, String)]) {
+        
+        if dataPurchase.count >= 1 {
+            paywallButton1 = PaywallButton(period: PaywallLocalization.week.localized,
+                                           priceLabelTextWhite: "\(dataPurchase[0].0) " + PaywallLocalization.daysFree.localized, priceLabelTextGreen: ", " + PaywallLocalization.then.localized + " \(dataPurchase[0].1)",
+                                           isSelected: true)
+            paywallButton1.addTarget(self, action: #selector(paywallButton1Action), for: .touchUpInside)
+            view.addSubview(paywallButton1)
+        }
+        
+        if dataPurchase.count >= 2 {
+            paywallButton2 = PaywallButton(period: PaywallLocalization.month.localized,
+                                           priceLabelTextWhite: "\(dataPurchase[1].0) " + PaywallLocalization.daysFree.localized, priceLabelTextGreen: ", " + PaywallLocalization.then.localized + " \(dataPurchase[1].1)",
+                                           isSelected: false)
+            paywallButton2.addTarget(self, action: #selector(paywallButton2Action), for: .touchUpInside)
+            view.addSubview(paywallButton2)
+        }
+        
+        if dataPurchase.count >= 3 {
+            paywallButton3 = PaywallButton(period: PaywallLocalization.year.localized,
+                                           priceLabelTextWhite: "\(dataPurchase[2].0) " + PaywallLocalization.daysFree.localized, priceLabelTextGreen: ", " + PaywallLocalization.then.localized + " \(dataPurchase[2].1)",
+                                           isSelected: false)
+            paywallButton3.addTarget(self, action: #selector(paywallButton3Action), for: .touchUpInside)
+            view.addSubview(paywallButton3)
+        }
+        
+        
+        
         titlelabel = PaywallTitleLabel(whiteText: PaywallLocalization.title_3white.localized,
                                               greenText: PaywallLocalization.title_3green.localized)
         subTitlelabel.text = PaywallLocalization.subTitle1_3.localized
         
-        view.addSubviews([titlelabel, paywallButton1, paywallButton2, paywallButton3])
+        view.addSubviews([titlelabel])
         
         titlelabel.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
@@ -132,6 +153,15 @@ extension PaywallViewController: PaywallView {
     func showBackButton() {
         closeButton.isHidden = false
     }
+    
+    func showErrorAlert() {
+        let alert = UIAlertController(title: "Nothing to Restore", message: nil, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
 }
 
 // MARK: - Layout Setup
@@ -139,6 +169,8 @@ extension PaywallViewController: PaywallView {
 private extension PaywallViewController {
     func layoutSetup() {
         view.addSubviews([backgroundImageView, subTitlelabel, restoreButton, closeButton, touButton, ppButton, subsButton])
+        
+        subTitlelabel.adjustsFontSizeToFitWidth = true
         
         subTitlelabel.font = .systemFont(ofSize: .calc(16), weight: .medium)
         subTitlelabel.textColor = .white
@@ -159,9 +191,6 @@ private extension PaywallViewController {
         touButton.addTarget(self, action: #selector(touButtonAction), for: .touchUpInside)
         ppButton.addTarget(self, action: #selector(ppButtonAction), for: .touchUpInside)
         subsButton.addTarget(self, action: #selector(subsButtonAction), for: .touchUpInside)
-        paywallButton1.addTarget(self, action: #selector(paywallButton1Action), for: .touchUpInside)
-        paywallButton2.addTarget(self, action: #selector(paywallButton2Action), for: .touchUpInside)
-        paywallButton3.addTarget(self, action: #selector(paywallButton3Action), for: .touchUpInside)
         
         
         closeButton.isHidden = true
@@ -187,18 +216,21 @@ private extension PaywallViewController {
         presenter.subscription()
     }
     @objc func paywallButton1Action() {
+        presenter.indexSelectedPurchase = 0
         guard !paywallButton1.isSelected else { return }
         paywallButton1.isSelected = true
         paywallButton2.isSelected = false
         paywallButton3.isSelected = false
     }
     @objc func paywallButton2Action() {
+        presenter.indexSelectedPurchase = 1
         guard !paywallButton2.isSelected else { return }
         paywallButton1.isSelected = false
         paywallButton2.isSelected = true
         paywallButton3.isSelected = false
     }
     @objc func paywallButton3Action() {
+        presenter.indexSelectedPurchase = 2
         guard !paywallButton3.isSelected else { return }
         paywallButton1.isSelected = false
         paywallButton2.isSelected = false

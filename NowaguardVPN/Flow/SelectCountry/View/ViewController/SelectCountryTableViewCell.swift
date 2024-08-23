@@ -14,9 +14,13 @@ final class SelectCountryTableViewCell: UITableViewCell {
     private let premiumServerImageView = UIImageView()
     private let isSelectedImageView = UIImageView()
     
+    var server: Server!
+    
     // MARK: - Configure
     
     func configure(with server: Server, isSelected: Bool) {
+        
+        self.server = server
         
         flugImageView.image = I.getFlug(name: server.country)
         flugImageView.contentMode = .scaleAspectFill

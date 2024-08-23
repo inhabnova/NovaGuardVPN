@@ -103,6 +103,7 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
         guard let cell = tableView.cellForRow(at: indexPath) as? SelectCountryTableViewCell else {
             return
         }
+        guard !cell.server.premium else { return }
         presenter.selectedServer = presenter.servers[indexPath.row]
         presenter.close()
     }

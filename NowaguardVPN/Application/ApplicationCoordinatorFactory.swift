@@ -3,7 +3,7 @@ import Foundation
 protocol ApplicationCoordinatorFactory {
     func createOnboardingCoordinator() -> OnboardingCoordinator
     func createMainCoordinator() -> MainCoordinator
-    func createSelectCountryCoordinator() -> SelectCountryCoordinator
+    func createSelectCountryCoordinator(isPremium: Bool) -> SelectCountryCoordinator
     func createSpeedTestCoordinator() -> SpeedTestCoordinator
     func createSettingsCoordinator() -> SettingsCoordinator
     func createPaywallCoordinator_3() -> PaywallCoordinator
@@ -23,8 +23,8 @@ extension ApplicationCoordinatorFactoryImpl: ApplicationCoordinatorFactory {
         MainCoordinatorImpl()
     }
     
-    func createSelectCountryCoordinator() -> SelectCountryCoordinator {
-        SelectCountryCoordinatorImpl()
+    func createSelectCountryCoordinator(isPremium: Bool) -> SelectCountryCoordinator {
+        SelectCountryCoordinatorImpl(isPremium: isPremium)
     }
     
     func createSpeedTestCoordinator() -> SpeedTestCoordinator {

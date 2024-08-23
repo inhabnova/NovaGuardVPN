@@ -8,7 +8,7 @@ extension SelectCountryModuleFactory: ModuleFactory {
     
     func createModule(withCoordinator coordinator: SelectCountryCoordinator) -> Module<SelectCountryPresenter> {
         let viewController = SelectCountryViewController()
-        viewController.presenter = SelectCountryPresenterImpl()
+        viewController.presenter = SelectCountryPresenterImpl(isPremium: coordinator.isPremium)
         viewController.presenter.coordinator = coordinator
         viewController.presenter.view = viewController
         return Module(view: viewController, presenter: viewController.presenter)

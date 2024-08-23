@@ -86,7 +86,7 @@
             }
           ],
           "productID" : "com.inhabitr.novaguard.week",
-          "recurringSubscriptionPeriod" : "P1M",
+          "recurringSubscriptionPeriod" : "P1W",
           "referenceName" : "week",
           "subscriptionGroupID" : "BE3F7768",
           "type" : "RecurringSubscription"
@@ -98,11 +98,15 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "0.99",
+          "displayPrice" : "1.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "562C3D54",
-          "introductoryOffer" : null,
+          "introductoryOffer" : {
+            "internalID" : "BAC6A325",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P3D"
+          },
           "localizations" : [
             {
               "description" : "",
@@ -123,11 +127,16 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "0.99",
+          "displayPrice" : "2.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "8AC62B30",
-          "introductoryOffer" : null,
+          "introductoryOffer" : {
+            "displayPrice" : "0.99",
+            "internalID" : "DDC8433C",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P3D"
+          },
           "localizations" : [
             {
               "description" : "",
@@ -136,7 +145,7 @@
             }
           ],
           "productID" : "com.inhabitr.novaguard.year",
-          "recurringSubscriptionPeriod" : "P1M",
+          "recurringSubscriptionPeriod" : "P1Y",
           "referenceName" : "year",
           "subscriptionGroupID" : "BE3F7768",
           "type" : "RecurringSubscription"
