@@ -14,10 +14,10 @@
 		<key>test</key>
 		<string>key_test_jxgS2ppvSZ81cP08lvXI4dpdDwo3zAsk</string>
 	</dict>
-    <key>branch_universal_link_domains</key>
-    <array>
-        <string>2kjdl.app.link</string>
-        <string>2kjdl-alternate.app.link</string>
-    </array>
+	<key>branch_universal_link_domains</key>
+	<array>
+		<string>2kjdl.app.link</string>
+		<string>2kjdl-alternate.app.link</string>
+	</array>
 </dict>
 </plist>
