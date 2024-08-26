@@ -20,7 +20,7 @@ final class MainPresenterImpl {
     weak var view: MainView!
     weak var coordinator: MainCoordinator!
     
-    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? .mock
+    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? UserDefaultsService.shared.getAllServers().first(where: { !$0.premium})!
     var vpnService: VPNService = .shared
     
     private var isOnVPN: Bool = false {

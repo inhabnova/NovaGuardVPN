@@ -79,7 +79,7 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? .mock
+				<string>    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? UserDefaultsService.shared.getAllServers().first(where: { !$0.premium})!
 </string>
 				<key>leading</key>
 				<string>    weak var coordinator: MainCoordinator!
@@ -124,7 +124,7 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? .mock
+				<string>    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? UserDefaultsService.shared.getAllServers().first(where: { !$0.premium})!
 </string>
 				<key>leading</key>
 				<string>    weak var coordinator: MainCoordinator!

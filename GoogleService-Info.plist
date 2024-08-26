@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.appp.NowaguardVPN</string>
+	<string>com.inhabitr.novaguard</string>
 	<key>PROJECT_ID</key>
 	<string>novaguard-vpn-84423</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:964684231580:ios:295441b02b13c20ab68e59</string>
+	<string>1:964684231580:ios:d9fedc2d535dd473b68e59</string>
 </dict>
 </plist>

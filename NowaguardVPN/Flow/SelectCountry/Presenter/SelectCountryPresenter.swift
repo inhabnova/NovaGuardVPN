@@ -14,7 +14,7 @@ final class SelectCountryPresenterImpl {
     weak var view: SelectCountryView!
     weak var coordinator: SelectCountryCoordinator!
     
-    var selectedServer: Server = UserDefaultsService.shared.getCurrentServer() ?? .mock
+    var selectedServer: Server// = UserDefaultsService.shared.getCurrentServer() ?? .mock
     var servers: [Server]!
     
     init(isPremium: Bool) {
@@ -30,6 +30,8 @@ final class SelectCountryPresenterImpl {
         } else {
             servers = UserDefaultsService.shared.getAllServers()
         }
+        
+        selectedServer = UserDefaultsService.shared.getCurrentServer() ?? servers.first(where: { !$0.premium})!
     }
 }
 
