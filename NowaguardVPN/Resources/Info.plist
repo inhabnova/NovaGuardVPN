@@ -19,5 +19,7 @@
 		<string>2kjdl.app.link</string>
 		<string>2kjdl-alternate.app.link</string>
 	</array>
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
 </dict>
 </plist>
