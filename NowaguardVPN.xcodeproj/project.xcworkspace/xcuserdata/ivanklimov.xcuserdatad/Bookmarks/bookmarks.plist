@@ -233,13 +233,13 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>isFirstLaunchkey</string>
+				<string>e(isFirstLaunchk</string>
 				<key>leading</key>
 				<string>    
 //    static func reset() {
-//        KeychainSwift().delete(</string>
+//        KeychainSwift().delet</string>
 				<key>trailing</key>
-				<string>)
+				<string>ey)
 //    }
 }
 </string>
