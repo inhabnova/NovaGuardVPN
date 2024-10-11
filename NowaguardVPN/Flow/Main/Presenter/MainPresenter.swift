@@ -6,6 +6,7 @@ protocol MainPresenter: VPNServiceDelegate {
     var selectedServer: Server { get }
     var vpnService: VPNService { get }
     
+    func changeCountry(country: Server?)
     func buttonAction()
     func onViewDidLoad()
     func showSelectCountry()
@@ -63,10 +64,22 @@ final class MainPresenterImpl {
 extension MainPresenterImpl: MainPresenter {
     
     func buttonAction() {
-        vpnService.buildConnection(server: selectedServer)
+        if isOnVPN == true {
+            vpnService.disconnectVPN()
+        } else {
+            vpnService.buildConnection(server: selectedServer)
+        }
     }
 
     func onViewDidLoad() {
+//        vpnService.setupVPNConnection(completion: nil)
+        
+        if self.coordinator.fastStart == true {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                self.vpnService.buildConnection(server: self.selectedServer)
+            }
+        }
+        
         isOnVPN ? view.setupOnVPN(ip: selectedServer.ip, coyntry: selectedServer.name) :
                   view.setupOffVPN(ip: selectedServer.ip, coyntry: selectedServer.name)
     }
@@ -80,6 +93,21 @@ extension MainPresenterImpl: MainPresenter {
     }
     func showSettings() {
         coordinator.showSettings()
+    }
+    
+    func changeCountry(country: Server?) {
+        guard let country = country else { return }
+        
+        self.selectedServer = country
+        UserDefaultsService.shared.saveCurrentServer(server: country)
+        view.changeServer(ip: country.ip, coyntry: country.name)
+        
+        if isOnVPN == true {
+            self.vpnService.disconnectVPN()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                self.vpnService.buildConnection(server: country)
+            }
+        }
     }
 
 }

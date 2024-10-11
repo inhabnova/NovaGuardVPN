@@ -7,6 +7,7 @@ struct MainModuleFactory {}
 extension MainModuleFactory: ModuleFactory {
     
     func createModule(withCoordinator coordinator: MainCoordinator) -> Module<MainPresenter> {
+        
         let viewController = MainViewController()
         viewController.presenter = MainPresenterImpl()
         viewController.presenter.coordinator = coordinator

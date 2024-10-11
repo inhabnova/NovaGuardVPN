@@ -13,3 +13,12 @@ extension UIStackView {
         views.forEach( { self.addArrangedSubview($0) } )
     }
 }
+
+extension UIAlertController {
+    convenience init(error: LocalizedError, completion: (() -> Void)? = nil) {
+        self.init(title: error.failureReason, message: error.errorDescription, preferredStyle: .alert)
+        addAction(UIAlertAction(title: error.recoverySuggestion, style: .default) { _ in
+            completion?()
+        })
+    }
+}

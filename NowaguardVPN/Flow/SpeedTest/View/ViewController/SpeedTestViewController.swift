@@ -102,7 +102,7 @@ extension SpeedTestViewController: SpeedTestView {
             let config = WKWebViewConfiguration()
             config.userContentController = contentController
             
-            webView = WKWebView(frame: .init(x: 0, y: 0, width: 500, height: 1), configuration: config)
+            webView = WKWebView(frame: .init(x: 0, y: -1, width: 500, height: 1), configuration: config)
             self.view.addSubview(webView)
             
             if let url = URL(string: "https://fast.com/") {

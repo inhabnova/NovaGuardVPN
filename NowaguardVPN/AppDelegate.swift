@@ -9,6 +9,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Private Properties
     
+    var isDeeplinkOpened: Bool = false
+    
     private lazy var appCoordinator: ApplicationCoordinator = {
         window = UIWindow()
         let coordinator = ApplicationCoordinatorImpl(window: window)
@@ -17,10 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let schemeName = Bundle.main.infoDictionary?["SchemeName"] as? String ?? ""
+        printContent(schemeName)
+        
         FirebaseApp.configure()
         Task {
             let keys = await loadKeys()
             appCoordinator.delayCross = await loadDelayCross()
+            appCoordinator.funnels = await loadFunnels()
             appCoordinator.idPurchaseAfterOnboarding = await loadIdPurchaseAfterOnboarding()
             appCoordinator.allIdPuechase = await loadIdPurchases()
             
@@ -30,6 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             
+            #if DEBUG
+                    Branch.setUseTestBranchKey(true)
+                    Branch.setBranchKey("key_test_jxgS2ppvSZ81cP08lvXI4dpdDwo3zAsk")
+            #endif
             // Инициализация Branch SDK
             Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
                 if let error = error {
@@ -37,7 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                    self.appCoordinator.start()
                     return
                 }
-                if self.appCoordinator.isFirstLaunch {
+                
+                guard self.isDeeplinkOpened == false else {
+                    return
+                }
+                                
+                if self.appCoordinator.isLastLaunch == false {
                     NetworkManager.shared.sendEvent(event: .install, productId: nil, afData: params as? [String: String]) { result in
                         switch result {
                         case .success(let success):
@@ -49,13 +64,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 if let params = params as? [String: AnyObject] {
                     // получениe данных из params
+                    var params = params
+//                    params["appkey"] = "2" as AnyObject
+                    
                     if let referrer = params["appkey"] as? String {
                         print("Referrer: \(referrer)")
                         
-                        if referrer == keys[1] {
-                            self.appCoordinator.showVor1()
-                        } else if referrer == keys[2] {
-                            self.appCoordinator.showVor2()
+                        if keys.contains(referrer), referrer == "checkFlow", let checkFlow = self.appCoordinator.funnels?.checkFlow {
+                            self.isDeeplinkOpened = true
+                            self.appCoordinator.showFunnel(type: .flow1(model: checkFlow))
+                        } else if keys.contains(referrer), referrer == "scanFlow", let scanFlow = self.appCoordinator.funnels?.scanFlow {
+                            self.isDeeplinkOpened = true
+                            self.appCoordinator.showFunnel(type: .flow2(model: scanFlow))
                         } else {
                             self.appCoordinator.start()
                             return
@@ -87,6 +107,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+struct Funnels {
+    var scanFlow: FunnelModel?
+    var checkFlow: FunnelModel?
+}
+
 private extension AppDelegate {
     @MainActor
     func loadKeys() async -> [String] {
@@ -105,6 +130,35 @@ private extension AppDelegate {
             print("error load remote")
         }
         return []
+    }
+    
+    @MainActor
+    func loadFunnels() async -> Funnels? {
+        do {
+            let remoteConfig = RemoteConfig.remoteConfig()
+            let status = try await remoteConfig.fetch(withExpirationDuration: 0)
+
+            if status == .success {
+                try await remoteConfig.activate()
+                
+                let decoder = JSONDecoder()
+                let languageCode = Locale.current.languageCode ?? "en"
+                
+                let funnelScanFlowDataValue = remoteConfig.configValue(forKey: "scan_flow_\(languageCode)").dataValue
+                let funnelCheckFlowDataValue = remoteConfig.configValue(forKey: "check_flow_\(languageCode)").dataValue
+                
+                let funnelScanFlow: FunnelModel? = try? decoder.decode(FunnelModel.self, from: funnelScanFlowDataValue)
+                let funnelCheckFlow: FunnelModel? = try? decoder.decode(FunnelModel.self, from: funnelCheckFlowDataValue)
+                
+                let funnels = Funnels(scanFlow: funnelScanFlow, checkFlow: funnelCheckFlow)
+                return funnels
+            }
+
+        } catch {
+            print("error load remote")
+        }
+        
+        return nil
     }
     
     @MainActor

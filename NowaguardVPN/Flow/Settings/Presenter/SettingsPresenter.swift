@@ -36,10 +36,17 @@ extension SettingsPresenterImpl: SettingsPresenter {
     }
     
     func didTapSettingsButton1() {
-        let mailComposer = MFMailComposeViewController()
-        mailComposer.mailComposeDelegate = view
-        mailComposer.setToRecipients(["info@inhabitrlimited.digital"])
-        view.showVC(mailComposer)
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = view
+            mailComposer.setToRecipients(["info@inhabitrlimited.digital"])
+            view.showVC(mailComposer)
+        } else {
+            self.view.showAlert(
+                title: "Help",
+                message: "Email support at info@inhabitrlimited.digital"
+            )
+        }
     }
     func didTapSettingsButton2() {
         UIApplication.shared.open(URL(string: "https://inhabitrlimited.digital/Privacy.html")!, options: [:], completionHandler: nil)

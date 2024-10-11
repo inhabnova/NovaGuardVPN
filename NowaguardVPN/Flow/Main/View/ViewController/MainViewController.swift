@@ -8,6 +8,11 @@ final class MainViewController: UIViewController {
     private let titleLabel = TitleLabel(whiteText: "NovaGuard ", greenText: "VPN")
     private let countryButton = UIButton()
     private let countryButtonRightImage = UIImageView(image: I.Main.countryButtonRightArrow)
+    private lazy var countryButtonLeftImageView: UIImageView = {
+        var view = UIImageView()
+        return view
+    }()
+
     private let label1 = UILabel()
     private let label2 = UILabel()
     private let label3 = UILabel()
@@ -56,6 +61,11 @@ extension MainViewController: MainView {
         label4.textColor = .appGreen
     }
     
+    func changeServer(ip: String, coyntry: String) {
+        countryButton.setTitle(presenter.selectedServer.name, for: .normal)
+        countryButtonLeftImageView.image = I.getFlug(name: presenter.selectedServer.country)
+    }
+    
     func setupOffVPN(ip: String, coyntry: String) {
         backgroundImageView.image = I.Main.mainBackbroundOff
         
@@ -90,14 +100,17 @@ private extension MainViewController {
         label4.font = .systemFont(ofSize: .calc(18), weight: .bold)
         
         countryButton.setTitle(presenter.selectedServer.name, for: .normal)
-        countryButton.setImage(I.getFlug(name: presenter.selectedServer.name), for: .normal)
+        countryButtonLeftImageView.image = I.getFlug(name: presenter.selectedServer.country)
+//        countryButton.setImage(I.getFlug(name: presenter.selectedServer.country), for: .normal)
         countryButton.setTitleColor(.white, for: .normal)
         countryButton.backgroundColor = .appGray
         countryButton.titleLabel?.font = .systemFont(ofSize: .calc(16), weight: .semibold)
+//        countryButton.imageView?.contentMode = .scaleAspectFit
         countryButton.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 20)
         
         countryButtonRightImage.contentMode = .scaleAspectFit
         countryButton.addSubview(countryButtonRightImage)
+        countryButton.addSubview(countryButtonLeftImageView)
         countryButton.addTarget(self, action: #selector(countryButtonAction), for: .touchUpInside)
         
         onOffVPNButton.addTarget(self, action: #selector(onOffVPN), for: .touchUpInside)
@@ -151,6 +164,12 @@ private extension MainViewController {
             $0.height.equalToSuperview().multipliedBy(0.3)
             $0.centerY.equalToSuperview()
             $0.right.equalToSuperview().inset(20)
+        }
+
+        countryButtonLeftImageView.snp.makeConstraints {
+            $0.top.bottom.equalToSuperview()
+            $0.left.equalToSuperview()
+            $0.height.equalTo(self.countryButtonLeftImageView.snp.width)
         }
         
         countryButton.imageView?.snp.makeConstraints {

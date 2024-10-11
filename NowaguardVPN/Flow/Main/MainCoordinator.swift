@@ -10,10 +10,12 @@ protocol MainCoordinator: Coordinator {
     var rootViewController: UIViewController { get }
     
     var delegate: MainCoordinatorDelegate! { get set }
+    var fastStart: Bool? { get set }
     
     func showSelectCountry()
     func showSpeedTest()
     func showSettings()
+    func changeCountry(server: Server?)
 }
 
 final class MainCoordinatorImpl {
@@ -29,7 +31,10 @@ final class MainCoordinatorImpl {
     // MARK: - Private
 
     var viewController: UIViewController!
+    var presenter: MainPresenter?
+    
     weak var delegate: MainCoordinatorDelegate!
+    var fastStart: Bool?
     
     // MARK: - Dependency
 
@@ -37,12 +42,13 @@ final class MainCoordinatorImpl {
     
     // MARK: - Init
 
-    init(moduleFactory: MainModuleFactory) {
+    init(moduleFactory: MainModuleFactory, fastStart: Bool) {
+        self.fastStart = fastStart
         self.moduleFactory = moduleFactory
     }
     
-    convenience init() {
-        self.init(moduleFactory: MainModuleFactory())
+    convenience init(fastStart: Bool) {
+        self.init(moduleFactory: MainModuleFactory(), fastStart: fastStart)
     }
 }
 
@@ -53,6 +59,7 @@ extension MainCoordinatorImpl: MainCoordinator {
     func start() {
         let module = moduleFactory.createModule(withCoordinator: self)
         viewController = module.view
+        presenter = module.presenter
     }
     
     func showSelectCountry() {
@@ -65,5 +72,9 @@ extension MainCoordinatorImpl: MainCoordinator {
     
     func showSettings() {
         delegate.showSettings()
+    }
+    
+    func changeCountry(server: Server?) {
+        self.presenter?.changeCountry(country: server)
     }
 }

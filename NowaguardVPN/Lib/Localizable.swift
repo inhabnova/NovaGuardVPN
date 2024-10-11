@@ -19,3 +19,11 @@ public extension Localizable where Self: RawRepresentable {
         return Bundle.main.localizedString(forKey: key, value: nil, table: String(describing: type(of: self)))
     }
 }
+
+extension String {
+    
+    var localized: String {
+        return NSLocalizedString(self, comment: self)
+    }
+    
+}

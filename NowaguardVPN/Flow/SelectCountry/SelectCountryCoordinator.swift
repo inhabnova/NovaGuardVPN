@@ -1,15 +1,18 @@
 import UIKit
 
 protocol SelectCountryCoordinatorDelegate: AnyObject {
-    func selectCoordinatorDidFinish(with coordinator: SelectCountryCoordinator)
+    func selectCoordinatorDidFinish(with coordinator: SelectCountryCoordinator, server: Server)
+    func selectCountryWithoutPremuim(with coordinator: SelectCountryCoordinator)
 }
 
 protocol SelectCountryCoordinator: Coordinator {
     var rootViewController: UIViewController { get }
     
     var delegate: SelectCountryCoordinatorDelegate! { get set }
-    func close()
     var isPremium: Bool { get set }
+    
+    func close(server: Server)
+    func showPaywall()
 }
 
 final class SelectCountryCoordinatorImpl {
@@ -47,10 +50,14 @@ final class SelectCountryCoordinatorImpl {
 // MARK: - SelectCountryCoordinator
 
 extension SelectCountryCoordinatorImpl: SelectCountryCoordinator {
-    func close() {
-        delegate.selectCoordinatorDidFinish(with: self)
+    
+    func close(server: Server) {
+        delegate.selectCoordinatorDidFinish(with: self, server: server)
     }
     
+    func showPaywall() {
+        delegate.selectCountryWithoutPremuim(with: self)
+    }
 
     func start() {
         let module = moduleFactory.createModule(withCoordinator: self)

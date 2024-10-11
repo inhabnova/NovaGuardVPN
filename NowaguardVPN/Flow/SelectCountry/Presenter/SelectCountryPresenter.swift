@@ -4,7 +4,9 @@ protocol SelectCountryPresenter {
     
     var servers: [Server]! { get }
     var selectedServer: Server { get set }
+    
     func close()
+    func changeServerWithoutPremium()
 }
 
 final class SelectCountryPresenterImpl {
@@ -40,8 +42,11 @@ final class SelectCountryPresenterImpl {
 extension SelectCountryPresenterImpl: SelectCountryPresenter {
 
     func close() {
-        UserDefaultsService.shared.saveCurrentServer(server: selectedServer) 
-        coordinator.close()
+        coordinator.close(server: selectedServer)
+    }
+    
+    func changeServerWithoutPremium() {
+        coordinator.showPaywall()
     }
     
 }

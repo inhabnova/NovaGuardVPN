@@ -11,7 +11,11 @@ protocol VPNServiceDelegate: AnyObject {
 
 final class VPNService {
     // MARK: - Properties
-    static let shared = VPNService()
+    static let shared: VPNService = {
+        let instance = VPNService()
+        instance.setup()
+        return instance
+    }()
 
     weak var delegate: VPNServiceDelegate?
 
@@ -20,36 +24,92 @@ final class VPNService {
 
     func buildConnection(server: Server) {
         serverModel = server
-
-        setupVPNConnection()
+        
+        self.connect { errorString in
+            print(errorString)
+        }
+//        saveAndConnect()
 
         // MARK: - Observe state
 
-        NotificationCenter.default.addObserver(
-            forName: .NEVPNStatusDidChange,
-            object: vpnManager.connection,
-            queue: nil
-        ) { _ in
-            self.delegate?.didObserveVPNStatus(status: self.vpnManager.connection.status)
-        }
-    }
 
-    func connectVPN() {
-        vpnManager.loadFromPreferences { [weak self] error in
-            if let error {
-                print("connectVPN: \(error.localizedDescription)")
-                return
+    }
+    
+    func loadProfile(callback: ((Bool)->Void)?) {
+        vpnManager.protocolConfiguration = nil
+        vpnManager.loadFromPreferences { error in
+            if let error = error {
+                NSLog("Failed to load preferences: \(error.localizedDescription)")
+                callback?(false)
+            } else {
+                print("status - \(self.vpnManager.connection.status.rawValue)")
+                callback?(self.vpnManager.protocolConfiguration != nil)
             }
-
-            self?.setupVPNConnection()
         }
     }
+    
+    private func startVPNTunnel() -> Bool {
+        do {
+            try self.vpnManager.connection.startVPNTunnel()
+            return true
+        } catch NEVPNError.configurationInvalid {
+            NSLog("Failed to start tunnel (configuration invalid)")
+        } catch NEVPNError.configurationDisabled {
+            NSLog("Failed to start tunnel (configuration disabled)")
+        } catch {
+            NSLog("Failed to start tunnel (other error)")
+        }
+        return false
+    }
+
+//    func connectVPN() {
+//        vpnManager.loadFromPreferences { [weak self] error in
+//            if let error {
+//                print("connectVPN: \(error.localizedDescription)")
+//                return
+//            }
+//
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100), execute: { [weak self] in
+//                do {
+//                    try self?.vpnManager.connection.startVPNTunnel()
+//                } catch let error {
+//                    print("Error starting VPN Connection \(error.localizedDescription)")
+//                }
+//            })
+////            self?.setupVPNConnection()
+//        }
+//    }
+    
+    private func saveProfile(callback: ((Bool)->Void)?) {
+        vpnManager.saveToPreferences { error in
+            self.vpnManager.saveToPreferences { error in
+                if let error = error {
+                    NSLog("Failed to save profile: \(error.localizedDescription)")
+                    callback?(false)
+                } else {
+                    callback?(true)
+                }
+            }
+//            if let error = error {
+//                NSLog("Failed to save profile: \(error.localizedDescription)")
+//                callback?(false)
+//            } else {
+//                callback?(true)
+//            }
+        }
+    }
+    
+//    func saveAndConnect() {
+//        self.setupVPNConnection(completion: { [weak self] in
+//            self?.connectVPN()
+//        })
+//    }
 
     func disconnectVPN() {
         vpnManager.connection.stopVPNTunnel()
     }
 
-    private func setupVPNConnection() {
+    func connect(completion: ((String?) -> Void)?) {
         guard let server = serverModel else {
             return
         }
@@ -74,20 +134,56 @@ final class VPNService {
         vpnManager.protocolConfiguration = vpnSettings
         vpnManager.isEnabled = true
 
-        vpnManager.saveToPreferences { [weak self] error in
-            if let error {
-                print("Could not save VPN Configurations: \(error)")
-                self?.delegate?.didObserveVPNStatus(status: .invalid)
-                return
-            }
-
-            do {
-                try self?.vpnManager.connection.startVPNTunnel()
-            } catch let error {
-                print("Error starting VPN Connection \(error.localizedDescription)")
+        loadProfile { status in
+            self.vpnManager.protocolConfiguration = vpnSettings
+//            if vpnSettings.onDemand {
+//                let onDemandRule = NEOnDemandRuleConnect()
+//                self.manager.onDemandRules = [onDemandRule]
+//                self.manager.isOnDemandEnabled = true
+//            }
+            self.vpnManager.isEnabled = true
+            self.saveProfile { success in
+                if !success {
+                    completion?("Unable To Save VPN Profile")
+                    return
+                }
+                
+                self.loadProfile() { success in
+                    if !success {
+                        completion?("Unable To Load Profile")
+                        return
+                    }
+                    let result = self.startVPNTunnel()
+                    if !result {
+                        completion?("Can't connect")
+                    } else {
+                        completion?(nil)
+                    }
+                }
             }
         }
     }
+    
+    func setup() {
+        NotificationCenter.default.addObserver(
+            forName: .NEVPNStatusDidChange,
+            object: vpnManager.connection,
+            queue: nil
+        ) { _ in
+            self.delegate?.didObserveVPNStatus(status: self.vpnManager.connection.status)
+        }
+        
+        vpnManager.protocolConfiguration = nil
+        vpnManager.loadFromPreferences { error in
+            if let error = error {
+                NSLog("Failed to load preferences: \(error.localizedDescription)")
+            } else {
+                print("status - \(self.vpnManager.connection.status.rawValue)")
+            }
+        }
+        
+    }
+    
 }
 
 

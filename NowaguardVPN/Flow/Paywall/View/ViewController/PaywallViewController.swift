@@ -44,7 +44,15 @@ extension PaywallViewController: PaywallView {
         subTitlelabel.text = PaywallLocalization.subTitle1_1.localized
         
         let trialLabel = UILabel()
-        trialLabel.text = "\(trialCount) \(PaywallLocalization.daysFree.localized), \(PaywallLocalization.then.localized) \(price) / \(period)"
+        let trialCountString: String = {
+            if trialCount > 0 {
+                return "\(trialCount) \(PaywallLocalization.daysFree.localized),"
+            } else {
+                return ""
+            }
+        }()
+        let trialText = trialCountString + "\(PaywallLocalization.then.localized) \(price) / \(period)"
+        trialLabel.text = trialText
         trialLabel.textAlignment = .center
         trialLabel.font = .systemFont(ofSize: .calc(14), weight: .medium)
         trialLabel.textColor = .appGlayLabel
@@ -94,25 +102,82 @@ extension PaywallViewController: PaywallView {
     func setThreePurcshase(dataPurchase: [(Int, String)]) {
         
         if dataPurchase.count >= 1 {
-            paywallButton1 = PaywallButton(period: PaywallLocalization.week.localized,
-                                           priceLabelTextWhite: "\(dataPurchase[0].0) " + PaywallLocalization.daysFree.localized, priceLabelTextGreen: ", " + PaywallLocalization.then.localized + " \(dataPurchase[0].1)",
-                                           isSelected: true)
+            let days = dataPurchase[0].0
+            var textWhite: String = {
+                if days == 0 {
+                    return ""
+                } else {
+                    return "\(dataPurchase[0].0) " + PaywallLocalization.daysFree.localized
+                }
+            }()
+            var textGreen: String = {
+                if days == 0 {
+                    return "\(dataPurchase[0].1)"
+                } else {
+                    return ", " + PaywallLocalization.then.localized + " " + "\(dataPurchase[0].1)"
+                }
+            }()
+            
+            paywallButton1 = PaywallButton(
+                period: PaywallLocalization.week.localized,
+                priceLabelTextWhite: textWhite,
+                priceLabelTextGreen: textGreen,
+                isSelected: true
+            )
             paywallButton1.addTarget(self, action: #selector(paywallButton1Action), for: .touchUpInside)
             view.addSubview(paywallButton1)
         }
         
         if dataPurchase.count >= 2 {
-            paywallButton2 = PaywallButton(period: PaywallLocalization.month.localized,
-                                           priceLabelTextWhite: "\(dataPurchase[1].0) " + PaywallLocalization.daysFree.localized, priceLabelTextGreen: ", " + PaywallLocalization.then.localized + " \(dataPurchase[1].1)",
-                                           isSelected: false)
+            let days = dataPurchase[1].0
+            var textWhite: String = {
+                if days == 0 {
+                    return ""
+                } else {
+                    return "\(dataPurchase[1].0) " + PaywallLocalization.daysFree.localized
+                }
+            }()
+            var textGreen: String = {
+                if days == 0 {
+                    return "\(dataPurchase[1].1)"
+                } else {
+                    return ", " + PaywallLocalization.then.localized + " " + "\(dataPurchase[1].1)"
+                }
+            }()
+            
+            paywallButton2 = PaywallButton(
+                period: PaywallLocalization.month.localized,
+                priceLabelTextWhite: textWhite,
+                priceLabelTextGreen: textGreen,
+                isSelected: false
+            )
             paywallButton2.addTarget(self, action: #selector(paywallButton2Action), for: .touchUpInside)
             view.addSubview(paywallButton2)
         }
         
         if dataPurchase.count >= 3 {
-            paywallButton3 = PaywallButton(period: PaywallLocalization.year.localized,
-                                           priceLabelTextWhite: "\(dataPurchase[2].0) " + PaywallLocalization.daysFree.localized, priceLabelTextGreen: ", " + PaywallLocalization.then.localized + " \(dataPurchase[2].1)",
-                                           isSelected: false)
+            let days = dataPurchase[2].0
+            var textWhite: String = {
+                if days == 0 {
+                    return ""
+                } else {
+                    return "\(dataPurchase[2].0) " + PaywallLocalization.daysFree.localized
+                }
+            }()
+            var textGreen: String = {
+                if days == 0 {
+                    return "\(dataPurchase[2].1)"
+                } else {
+                    return ", " + PaywallLocalization.then.localized + " " + "\(dataPurchase[2].1)"
+                }
+            }()
+            
+            paywallButton3 = PaywallButton(
+                period: PaywallLocalization.year.localized,
+                priceLabelTextWhite: textWhite,
+                priceLabelTextGreen: textGreen,
+                isSelected: false
+            )
             paywallButton3.addTarget(self, action: #selector(paywallButton3Action), for: .touchUpInside)
             view.addSubview(paywallButton3)
         }
