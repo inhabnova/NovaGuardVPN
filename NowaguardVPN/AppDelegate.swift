@@ -19,9 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let schemeName = Bundle.main.infoDictionary?["SchemeName"] as? String ?? ""
-        printContent(schemeName)
-        
         FirebaseApp.configure()
         Task {
             let keys = await loadKeys()

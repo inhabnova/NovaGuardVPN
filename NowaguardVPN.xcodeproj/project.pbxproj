@@ -1486,7 +1486,7 @@
 				CODE_SIGN_ENTITLEMENTS = NowaguardVPN/NowaguardVPN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = K3CFA8U38L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NowaguardVPN/Resources/Info.plist;
@@ -1520,7 +1520,7 @@
 				CODE_SIGN_ENTITLEMENTS = NowaguardVPN/NowaguardVPN.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = K3CFA8U38L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NowaguardVPN/Resources/Info.plist;
