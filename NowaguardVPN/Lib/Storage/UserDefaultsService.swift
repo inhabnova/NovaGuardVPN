@@ -9,6 +9,23 @@ final class UserDefaultsService {
     private let ServerKey = "selectServer"
     private let allServerKey = "allServerKey"
     
+    var isPrivacyShowed: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "isPrivacyShowed")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isPrivacyShowed")
+        }
+    }
+    var isFunnelShowed: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "isFunnelShowed")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isFunnelShowed")
+        }
+    }
+    
     func getCurrentServer() -> Server? {
         if let data = defaults.data(forKey: ServerKey) {
             do {

@@ -43,6 +43,7 @@ private extension SelectCountryViewController {
     }
     
     @objc func backButtonAction() {
+        self.dismiss(animated: true)
         presenter.close()
     }
 }
@@ -103,6 +104,9 @@ extension SelectCountryViewController: UITableViewDataSource, UITableViewDelegat
         guard let cell = tableView.cellForRow(at: indexPath) as? SelectCountryTableViewCell else {
             return
         }
+        
+        self.dismiss(animated: true)
+        
         guard !cell.server.premium else {
             presenter.changeServerWithoutPremium()
             return

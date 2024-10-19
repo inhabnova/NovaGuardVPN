@@ -2,8 +2,8 @@ import UIKit
 import StoreKit
 
 protocol PaywallPresenter {
-    var view: PaywallView! { get set }
-    var coordinator: PaywallCoordinator! { get set }
+    var view: PaywallView? { get set }
+    var coordinator: PaywallCoordinator? { get set }
     
     var indexSelectedPurchase: Int { get set }
     func onViewDidload()
@@ -18,8 +18,8 @@ final class PaywallPresenterImpl {
     
     // MARK: - Public Properties
     
-    weak var view: PaywallView!
-    weak var coordinator: PaywallCoordinator!
+    weak var view: PaywallView?
+    weak var coordinator: PaywallCoordinator?
     
     private var subscriptions: [Product] = []
     var indexSelectedPurchase: Int = 0
@@ -30,7 +30,7 @@ final class PaywallPresenterImpl {
 extension PaywallPresenterImpl: PaywallPresenter {
     @MainActor
     func onViewDidload() {
-        if coordinator.setOwnPurchase {
+        if let coordinator = coordinator, coordinator.setOwnPurchase {
             Task {
                 subscriptions = try await Product.products(for: [coordinator.idPurchaseAfterOnboarding ?? ""])
                 
@@ -40,21 +40,30 @@ extension PaywallPresenterImpl: PaywallPresenter {
                 let period = product?.subscription?.subscriptionPeriod.unit ?? .year
                 let trial = product?.subscription?.introductoryOffer?.period.value
                 
-                view.setOwnPurcshase(trialCount: trial ?? 0, price: price ?? "100", period: "\(period)")
+                view?.setOwnPurcshase(trialCount: trial ?? 0, price: price ?? "100", period: "\(period)")
             }
             if let delay = coordinator.delayCross {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay)) {
-                    self.view.showBackButton()
+                    self.view?.showBackButton()
                 }
             } else {
-                self.view.showBackButton()
+                self.view?.showBackButton()
             }
         } else {
             
             Task {
-                subscriptions = try await Product.products(for: coordinator.allIdPuechase ?? [])
+                let products = self.coordinator?.allIdPuechase ?? []
+                subscriptions = try await Product.products(for: products)
                 
                 var dataPurchases: [(Int, String)] = []
+                
+                var sortedSubscriptions: [Product] = []
+                for (index, product) in products.enumerated() {
+                    if let first = self.subscriptions.first(where: { $0.id == product }) {
+                        sortedSubscriptions.append(first)
+                    }
+                }
+                self.subscriptions = sortedSubscriptions
                 
                 for subscription in self.subscriptions {
                     let product = subscription
@@ -65,9 +74,9 @@ extension PaywallPresenterImpl: PaywallPresenter {
                     dataPurchases.append((trial, price))
                 }
                 
-                view.setThreePurcshase(dataPurchase: dataPurchases)
+                view?.setThreePurcshase(dataPurchase: dataPurchases)
             }
-            view.showBackButton()
+            view?.showBackButton()
         }
     }
     
@@ -76,13 +85,13 @@ extension PaywallPresenterImpl: PaywallPresenter {
             do {
                 try await AppStore.sync()
             } catch {
-                view.showErrorAlert()
+                view?.showErrorAlert()
             }
         }
     }
     
     func close() {
-        coordinator.close()
+        coordinator?.close()
     }
     
     func openToU() {
@@ -95,21 +104,21 @@ extension PaywallPresenterImpl: PaywallPresenter {
     
     func subscription() {
         //подписка на пейволе с 1 или с 3 подписками 
-        if coordinator.setOwnPurchase {
+        if let coordinator = coordinator, coordinator.setOwnPurchase {
             if let id = coordinator.idPurchaseAfterOnboarding {
                 Task {
                     await purchase(id: id)
                 }
             } else {
-                view.showErrorAlert()
+                view?.showErrorAlert()
             }
         } else {
-            if let ids = coordinator.allIdPuechase {
+            if let ids = coordinator?.allIdPuechase {
                 Task {
                     await purchase(id: ids[indexSelectedPurchase])
                 }
             } else {
-                view.showErrorAlert()
+                view?.showErrorAlert()
             }
         }
     }
@@ -122,7 +131,7 @@ extension PaywallPresenterImpl: PaywallPresenter {
                 let result = try await product.purchase()
                 switch result {
                 case .success(let verificationResult):
-                    coordinator.didFinishTransaction()
+                    coordinator?.didFinishTransaction()
                 default :
                     break
                 }

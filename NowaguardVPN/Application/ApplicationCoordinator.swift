@@ -190,7 +190,8 @@ private extension ApplicationCoordinatorImpl {
         coordinator.start()
         coordinator.delegate = self
         addChildCoordinator(coordinator)
-        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+        coordinator.rootViewController.modalPresentationStyle = .fullScreen
+        applicationPresenter.present(coordinator.rootViewController)
     }
     
     func showSpeedTestCoordinator() {
@@ -216,7 +217,9 @@ private extension ApplicationCoordinatorImpl {
         coordinator.idPurchaseAfterOnboarding = idPurchaseAfterOnboarding
         coordinator.delegate = self
         addChildCoordinator(coordinator)
-        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+        coordinator.rootViewController.modalPresentationStyle = .fullScreen
+        applicationPresenter.present(coordinator.rootViewController)
+//        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
     }
     
     func showPaywallCoordinator_3() {
@@ -226,7 +229,9 @@ private extension ApplicationCoordinatorImpl {
         coordinator.allIdPuechase = allIdPuechase
         coordinator.delegate = self
         addChildCoordinator(coordinator)
-        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
+        coordinator.rootViewController.modalPresentationStyle = .fullScreen
+        applicationPresenter.present(coordinator.rootViewController)
+//        applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
     }
 }
 
@@ -318,9 +323,14 @@ extension ApplicationCoordinatorImpl: PaywallCoordinatorDelegate {
                 addChildCoordinator(coordinator)
                 applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
                 
-                let privacy = SettingsDetailViewController(whiteText: SettingsLocalization.button2.localized, greenText: SettingsLocalization.policy.localized, contentText: SettingsLocalization.contentTextPrivacy.localized)
-                privacy.modalPresentationStyle = .fullScreen
-                coordinator.rootViewController.present(privacy, animated: true)
+                if UserDefaultsService.shared.isPrivacyShowed == false {
+                    let privacy = SettingsDetailViewController(whiteText: SettingsLocalization.button2.localized, greenText: SettingsLocalization.policy.localized, contentText: SettingsLocalization.contentTextPrivacy.localized)
+                    privacy.modalPresentationStyle = .fullScreen
+                    coordinator.rootViewController.present(privacy, animated: true)
+                    UserDefaultsService.shared.isPrivacyShowed = true
+                }
+                
+
             }
             return
         }
@@ -337,9 +347,14 @@ extension ApplicationCoordinatorImpl: PaywallCoordinatorDelegate {
 //            addChildCoordinator(coordinator)
             applicationPresenter.presentViewController(coordinator.rootViewController, withAnimations: true)
             
-            let privacy = SettingsDetailViewController(whiteText: SettingsLocalization.button2.localized, greenText: SettingsLocalization.policy.localized, contentText: SettingsLocalization.contentTextPrivacy.localized)
-            privacy.modalPresentationStyle = .fullScreen
-            coordinator.rootViewController.present(privacy, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250)) {
+                if UserDefaultsService.shared.isPrivacyShowed == false {
+                    let privacy = SettingsDetailViewController(whiteText: SettingsLocalization.button2.localized, greenText: SettingsLocalization.policy.localized, contentText: SettingsLocalization.contentTextPrivacy.localized)
+                    privacy.modalPresentationStyle = .fullScreen
+                    coordinator.rootViewController.present(privacy, animated: true)
+                    UserDefaultsService.shared.isPrivacyShowed = true
+                }
+            }
         }
     }
 }

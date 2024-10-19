@@ -19,15 +19,16 @@ final class PaywallViewController: UIViewController {
 
     // MARK: - Public Properties
     
-    var presenter: PaywallPresenter!
+    var presenter: PaywallPresenter?
     
     // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         layoutSetup()
         setupConstraints()
-        presenter.onViewDidload()
+        presenter?.onViewDidload()
     }
 }
 
@@ -266,36 +267,41 @@ private extension PaywallViewController {
 
 private extension PaywallViewController {
     @objc func restoreButtonAction() {
-        presenter.restore()
+        presenter?.restore()
     }
     @objc func closeButtonAction() {
-        presenter.close()
+        presenter?.close()
+        self.dismiss(animated: true,
+                     completion: nil)
     }
     @objc func touButtonAction() {
-        presenter.openToU()
+        presenter?.openToU()
     }
     @objc func ppButtonAction() {
-        presenter.openPP()
+        presenter?.openPP()
     }
     @objc func subsButtonAction() {
-        presenter.subscription()
+        presenter?.subscription()
     }
     @objc func paywallButton1Action() {
-        presenter.indexSelectedPurchase = 0
+        presenter?.indexSelectedPurchase = 0
+        
         guard !paywallButton1.isSelected else { return }
         paywallButton1.isSelected = true
         paywallButton2.isSelected = false
         paywallButton3.isSelected = false
     }
     @objc func paywallButton2Action() {
-        presenter.indexSelectedPurchase = 1
+        presenter?.indexSelectedPurchase = 1
+        
         guard !paywallButton2.isSelected else { return }
         paywallButton1.isSelected = false
         paywallButton2.isSelected = true
         paywallButton3.isSelected = false
     }
     @objc func paywallButton3Action() {
-        presenter.indexSelectedPurchase = 2
+        presenter?.indexSelectedPurchase = 2
+        
         guard !paywallButton3.isSelected else { return }
         paywallButton1.isSelected = false
         paywallButton2.isSelected = false

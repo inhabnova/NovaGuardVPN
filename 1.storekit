@@ -77,7 +77,12 @@
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "81EF23D7",
-          "introductoryOffer" : null,
+          "introductoryOffer" : {
+            "displayPrice" : "0.99",
+            "internalID" : "B92F0D6B",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P3D"
+          },
           "localizations" : [
             {
               "description" : "",
@@ -102,11 +107,7 @@
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "562C3D54",
-          "introductoryOffer" : {
-            "internalID" : "BAC6A325",
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P3D"
-          },
+          "introductoryOffer" : null,
           "localizations" : [
             {
               "description" : "",
@@ -131,12 +132,7 @@
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "8AC62B30",
-          "introductoryOffer" : {
-            "displayPrice" : "0.99",
-            "internalID" : "DDC8433C",
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P3D"
-          },
+          "introductoryOffer" : null,
           "localizations" : [
             {
               "description" : "",

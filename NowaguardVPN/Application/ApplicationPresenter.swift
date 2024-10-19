@@ -2,6 +2,7 @@ import UIKit
 
 protocol ApplicationPresenter {
     func presentViewController(_ viewController: UIViewController, withAnimations: Bool)
+    func present(_ viewController: UIViewController)
 }
 
 final class ApplicationPresenterImpl: ApplicationPresenter {
@@ -24,6 +25,10 @@ final class ApplicationPresenterImpl: ApplicationPresenter {
     
     func presentViewController(_ viewController: UIViewController, withAnimations: Bool = true) {
         guard let window = window else { return }
+        
+//        let navController = UINavigationController(rootViewController: viewController)
+//        navController.setNavigationBarHidden(true, animated: false)
+//        
         window.rootViewController = viewController
         window.makeKeyAndVisible()
         if withAnimations {
@@ -33,5 +38,10 @@ final class ApplicationPresenterImpl: ApplicationPresenter {
                 options: .transitionCrossDissolve,
                 animations: nil)
         }
+    }
+    
+    func present(_ viewController: UIViewController) {
+        guard let window = window else { return }
+        window.rootViewController?.present(viewController, animated: true)
     }
 }

@@ -67,7 +67,8 @@ extension PaywallCoordinatorImpl: PaywallCoordinator {
     
     func didFinishTransaction() {
         DispatchQueue.main.async {
-            self.delegate?.paywallCoordinatorDidFinish(with: self, isPurshased: true)            
+            self.delegate?.paywallCoordinatorDidFinish(with: self, isPurshased: true)
+            self.viewController.dismiss(animated: true)
         }
     }
 }

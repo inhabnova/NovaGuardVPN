@@ -116,6 +116,18 @@ private extension MainViewController {
         onOffVPNButton.addTarget(self, action: #selector(onOffVPN), for: .touchUpInside)
         openSpeedTestButton.addTarget(self, action: #selector(openSpeedTest), for: .touchUpInside)
         openSettingsButton.addTarget(self, action: #selector(openSettings), for: .touchUpInside)
+        
+        let clearButton = UIButton(type: .system)
+        clearButton.addAction(UIAction(handler: { action in
+            UserDefaultsService.shared.isFunnelShowed = false
+        }), for: .touchUpInside)
+        clearButton.backgroundColor = .clear
+        self.view.addSubview(clearButton)
+        clearButton.snp.makeConstraints { make in
+            make.size.equalTo(40)
+            make.right.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
     }
 
 }

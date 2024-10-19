@@ -10,6 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Private Properties
     
     var isDeeplinkOpened: Bool = false
+    var isAppActive: Bool = false
     
     private lazy var appCoordinator: ApplicationCoordinator = {
         window = UIWindow()
@@ -45,6 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     return
                 }
                 
+                if self.isAppActive == true {
+                    return
+                }
+                
                 guard self.isDeeplinkOpened == false else {
                     return
                 }
@@ -67,19 +72,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if let referrer = params["appkey"] as? String {
                         print("Referrer: \(referrer)")
                         
-                        if keys.contains(referrer), referrer == "checkFlow", let checkFlow = self.appCoordinator.funnels?.checkFlow {
+                        if keys.contains(referrer), referrer == "checkFlow", let checkFlow = self.appCoordinator.funnels?.checkFlow, UserDefaultsService.shared.isFunnelShowed == false {
                             self.isDeeplinkOpened = true
+                            UserDefaultsService.shared.isFunnelShowed = true
                             self.appCoordinator.showFunnel(type: .flow1(model: checkFlow))
-                        } else if keys.contains(referrer), referrer == "scanFlow", let scanFlow = self.appCoordinator.funnels?.scanFlow {
+                        } else if keys.contains(referrer), referrer == "scanFlow", let scanFlow = self.appCoordinator.funnels?.scanFlow, UserDefaultsService.shared.isFunnelShowed == false {
                             self.isDeeplinkOpened = true
+                            UserDefaultsService.shared.isFunnelShowed = true
                             self.appCoordinator.showFunnel(type: .flow2(model: scanFlow))
                         } else {
                             self.appCoordinator.start()
+                            self.isAppActive = true
                             return
                         }
                         
                     } else {
                         self.appCoordinator.start()
+                        self.isAppActive = true
+
                         return
                     }
                     
