@@ -134,13 +134,15 @@ extension FunnelFlowPresenter: FunnelFlowPresenterInterface {
         guard let subscriptionId = funnelModel.subscriptionId else {
             return
         }
-        print("tracking subscribe \(Date().timeIntervalSince1970)")
-        //        TODO
-        //        ApiManager.shared.sendEvent(event: "subscribe",
-        //                                    afStatus: AnalyticsValues.afStatus ?? "",
-        //                                    product: subscriptionId,
-        //                                    isFirstLaunch: AnalyticsValues.isFirstLaunch ?? true,
-        //                                    af_data: self.conversionInfo ?? [AnyHashable: Any]()) { _ in }
+
+        NetworkManager.shared.sendEvent(event: .subscribe, productId: nil, afData: AnalyticsValues.conversionInfo as? [String: String]) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
     
     @MainActor

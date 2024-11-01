@@ -131,6 +131,7 @@ extension PaywallPresenterImpl: PaywallPresenter {
                 let result = try await product.purchase()
                 switch result {
                 case .success(let verificationResult):
+                    self.trackSubscription(subscriptionId: id)
                     coordinator?.didFinishTransaction()
                 default :
                     break
@@ -141,5 +142,21 @@ extension PaywallPresenterImpl: PaywallPresenter {
             print("error purchase \(id)")
         }
     }
+    
+    func trackSubscription(subscriptionId: String) {
+        NetworkManager.shared.sendEvent(
+            event: .subscribe,
+            productId: subscriptionId,
+            afData: AnalyticsValues.conversionInfo as? [String: String]
+        ) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
+    
 }
 

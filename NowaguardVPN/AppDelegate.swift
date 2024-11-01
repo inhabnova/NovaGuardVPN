@@ -2,6 +2,21 @@ import UIKit
 import BranchSDK
 import FirebaseCore
 import FirebaseRemoteConfigInternal
+import SkarbSDK
+
+class AnalyticsValues {
+    static var appKey: String?
+    static var mediaSource: String?
+    static var afStatus: String?
+    static var isFirstLaunch: Bool?
+    static var planForOnboarding: [SKProduct]?
+    static var isFirstLaunchFlag: Bool?
+    static var conversionInfo: [AnyHashable: Any]?
+    static var planForPromo: SKProduct?
+    static var planForPromoFlow: SKProduct?
+    static var planForThreelong: SKProduct?
+}
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -11,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var isDeeplinkOpened: Bool = false
     var isAppActive: Bool = false
+    var isDataConversionSended: Bool = false
     
     private lazy var appCoordinator: ApplicationCoordinator = {
         window = UIWindow()
@@ -46,6 +62,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     return
                 }
                 
+                
+                if let params = params as? [String: AnyObject] {
+                    let appsFlyerFormatData = SkarbSDK.convertConversionInfoToAppsFlyerFormat(params)
+                    if self.isDataConversionSended == false {
+                        SkarbSDK.sendSource(broker: .appsflyer, features: appsFlyerFormatData, brokerUserID: nil)
+                        AnalyticsValues.conversionInfo = appsFlyerFormatData
+                        self.isDataConversionSended = true
+                    }
+                }
+
+                
                 if self.isAppActive == true {
                     return
                 }
@@ -55,13 +82,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                                 
                 if self.appCoordinator.isLastLaunch == false {
-                    NetworkManager.shared.sendEvent(event: .install, productId: nil, afData: params as? [String: String]) { result in
-                        switch result {
-                        case .success(let success):
-                            print(success)
-                        case .failure(let failure):
-                            print(failure)
-                        }
+                    let parameters = AnalyticsValues.conversionInfo
+                    NetworkManager.shared.sendEvent(
+                        event: .install,
+                        productId: nil,
+                        afData: parameters) { result in
+                            switch result {
+                            case .success(let success):
+                                print(success)
+                            case .failure(let failure):
+                                print(failure)
+                            }
                     }
                 }
                 if let params = params as? [String: AnyObject] {

@@ -35,7 +35,7 @@ final class NetworkManager {
     func makeRequest<T: Decodable> (
         urlString: String,
         httpMethod: HTTPMethod,
-        body: Encodable? = nil,
+        body: Data? = nil,
         headers: [String: String]? = nil,
         completion: @escaping (Result<T, NetworkError>) -> Void
     ) {
@@ -52,7 +52,8 @@ final class NetworkManager {
         
         if let body {
             do {
-                request.httpBody = try encoder.encode(body)
+                request.httpBody = body
+//                request.httpBody = try encoder.encode(body)
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             } catch {
                 DispatchQueue.main.async {
@@ -142,6 +143,50 @@ final class NetworkManager {
             }
             
         }.resume()
+    }
+    
+    func makeJSONData(from dictionary: [AnyHashable: Any]) -> Data? {
+        let jsonCompatibleDictionary = dictionary.reduce(into: [String: Any]()) { result, item in
+            if let key = item.key as? String {
+                result[key] = convertToJSONCompatibleValue(item.value)
+            }
+        }
+        
+        // Преобразуем словарь в JSON Data
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonCompatibleDictionary, options: [])
+            return jsonData
+        } catch {
+            print("Ошибка при сериализации в JSON:", error)
+            return nil
+        }
+    }
+
+    // Функция для преобразования значения в JSON-совместимый формат
+    func convertToJSONCompatibleValue(_ value: Any) -> Any {
+        switch value {
+        case let intValue as Int:
+            return intValue
+        case let doubleValue as Double:
+            return doubleValue
+        case let boolValue as Bool:
+            return boolValue
+        case let stringValue as String:
+            return stringValue
+        case let dateValue as Date:
+            let dateFormatter = ISO8601DateFormatter()
+            return dateFormatter.string(from: dateValue)
+        case let arrayValue as [Any]:
+            return arrayValue.map { convertToJSONCompatibleValue($0) }
+        case let dictValue as [AnyHashable: Any]:
+            return dictValue.reduce(into: [String: Any]()) { result, item in
+                if let key = item.key as? String {
+                    result[key] = convertToJSONCompatibleValue(item.value)
+                }
+            }
+        default:
+            return "\(value)" // Конвертируем любые другие типы в строку
+        }
     }
 }
 
