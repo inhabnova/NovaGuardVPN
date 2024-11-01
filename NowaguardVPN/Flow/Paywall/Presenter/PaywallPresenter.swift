@@ -147,7 +147,7 @@ extension PaywallPresenterImpl: PaywallPresenter {
         NetworkManager.shared.sendEvent(
             event: .subscribe,
             productId: subscriptionId,
-            afData: AnalyticsValues.conversionInfo as? [String: String]
+            afData: AnalyticsValues.conversionInfo
         ) { result in
             switch result {
             case .success(let success):

@@ -135,7 +135,7 @@ extension FunnelFlowPresenter: FunnelFlowPresenterInterface {
             return
         }
 
-        NetworkManager.shared.sendEvent(event: .subscribe, productId: nil, afData: AnalyticsValues.conversionInfo as? [String: String]) { result in
+        NetworkManager.shared.sendEvent(event: .subscribe, productId: subscriptionId, afData: AnalyticsValues.conversionInfo) { result in
             switch result {
             case .success(let success):
                 print(success)
