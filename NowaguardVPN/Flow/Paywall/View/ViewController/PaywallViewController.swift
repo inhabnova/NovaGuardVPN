@@ -1,4 +1,5 @@
 import UIKit
+import SkarbSDK
 
 final class PaywallViewController: UIViewController {
 
@@ -43,6 +44,7 @@ extension PaywallViewController: PaywallView {
                                               greenText: PaywallLocalization.title_1green.localized)
         titlelabel.numberOfLines = 0
         subTitlelabel.text = PaywallLocalization.subTitle1_1.localized
+        SkarbSDK.sendTest(name: "pw_one", group: "")
         
         let trialLabel = UILabel()
         let trialCountString: String = {
@@ -183,7 +185,7 @@ extension PaywallViewController: PaywallView {
             view.addSubview(paywallButton3)
         }
         
-        
+        SkarbSDK.sendTest(name: "pw_threelong", group: "")
         
         titlelabel = PaywallTitleLabel(whiteText: PaywallLocalization.title_3white.localized,
                                               greenText: PaywallLocalization.title_3green.localized)

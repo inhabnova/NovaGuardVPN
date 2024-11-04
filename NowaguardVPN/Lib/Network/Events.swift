@@ -6,7 +6,7 @@ enum Events: String {
 }
 
 struct SendEventRequest {
-    let apiKey = "b1947044-1d5f-4381-ac53-f1271a2dedb8"
+    let api_key = "b1947044-1d5f-4381-ac53-f1271a2dedb8"
     let event: String
     let product: String
     let af_data: [AnyHashable: Any]
@@ -14,7 +14,7 @@ struct SendEventRequest {
     func toJSONData() -> Data? {
         // Собираем словарь с API ключом, событием и продуктом
         var jsonCompatibleDictionary: [String: Any] = [
-            "apiKey": apiKey,
+            "api_key": api_key,
             "event": event,
             "product": product
         ]

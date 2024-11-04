@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
+        SkarbSDK.initialize(clientId: "nova", isObservable: true)
+
         Task {
             let keys = await loadKeys()
             appCoordinator.delayCross = await loadDelayCross()
@@ -56,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             #endif
             // Инициализация Branch SDK
             Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
+                
                 if let error = error {
                     print("Branch initialization error: \(error.localizedDescription)")
 //                    self.appCoordinator.start()
@@ -107,13 +110,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             self.isDeeplinkOpened = true
                             UserDefaultsService.shared.isFunnelShowed = true
                             self.appCoordinator.showFunnel(type: .flow1(model: checkFlow))
+                            SkarbSDK.sendTest(name: "checkFlow", group: "")
                         } else if keys.contains(referrer), referrer == "scanFlow", let scanFlow = self.appCoordinator.funnels?.scanFlow, UserDefaultsService.shared.isFunnelShowed == false {
                             self.isDeeplinkOpened = true
                             UserDefaultsService.shared.isFunnelShowed = true
+                            SkarbSDK.sendTest(name: "scanFlow", group: "")
                             self.appCoordinator.showFunnel(type: .flow2(model: scanFlow))
                         } else {
                             self.appCoordinator.start()
                             self.isAppActive = true
+                            SkarbSDK.sendTest(name: "organic", group: "")
                             return
                         }
                         
