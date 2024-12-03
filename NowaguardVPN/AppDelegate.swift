@@ -53,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             #if DEBUG
-                    Branch.setUseTestBranchKey(true)
-                    Branch.setBranchKey("key_test_jxgS2ppvSZ81cP08lvXI4dpdDwo3zAsk")
+                Branch.setUseTestBranchKey(true)
+                Branch.setBranchKey("key_test_jxgS2ppvSZ81cP08lvXI4dpdDwo3zAsk")
             #endif
             // Инициализация Branch SDK
             Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
