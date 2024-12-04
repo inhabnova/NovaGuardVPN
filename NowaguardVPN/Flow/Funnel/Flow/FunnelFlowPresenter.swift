@@ -7,6 +7,7 @@
 
 import Foundation
 import StoreKit
+import FirebaseAnalytics
 
 protocol FunnelFlowPresenterDelegate: AnyObject {
     func funnelFlowDidEnterBackground(presenter: FunnelFlowPresenterInterface)
@@ -40,13 +41,36 @@ class FunnelFlowPresenter {
         //        self.conversionInfo = AnalyticsValues.conversionInfo
     }
     
+    private func sendEvent(name: String, parameters: [String: Any]?) {
+        Analytics.logEvent(name, parameters: parameters)
+    }
+    
     @MainActor
     private func purchase(id: String) async {
         let productId = [id]
         self.view?.showHUD()
         
+        var random: Int = Int.random(in: 1000...999999)
+        let userRandomId = "User \(random)"
+        
+        self.sendEvent(
+            name: "StartPurchase",
+            parameters: [
+                "productId": id,
+                "userId": userRandomId
+            ]
+        )
+        
         do {
             if let product = try await Product.products(for: productId).first {
+                
+                self.sendEvent(
+                    name: "ProductLoaded",
+                    parameters: [
+                        "productId": id,
+                        "userId": userRandomId
+                    ]
+                )
                 
                 let result = try await product.purchase()
                 
@@ -55,10 +79,43 @@ class FunnelFlowPresenter {
                     
                     switch result {
                     case .success(let verificationResult):
+                        self.sendEvent(
+                            name: "PurchaseAction",
+                            parameters: [
+                                "productId": id,
+                                "userId": userRandomId,
+                                "result": "Success"
+                            ]
+                        )
+                        
                         self.trackSubscribeEvent()
                         UserDefaults.standard.set(true, forKey: "premium")
                         self.purchased()
-                    default:
+                    case .userCancelled:
+                        self.sendEvent(
+                            name: "PurchaseAction",
+                            parameters: [
+                                "productId": id,
+                                "userId": userRandomId,
+                                "result": "UserCancelled"
+                            ]
+                        )
+                        
+                        if let fail = self.funnelModel.failAlert {
+                            self.view?.showRCAlert(alert: fail)
+                        } else {
+                            self.view?.showTryAgainError()
+                        }
+                    case .pending:
+                        self.sendEvent(
+                            name: "PurchaseAction",
+                            parameters: [
+                                "productId": id,
+                                "userId": userRandomId,
+                                "result": "pending"
+                            ]
+                        )
+                        
                         if let fail = self.funnelModel.failAlert {
                             self.view?.showRCAlert(alert: fail)
                         } else {
@@ -67,8 +124,24 @@ class FunnelFlowPresenter {
                     }
                 }
                 
+            } else {
+                self.sendEvent(
+                    name: "ProductsNotFound",
+                    parameters: [
+                        "productId": id,
+                        "userId": userRandomId
+                    ]
+                )
             }
         } catch {
+            self.sendEvent(
+                name: "getProductsError",
+                parameters: [
+                    "productId": id,
+                    "userId": userRandomId,
+                    "errorString": error.localizedDescription
+                ]
+            )
             print("error purchase \(id)")
         }
     }
